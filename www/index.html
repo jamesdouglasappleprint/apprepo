@@ -27,20 +27,61 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+        <!-- Default Loaded Panel -->
+        <div class="fullHeightPanel loadingPanel">
+          <H1>THIS IS THE LOADING SCREEN</H1>
+          <H2>WE'RE LOADING</H2>
+          <H3>LOAAAADDDINNNGGGGG...</H3>
+          <H4>STILL LOADING</h4>
+          <h5>Okay, we're done.</h5>
+          <div class="button skipLoading">SKIP LOADING</div>
+
+
+
+
+
         </div>
+        <!-- Panels -->
+        <div class="fullHeightPanel registerLoginPanel"></div>
+
+
+
+
+
+
+
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="js/core.js"></script>
+
+        <!-- <script type="text/javascript" src="js/index.js"></script> -->
         <script type="text/javascript">
-            app.initialize();
+            //app.initialize();
+        </script>
+        <script>
+            // var value = window.localStorage.getItem("stayloggedon")
+            // if( value == 1){
+            //     $('.appContainer').load("home.html")
+            //     $('.navigateBack').hide()
+            //     $('.prelaunchButtons').hide()
+            //     $('.socialStrip').show()
+            //     //BDM Data load
+            //     getBdmData()
+            //
+            //     //User Data
+            // }else{
+            //     $('.navigateBack').hide()
+            //     $('.prelaunchButtons').show()
+            //     $('.socialStrip').hide()
+            //     $('.appContainer').load("login.html")
+            // }
+            //   var string = device.uuid;
+            //   createPushRegister(string)
+            //   initPushwoosh()
         </script>
     </body>
 </html>
