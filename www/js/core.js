@@ -14,6 +14,7 @@ Core.prototype.loadPanelContent = function(){
   console.log('Loading Panel Content')
 
   $('.registerLoginPanel').load("registerlogin.html")
+  $('.storyboardPanel').load("storyboard.html")
 }
 
 Core.prototype.loginOrRegister = function(){
@@ -42,6 +43,7 @@ Core.prototype.loginOrRegister = function(){
   //Login closed
   $(document).on("click",".hideSlideLogin",function(e){
     $('.registerLoginContainer').removeClass('registerLoginReduce')
+    $('.slideLogin').hide()
   })
 
   $(document).on("click",".submitLogin",function(e){
@@ -54,7 +56,7 @@ Core.prototype.loginOrRegister = function(){
   	$.ajax({
   		type: 'POST',
   		data: postData,
-  		url: 'http://your-domain.com/comments/save.php',
+  		url: 'http://applegochi.apple-dev.co.uk/Ajax/ghTest.ashx?e='+postData,
   		success: function(data){
   			console.log(data);
   			alert('Your comment was successfully added');
@@ -77,6 +79,7 @@ Core.prototype.loginOrRegister = function(){
   //Login closed
   $(document).on("click",".hideSlideRegister",function(e){
     $('.registerLoginContainer').removeClass('registerLoginReduceMax')
+    $('.slideRegister').hide()
   })
 
 
@@ -88,6 +91,10 @@ Core.prototype.buildFunctionsDelete = function(){
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
+  })
+
+  $(document).on("click",".bypasslogin",function(e){
+    $('.storyboardPanel').show()
   })
 }
 
