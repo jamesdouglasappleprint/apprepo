@@ -3,7 +3,7 @@
 
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        id          = "com.applegotchi"
-       version     = "1.0.1">
+       version     = "2.0.0">
 
   <name>IN DEV</name>
 
@@ -44,7 +44,7 @@
     <icon src="res/icons/ios/icon-60.png" width="120" height="120"/>
     <icon src="res/icons/ios/icon-72-2x.png" width="144" height="144"/>
     <icon src="res/icons/ios/icon-72.png" width="72" height="72"/>
-    <icon src="res/icons/ios/Icon-76@2x.png" width="152" height="152"/>
+    <icon src="Icon-76@2x.png" width="152" height="152"/>
     <icon src="res/icons/ios/icon-76.png" width="76" height="76"/>
     <icon src="res/icons/ios/icon-small-2x.png" width="58" height="58"/>
     <icon src="res/icons/ios/icon-small.png" width="29" height="29"/>
