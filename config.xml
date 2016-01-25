@@ -6,10 +6,6 @@
        version     = "1.0.0"
        versionCode = "10" >
 
-  <!-- versionCode is optional and Android only -->
-
-  <preference name="phonegap-version" value="3.5.0" />
-
   <name>Sample Config.xml</name>
 
   <description>An example for phonegap build docs.</description>
@@ -57,7 +53,8 @@
   <gap:splash src="screen/screen-hdpi-portrait.png"       gap:platform="android" gap:qualifier="port-hdpi" />
   <gap:splash src="screen/screen-xhdpi-portrait.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
 
-  <gap:splash src="Default.png"                               gap:platform="ios"     width="320" height="480" />
+  <gap:splash src="screen/Default.png"                    gap:platform="ios"  width="320" height="480" />
+  <gap:splash src="screen/Default-568h@2x.png"            gap:platform="ios"  width="640" height="1136" />
 
 
   <access origin="*"/>
