@@ -3,11 +3,11 @@
 
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        id          = "com.applegotchi"
-       version     = "2.0.1">
+       version     = "2.0.3">
 
-  <name>IN DEV</name>
+  <name>AppleGotchi</name>
 
-  <description>DEV:</description>
+  <description>AppleGotchi!</description>
 
   <author href="http://yoursite.com" email="you@youremail.com">Your Name</author>
 
@@ -30,7 +30,7 @@
   </platform>
 
   <platform>
-    <icon src="icon.png" width="57" height="57"/>
+    <icon src="icon.png"/>
   </platform>
 
   <platform name="ios">
