@@ -3,17 +3,13 @@
 
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        id          = "com.applegotchi"
-       version     = "1.0.0">
+       version     = "1.0.1">
 
   <name>IN DEV</name>
 
   <description>DEV:</description>
 
   <author href="http://yoursite.com" email="you@youremail.com">Your Name</author>
-
-  <gap:config-file platform="iOS" parent="CFBundleVersion">
-    <string>1.0</string>
-  </gap:config-file>
 
   <platform name="ios" >
     <preference name="orientation" value="portrait" />
@@ -33,7 +29,9 @@
     <icon src="res/icon/icon-96-xhdpi.png" density="xhdpi"/>
   </platform>
 
-
+  <platform>
+    <icon src="icon.png" width="57" height="57"/>
+  </platform>
 
   <platform name="ios">
     <icon src="res/icons/ios/icon-2x.png" width="114" height="114"/>
@@ -77,18 +75,5 @@
 
   </platform>
 
-  <access origin="*"/>
-  <allow-intent href="http://*/*"/>
-  <allow-intent href="https://*/*"/>
-  <allow-intent href="tel:*"/>
-  <allow-intent href="sms:*"/>
-  <allow-intent href="mailto:*"/>
-  <allow-intent href="geo:*"/>
-  <platform name="android">
-    <allow-intent href="market:*"/>
-  </platform>
-  <platform name="ios">
-    <allow-intent href="itms:*"/>
-    <allow-intent href="itms-apps:*"/>
-  </platform>
+
 </widget>
