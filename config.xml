@@ -29,11 +29,8 @@
     <icon src="res/icon/icon-96-xhdpi.png" density="xhdpi"/>
   </platform>
 
-  <platform>
-    <icon src="icon.png"/>
-  </platform>
-
   <platform name="ios">
+    <icon src="icon.png"/>
     <icon src="res/icons/ios/icon-2x.png" width="114" height="114"/>
     <icon src="res/icons/ios/icon-40-2x.png" width="80" height="80"/>
     <icon src="res/icons/ios/icon-40.png" width="40" height="40"/>
