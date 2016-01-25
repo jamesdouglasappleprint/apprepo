@@ -54,10 +54,8 @@
   <gap:splash src="screen/screen-xhdpi-portrait.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
 
   <gap:splash src="Default.png"                      gap:platform="ios"  width="320" height="480" />
-  <gap:splash src="Default-iphone-landscape.png"     gap:platform="ios"  width="480" height="320" />
-
-  <gap:splash src="Default-568h2x.png"               gap:platform="ios"  width="640" height="1136" />
-  <gap:splash src="Default-Landscape-568h2x.png"     gap:platform="ios"  width="1136" height="640" />
+  <gap:splash src="Default@2x.png"                      gap:platform="ios"  width="640" height="960" />
+  <gap:splash src="Default-568h@2x.png"               gap:platform="ios"  width="640" height="1136" />
 
 
   <access origin="*"/>
