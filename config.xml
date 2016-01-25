@@ -12,13 +12,9 @@
 
   <name>Sample Config.xml</name>
 
-  <description>
-  An example for phonegap build docs.
-  </description>
+  <description>An example for phonegap build docs.</description>
 
-  <author href="http://yoursite.com" email="you@youremail.com">
-  Your Name
-  </author>
+  <author href="http://yoursite.com" email="you@youremail.com">Your Name</author>
 
   <platform name="ios" >
     <preference name="orientation" value="portrait" />
@@ -61,18 +57,8 @@
   <gap:splash src="screen/screen-hdpi-portrait.png"       gap:platform="android" gap:qualifier="port-hdpi" />
   <gap:splash src="screen/screen-xhdpi-portrait.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
 
-  <gap:splash src="Default.png"                                       gap:platform="ios"     width="320" height="480" />
-  <gap:splash src="screen/Default@2x.png"                     gap:platform="ios"     width="640" height="960" />
-  <gap:splash src="screen/Default-@2xL.png"                   gap:platform="ios"     width="960" height="640" />
-  <gap:splash src="screen/Default-568h@2x.png"                gap:platform="ios"     width="640" height="1136" />
-  <gap:splash src="screen/Default-Landscape-568h@2x.png"      gap:platform="ios"     width="1136" height="640" />
-  <gap:splash src="screen/Default-667h@.png"                  gap:platform="ios"     width="750" height="1334" />
-  <gap:splash src="screen/Default-736h.png"                   gap:platform="ios"     width="1242" height="2208" />
-  <gap:splash src="screen/Default-Landscape-736h.png"         gap:platform="ios"     width="2208" height="1242" />
-  <gap:splash src="screen/Default-Portrait.png"               gap:platform="ios"     width="768" height="1024" />
-  <gap:splash src="screen/Default-Landscape.png"              gap:platform="ios"     width="1024" height="768" />
-  <gap:splash src="screen/Default-Portrait@2x.png"            gap:platform="ios"     width="1536" height="2048" />
-  <gap:splash src="screen/Default-Landscape@2x.png"           gap:platform="ios"     width="2048" height="1536" />
+  <gap:splash src="Default.png"                               gap:platform="ios"     width="320" height="480" />
+
 
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
@@ -88,4 +74,4 @@
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
   </platform>
-</widget> 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+</widget>
