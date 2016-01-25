@@ -29,6 +29,7 @@
   </platform>
 
   <plugin name="cordova-plugin-device" />
+  <plugin name="cordova-plugin-whitelist" version="1"/>
 
 
   <icon src="icon/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
@@ -74,7 +75,6 @@
   <gap:splash src="screen/Default-Landscape@2x.png"           gap:platform="ios"     width="2048" height="1536" />
 
   <access origin="*"/>
-  <plugin name="cordova-plugin-whitelist" version="1"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
