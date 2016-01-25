@@ -51,7 +51,8 @@
 
   <gap:splash src="splash.png" gap:role="default"/>
   <gap:splash src="res/screen/ios/Default.png"  gap:platform="ios" width="320" height="480" />
-  <gap:splash src="res/screen/ios/Default-568h.png"  gap:platform="ios" width="320" height="568" />
+  <gap:splash src="res/screen/ios/Default-568h.png"  gap:platform="ios" width="320" height="480" />
+  <gap:splash src="res/screen/ios/Default-568h2.png"  gap:platform="ios" width="320" height="568" />
   <gap:splash src="res/screen/ios/screen-iphone-portrait.png"  gap:platform="ios" width="320" height="480" />
   <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png"  gap:platform="ios" width="640" height="960" />
   <gap:splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png"  gap:platform="ios" width="640" height="1136" />
