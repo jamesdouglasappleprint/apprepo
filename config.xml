@@ -27,7 +27,7 @@
   <icon src="res/icon/icon-72-hdpi.png"  gap:platform="android"  gap:qualifier="hdpi"/>
   <icon src="res/icon/icon-96-xhdpi.png"  gap:platform="android"  gap:qualifier="xhdpi"/>
 
-  <icon src="icon.png" gap:platform="ios"/>
+  <icon src="icon.png" gap:role="default"/>
   <icon src="res/icons/ios/icon-2x.png" gap:platform="ios" width="114" height="114"/>
   <icon src="res/icons/ios/icon-40-2x.png" gap:platform="ios" width="80" height="80"/>
   <icon src="res/icons/ios/icon-40.png" gap:platform="ios" width="40" height="40"/>
@@ -49,7 +49,7 @@
   <gap:splash src="res/screen/screen-hdpi-portrait.png" gap:platform="android"  gap:qualifier="port-hdpi" />
   <gap:splash src="res/screen/screen-xhdpi-portrait.png" gap:platform="android"  gap:qualifier="port-xhdpi" />
 
-  <gap:splash src="splash.png" gap:platform="ios"/>
+  <gap:splash src="splash.png" gap:role="default"/>
   <gap:splash src="res/screen/ios/Default.png"  gap:platform="ios" width="320" height="480" />
   <gap:splash src="res/screen/ios/Default-568h.png"  gap:platform="ios" width="320" height="568" />
   <gap:splash src="res/screen/ios/screen-iphone-portrait.png"  gap:platform="ios" width="320" height="480" />
