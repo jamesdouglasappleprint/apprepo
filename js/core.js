@@ -59,7 +59,7 @@ Core.prototype.loginOrRegister = function(){
   		url: 'http://applegochi.apple-dev.co.uk/Ajax/ghTest.ashx?e='+postData,
   		success: function(data){
   			console.log(data);
-  			alert('Your comment was successfully added');
+  			alert(data);
   		},
   		error: function(){
   			console.log(data);
