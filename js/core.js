@@ -103,6 +103,13 @@ Core.prototype.buildFunctionsDelete = function(){
   $(document).on("click",".bypasslogin",function(e){
     $('.storyboardPanel').show()
   })
+
+  $(document).on("click",".createRingo",function(e){
+    $('.mainPanel').show()
+  })
+  $(document).on("click",".createInsatsu",function(e){
+    $('.mainPanel').show()
+  })
 }
 
 
