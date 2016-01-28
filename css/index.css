@@ -68,7 +68,7 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#333;
     background-attachment:fixed;
-    font-family: raleway;
+    font-family: ralewayregular;
     font-size:12px;
     height:100%;
     margin:0px;
@@ -81,7 +81,12 @@ h2 {font-size: 18px;margin:10px 0px;}
 h3 {font-size: 16px;margin:10px 0px;}
 h4 {font-size: 14px;margin:10px 0px;}
 h5 {font-size: 10px;margin:10px 0px;}
-
+.registerLoginContainer h1 {
+    font-size: 50px;
+    padding-bottom: 20px;
+    color: #E3097E;
+    font-family: 'pacificoregular';
+}
 /* ------------------------------------------ */
 /* BUTTONS ---------------------------------- */
 /* ------------------------------------------ */
@@ -97,8 +102,40 @@ h5 {font-size: 10px;margin:10px 0px;}
 .rememberMeButton.statusRemember {background: #E3097E;}
 .rememberMeButton {font-size: 40px;display: inline-block;width: 40px;height: 25px;text-align: center;line-height: 40px;background: rgba(255,255,255,0.5);border-radius: 4px;position: absolute;right: 0;bottom: 7px;}
 .rememberMe {height: 40px;text-align: left;width: 250px;position: relative;}
-.rememberMe p {height: 40px;line-height: 40px;display: inline-block;vertical-align: top;padding:0px;font-size: 16px;}
-.registerLoginContainer {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;height: 80%;width: 100%;-webkit-transition: all 300ms ease;-moz-transition: all 300ms ease;-o-transition: all 300ms ease;transition: all 300ms ease;max-width: 250px;margin-left: auto;margin-right: auto;}
+.rememberMe p {
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.registerLoginContainer {
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: start;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-content: flex-start;
+    -webkit-align-content: flex-start;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    height: 80%;
+    width: 100%;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+    max-width: 250px;
+    margin-left: auto;
+    padding-top: 40px;
+    margin-right: auto;
+}
 .slideLogin {display: none;margin-top: 40px;padding-top: 60px;position: relative;}
 .slideRegister {display: none;padding-top: 50px;position: relative;}
 .hideSlideLogin, .hideSlideRegister {
@@ -114,11 +151,14 @@ h5 {font-size: 10px;margin:10px 0px;}
     text-decoration: none;
     font-family: ralewaythin;
 }
-.registerLoginContainer.registerLoginReduceMax {height: 0px;overflow: hidden;}
-.registerLoginContainer.registerLoginReduce {height: 200px;}
+.registerLoginContainer.registerLoginReduceMax {height: 0px;overflow: hidden;padding-top: 0;}
+.registerLoginContainer.registerLoginReduce {
+  height: 250px;
+    margin-top: -100px;
+    padding-top: 0;}
 input {height: 44px;width: 90%;position: relative;font-size: 15px;margin-bottom: 15px;border: none;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;padding: 0;box-sizing: content-box;background: rgba(255,255,255,0.5);border-radius: 4px;text-align: center;color: #fff;text-transform: uppercase;font-family: ralewaythin;letter-spacing: 1px;}
 form#registerForm input {margin-bottom: 5px;}
-.submitLogin {height: 44px;display: block;width: 90%;border: none;background: #E3097E;color: #fff;font-size: inherit;text-transform: uppercase;border-radius: 4px;font-size: 15px;font-family: raleway;letter-spacing: 1px;}
+.submitLogin {height: 44px;display: block;width: 90%;border: none;background: #E3097E;color: #fff;font-size: inherit;text-transform: uppercase;border-radius: 4px;font-size: 15px;font-family: ralewayregular;letter-spacing: 1px;}
 ::-webkit-input-placeholder {color:    #fff;}
 :-moz-placeholder {color:    #fff;opacity:  1;}
 ::-moz-placeholder {color:    #fff;opacity:  1;}
