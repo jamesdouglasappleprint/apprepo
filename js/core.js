@@ -27,10 +27,12 @@ Core.prototype.loginOrRegister = function(){
       console.log('toggling to remember')
       $(this).addClass('statusRemember')
       $(this).data('status', 'remember')
+      localStorage.setItem("remainLoggedIn", "true");
     }else{
       $(this).data('status', 'forget')
       $(this).removeClass('statusRemember')
       console.log('toggle to forget')
+      localStorage.removeItem("remainLoggedIn", "true");
     }
   })
 
