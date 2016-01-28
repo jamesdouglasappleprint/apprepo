@@ -15,6 +15,7 @@ Core.prototype.loadPanelContent = function(){
 
   $('.registerLoginPanel').load("registerlogin.html")
   $('.storyboardPanel').load("storyboard.html")
+  $('.mainPanel').load("main.html")
 }
 
 Core.prototype.loginOrRegister = function(){
