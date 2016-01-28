@@ -25,11 +25,11 @@ Core.prototype.loginOrRegister = function(){
   $(document).on("click",".rememberMeButton",function(e){
     if ($(this).data('status') == 'forget'){
       console.log('toggling to remember')
-      $(this).find('i').removeClass('fa-square-o').addClass('fa-square')
+      $(this).addClass('statusRemember')
       $(this).data('status', 'remember')
     }else{
       $(this).data('status', 'forget')
-      $(this).find('i').removeClass('fa-square').addClass('fa-square-o')
+      $(this).removeClass('statusRemember')
       console.log('toggle to forget')
     }
   })
@@ -39,12 +39,14 @@ Core.prototype.loginOrRegister = function(){
     $('.registerLoginContainer').addClass('registerLoginReduce')
     $('.slideLogin').show()
     $('.slideRegister').hide()
+    $('.registerLoginPanel').addClass('displaceBackgroundLogin')
   })
 
   //Login closed
   $(document).on("click",".hideSlideLogin",function(e){
     $('.registerLoginContainer').removeClass('registerLoginReduce')
     $('.slideLogin').hide()
+    $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
   })
 
   $(document).on("click",".submitLogin",function(e){
@@ -75,12 +77,14 @@ Core.prototype.loginOrRegister = function(){
     $('.registerLoginContainer').addClass('registerLoginReduceMax')
     $('.slideRegister').show()
     $('.slideLogin').hide()
+    $('.registerLoginPanel').addClass('displaceBackgroundRegister')
   })
 
   //Login closed
   $(document).on("click",".hideSlideRegister",function(e){
     $('.registerLoginContainer').removeClass('registerLoginReduceMax')
     $('.slideRegister').hide()
+    $('.registerLoginPanel').removeClass('displaceBackgroundRegister')
   })
 
 

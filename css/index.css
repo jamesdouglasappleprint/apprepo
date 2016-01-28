@@ -45,6 +45,14 @@
 	-webkit-align-items: center;
 }
 */
+.button.bypasslogin {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    overflow: hidden;
+    color: red;
+}
+
 /*PAGE RESET*/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {margin: 0;padding: 0;border: 0;outline: 0;font-size: 100%;vertical-align: baseline;background: transparent;}
 /*PAGE RESET*/
@@ -59,13 +67,14 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#333;
     background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-family: raleway;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
     text-transform:uppercase;
     width:100%;
+    letter-spacing: 1px;
 }
 h1 {font-size: 20px;margin:10px 0px;}
 h2 {font-size: 18px;margin:10px 0px;}
@@ -76,89 +85,60 @@ h5 {font-size: 10px;margin:10px 0px;}
 /* ------------------------------------------ */
 /* BUTTONS ---------------------------------- */
 /* ------------------------------------------ */
-.button {
-  display: block;
-  width: 200px;
-  height: 44px;
-  background: darkorchid;
-  color: #fff;
-  line-height: 44px;
-  text-align: center;
-  position: relative;
-  margin: 10px 0px;
-}
-
+.button {display: block;width: 100%;height: 44px;background: rgba(255,255,255,0.4);color: #fff;line-height: 44px;text-align: center;position: relative;border-radius: 6px;margin: 10px 0px;color: #000;text-transform: uppercase;text-decoration: none;font-size: 15px;}
 
 /* ------------------------------------------ */
 /* LOGIN PAGE ------------------------------- */
 /* ------------------------------------------ */
 
-.fullHeightPanel.registerLoginPanel{
-  display: none;
-  -ms-transform: translate(100%,0); /* IE 9 */
-  -webkit-transform: translate(100%,0); /* Safari */
-  transform: translate(100%,0);
-
-  -webkit-animation: slidePanelInFromRight 0.2s ease forwards;
-  animation: slidePanelInFromRight 0.2s ease forwards;
-  -moz-animation: slidePanelInFromRight 0.2s ease forwards;
+.fullHeightPanel.registerLoginPanel {display: none;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 0.2s ease forwards;animation: slidePanelInFromRight 0.2s ease forwards;-moz-animation: slidePanelInFromRight 0.2s ease forwards;background: url("../img/form-background.jpg");background-size: cover;background-position-y: -4px;-webkit-transition: all 500ms ease;-moz-transition: all 500ms ease;-o-transition: all 500ms ease;transition: all 500ms ease;}
+.fullHeightPanel.registerLoginPanel.displaceBackgroundLogin {background-position-y: -250px;}
+.fullHeightPanel.registerLoginPanel.displaceBackgroundRegister {background-position-y: 99%;}
+.rememberMeButton.statusRemember {background: #E3097E;}
+.rememberMeButton {font-size: 40px;display: inline-block;width: 40px;height: 25px;text-align: center;line-height: 40px;background: rgba(255,255,255,0.5);border-radius: 4px;position: absolute;right: 0;bottom: 7px;}
+.rememberMe {height: 40px;text-align: left;width: 250px;position: relative;}
+.rememberMe p {height: 40px;line-height: 40px;display: inline-block;vertical-align: top;padding:0px;font-size: 16px;}
+.registerLoginContainer {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;height: 80%;width: 100%;-webkit-transition: all 300ms ease;-moz-transition: all 300ms ease;-o-transition: all 300ms ease;transition: all 300ms ease;max-width: 250px;margin-left: auto;margin-right: auto;}
+.slideLogin {display: none;margin-top: 40px;padding-top: 60px;position: relative;}
+.slideRegister {display: none;padding-top: 50px;position: relative;}
+.hideSlideLogin, .hideSlideRegister {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 35px;
+    color: #fff;
+    text-decoration: none;
+    font-family: ralewaythin;
 }
-.rememberMeButton {font-size: 40px;display: inline-block;width: 40px;height: 40px;text-align: center;line-height: 40px;}
-.rememberMe {height: 40px;text-align: center;}
-.rememberMe p {height: 40px;line-height: 40px;display: inline-block;vertical-align: top;padding: 0px 10px;font-size: 16px;}
-.registerLoginContainer {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;height: 100%;width: 100%;-webkit-transition: all 500ms ease;-moz-transition: all 500ms ease;-o-transition: all 500ms ease;transition: all 500ms ease;}
-.slideLogin {display: none;margin-top: 40px;border-top: 1px solid #E4E4E4;padding-top: 60px;position: relative;}
-.slideRegister {display: none;border-top: 1px solid #E4E4E4;padding-top: 50px;position: relative;}
-.hideSlideLogin, .hideSlideRegister {position: absolute;top: 0px;right: 0px;width: 40px;height: 40px;line-height: 40px;text-align: center;font-size: 30px;color: darkorchid;}
 .registerLoginContainer.registerLoginReduceMax {height: 0px;overflow: hidden;}
 .registerLoginContainer.registerLoginReduce {height: 200px;}
-input {height: 40px;width: 90%;position: relative;font-size: 24px;margin-bottom: 15px;border: none;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;padding: 0;box-sizing: content-box;background: #F2E8F7;}
-.fa-square{color:darkorchid;}
-.submitLogin {height: 40px;display: block;width: 90%;border: none;background: darkorchid;color: #fff;font-size: inherit;text-transform: uppercase;}
+input {height: 44px;width: 90%;position: relative;font-size: 15px;margin-bottom: 15px;border: none;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;padding: 0;box-sizing: content-box;background: rgba(255,255,255,0.5);border-radius: 4px;text-align: center;color: #fff;text-transform: uppercase;font-family: ralewaythin;letter-spacing: 1px;}
+form#registerForm input {margin-bottom: 5px;}
+.submitLogin {height: 44px;display: block;width: 90%;border: none;background: #E3097E;color: #fff;font-size: inherit;text-transform: uppercase;border-radius: 4px;font-size: 15px;font-family: raleway;letter-spacing: 1px;}
+::-webkit-input-placeholder {color:    #fff;}
+:-moz-placeholder {color:    #fff;opacity:  1;}
+::-moz-placeholder {color:    #fff;opacity:  1;}
+:-ms-input-placeholder {color:    #fff;}
+:placeholder-shown {color:    #fff;}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {background-color: rgb(250, 255, 189, 0);background-image: none;color: rgb(0, 0, 0);}
 form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;}
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */
-.fullHeightPanel.loadingPanel{
-  text-align: center;
-}
-.fullHeightPanel.storyboardPanel {
-    display: none;
-    background: aqua;
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-     transition: all 400ms ease;
-    -ms-transform: translate(100%,0); /* IE 9 */
-    -webkit-transform: translate(100%,0); /* Safari */
-    transform: translate(100%,0);
+.fullHeightPanel.loadingPanel{text-align: center;}
+.fullHeightPanel.storyboardPanel {display: none;background: aqua;-webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 400ms linear forwards;animation: slidePanelInFromRight 400ms linear forwards;-moz-animation: slidePanelInFromRight 400ms linear forwards;}
+.skipStoryboard {position: absolute;bottom: 21px;right: 0;font-size: 40px;width: 60px;height: 40px;line-height: 40px;text-align: center;}
+.skipStoryboard p {font-size: 14px;height: 10px;line-height: 14px;}
+/* ------------------------------------------ */
+/* Main Panel ------------------------------- */
+/* ------------------------------------------ */
+.fullHeightPanel.mainPanel{display: none;}
 
-    -webkit-animation: slidePanelInFromRight 400ms linear forwards;
-    animation: slidePanelInFromRight 400ms linear forwards;
-    -moz-animation: slidePanelInFromRight 400ms linear forwards;
-}
-.skipStoryboard {
-    position: absolute;
-    bottom: 21px;
-    right: 0;
-    font-size: 40px;
-    width: 60px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-}
-.skipStoryboard p {
-    font-size: 14px;
-    height: 10px;
-    line-height: 14px;
-}
 /* ------------------------------------------ */
 /* PANELS ----------------------------------- */
 /* ------------------------------------------ */
-.fullHeightPanel {
-    display: block;
-    height: 100%;
-    width: 100%;
-    background: #fff;
-    position: absolute;
-}
+.fullHeightPanel {display: block;height: 100%;width: 100%;background: #fff;position: absolute;}
