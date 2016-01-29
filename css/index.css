@@ -200,107 +200,131 @@ form#registerForm input {margin-bottom: 5px;}
 :-ms-input-placeholder {color:    #fff;}
 :placeholder-shown {color:    #fff;}
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {background-color: rgb(250, 255, 189, 0);background-image: none;color: rgb(0, 0, 0);}
-form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;}
+form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;}
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */
-.fullHeightPanel.loadingPanel{
-  text-align: center;
-  color: #fff;
-  background: -moz-linear-gradient(top, #701551 0%, #451451 100%);
-    background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);
-    background: linear-gradient(to bottom, #701551 0%,#451451 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
-  }
-.fullHeightPanel.storyboardPanel {
-    display: none;
-    background: #701551;
-    background: -moz-linear-gradient(top, #701551 0%, #451451 100%);
-    background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);
-    background: linear-gradient(to bottom, #701551 0%,#451451 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-    transition: all 400ms ease;
-    -ms-transform: translate(100%,0);
-    -webkit-transform: translate(100%,0);
-    transform: translate(100%,0);
-    -webkit-animation: slidePanelInFromRight 400ms linear forwards;
-    animation: slidePanelInFromRight 400ms linear forwards;
-    -moz-animation: slidePanelInFromRight 400ms linear forwards;
-    color:#fff;
-}
+.fullHeightPanel.loadingPanel{text-align: center;color: #fff;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );}
+
+.fullHeightPanel.storyboardPanel {display: none;background: #701551;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );-webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 400ms linear forwards;animation: slidePanelInFromRight 400ms linear forwards;-moz-animation: slidePanelInFromRight 400ms linear forwards;color:#fff;}
+
 .skipStoryboard {position: absolute;bottom: 21px;right: 0;font-size: 40px;width: 60px;height: 40px;line-height: 40px;text-align: center;}
 .returnStoryboard {position: absolute;bottom: 21px;left: 0;font-size: 40px;width: 60px;height: 40px;line-height: 40px;text-align: center;}
 .skipStoryboard p {font-size: 14px;height: 10px;line-height: 14px;}
 .returnStoryboard p {font-size: 14px;height: 10px;line-height: 14px;}
+/* ------------------------------------------ */
+/* STORYBOARD ------------------------------- */
+/* ------------------------------------------ */
 .fullHeightPanel.mainPanel.ringoBackground {background: #701551;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);overflow: hidden;}
 .fullHeightPanel.mainPanel.insatsuBackground {background: #98d3c2;background: -moz-linear-gradient(top,  #98d3c2 0%, #6bdfbf 100%);background: -webkit-linear-gradient(top,  #98d3c2 0%,#6bdfbf 100%);background: linear-gradient(to bottom,  #98d3c2 0%,#6bdfbf 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98d3c2', endColorstr='#6bdfbf',GradientType=0 );overflow: hidden;}
-
-.fullHeightPanel.mainPanel.ringoBackground:after,.fullHeightPanel.mainPanel.insatsuBackground:after  {content: "";background: url("../img/stars.png");background-size: cover;height: 1000px;left: -100%;position: absolute;z-index: 1;width: 1000px;-webkit-transition: all 1.5s linear;-moz-transition: all 1.5s linear;-o-transition: all 1.5s linear;transition: all 1.5s linear;-webkit-animation: rotateStars 120s linear infinite;animation: rotateStars 120s linear infinite;-moz-animation: rotateStars 120s linear infinite;-ms-transform-origin: 50% 50 0;-webkit-transform-origin: 50% 50 0;transform-origin: 50% 50 0;}
-.fullHeightPanel.mainPanel.ringoBackground:before {content: "";background: url("../img/background-ringo.png");background-size: cover;bottom: -40px;z-index: 2;height: 290px;left: 0;display: block;position: absolute;width: 100%;}
-.fullHeightPanel.mainPanel.insatsuBackground:before {content: "";background: url("../img/background-insatsu.png");background-size: cover;bottom: -100px;z-index: 2;height: 290px;left: 0;display: block;position: absolute;width: 100%;}
-
-.buttonContainer {
-    width: 100%;
-    height: 40px;
-    display: block;
-    position: absolute;
-    bottom: 14px;
-    z-index: 3;
-}
-.buttonContainer a:hover img {
-    height: 100%;
-}
-.buttonContainer a {
-    width: 24%;
-    height: 40px;
-    display: inline-block;
-    text-align: center;
-}
-.buttonContainer img {
-    height: 80%;
-}
-.scoreContainer {
-    position: absolute;
-    right: 0;
-    top: 20px;
-    color: #1f9cd9;
-    font-family: ralewaybold;
-    font-size: 15px;
-    text-shadow: 0px 2px 6px rgba(0,0,0,0.5);
-    width: 100px;
-    text-align: center;
-    z-index: 4;
-}
-.currentScore {
-    font-size: 28px;
-    font-family: ralewaybold;
-}
-.statusContainer {
-    position: absolute;
-    top: 50px;
-    right: 9px;
-    width: 80px;
-    height: 100px;
-    border: 1px solid red;
-    text-align: center;
-}
-.statusContainer div {
-    width: 10px;
-    height: 60px;
-    display: inline-block;
-    background: rgba(255,255,255,0.7);
-    border-radius: 8px;
-    margin: 0px 2px;
-}
-
 
 /* ------------------------------------------ */
 /* Main Panel ------------------------------- */
 /* ------------------------------------------ */
 .fullHeightPanel.mainPanel{display: none;}
+.starContainer{
+    content: "";
+    background: url("../img/stars.png");
+    background-size: cover;
+    height: 3000px;
+    left: calc(50% - 1500px);
+    position: absolute;
+    z-index: 1;
+    top: calc(100% - 1500px);
+    border: 2px solid red;
+    width: 3000px;
+    -webkit-transition: all 1.5s linear;
+    -moz-transition: all 1.5s linear;
+    -o-transition: all 1.5s linear;
+    transition: all 1.5s linear;
+    -webkit-animation: rotateStars 120s linear infinite;
+    animation: rotateStars 120s linear infinite;
+    -moz-animation: rotateStars 120s linear infinite;
+    -ms-transform-origin: 50% 50 0;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+}
+.statusContainer img {position: absolute;display: block;height: 15px;width: 15px;bottom: 0;left: 0;}
+.statusContainer .statusFoodIcon {left: 14px;bottom: 1px;}
+.statusContainer .statusEntertainIcon {left: 32px;}
+.statusContainer .statusCleanIcon {left: 51px;bottom: 0px;}
+
+.ringoBackground > .landContainer {content: "";background: url("../img/background-ringo.png");background-size: cover;bottom: -40px;z-index: 2;height: 290px;left: 0;display: block;position: absolute;width: 100%;}
+
+.insatsuBackground > .landContainer {content: "";background: url("../img/background-insatsu.png");background-size: cover;bottom: -100px;z-index: 2;height: 290px;left: 0;display: block;position: absolute;width: 100%;}
+
+.buttonContainer {width: 100%;height: 40px;display: block;position: absolute;bottom: 14px;z-index: 3;}
+.buttonContainer a {width: 24%;height: 40px;display: inline-block;text-align: center;}
+.buttonContainer img {height: 80%;}
+.scoreContainer {position: absolute;right: 0;top: 20px;color: #1f9cd9;font-family: ralewaybold;font-size: 15px;text-shadow: 0px 2px 6px rgba(0,0,0,0.5);width: 100px;text-align: center;z-index: 4;}
+.currentScore {font-size: 28px;font-family: ralewaybold;margin-top: -10px;}
+.statusContainer {
+    position: absolute;
+    top: 65px;
+    right: 9px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    z-index: 3;
+}
+.statusContainer>div {width: 10px;height: 60px;display: inline-block;background: rgba(255,255,255,0.7);border-radius: 8px;margin: 0px 2px;position: relative;overflow: hidden;box-shadow: 0px 2px 6px rgba(0,0,0,0.5);}
+.statusContainer>div>div {width: 100%;height: 20%;display: block;position: absolute;bottom: 0;border-radius: 4px;-webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;}
+.statusFood .statusLevel{background:#f8ea21;}
+.statusEntertain .statusLevel{background:#E3097E;}
+.statusClean .statusLevel{background:#1f9cd9;}
+.menuButtonContainer {width: 80px;height: 80px;display: block;font-size: 40px;text-align: center;line-height: 80px;z-index: 3;position: relative;}
+.menuButtonContainer a {color: #fff;}
+/* ------------------------------------------ */
+/* PET -------------------------------------- */
+/* ------------------------------------------ */
+.petContainer {
+    position: absolute;
+    z-index: 4;
+    bottom: 130px;
+    left: 50%;
+    width: 200px;
+    height: 238px;
+    display: block;
+    margin-left: -100px;
+}
+.petMain{
+  width:100%;
+}
+
+/*Random Egg rock*/
+.stage1 {-webkit-transition: all 1.5s linear;-moz-transition: all 1.5s linear;-o-transition: all 1.5s linear;transition: all 1.5s linear;-webkit-animation: eggRoll 2s linear infinite;animation: eggRoll 6s linear infinite;-moz-animation: eggRoll 2s linear infinite;-ms-transform-origin: 50% 100%;-webkit-transform-origin: 50% 100%;transform-origin: 50% 75%;
+}
+
+/*.petContainer:after {content: "";width: 100%;height: 1px;background: yellow;display: block;position: absolute;top: 75%;left: 0;}
+.petContainer:before {content: "";height: 100%;width: 1px;background: green;display: block;position: absolute;top: 0;left: 50%;}*/
+/* ------------------------------------------ */
+/* PET FOOD --------------------------------- */
+/* ------------------------------------------ */
+.petFood {
+    position: absolute;
+    bottom: 560px;
+    width: 70px;
+    height: 70px;
+    display: none;
+    background: url('../img/food.png');
+    z-index: 5;
+    background-size: cover;
+    left: 50%;
+    margin-left: -35px;
+}
+.stage1_foodDrop{
+  -webkit-transition: all 1.5s linear;
+  -moz-transition: all 1.5s linear;
+  -o-transition: all 1.5s linear;
+  transition: all 1.5s linear;
+  -webkit-animation: stage1_foodDrop 1s linear forwards;
+  animation: stage1_foodDrop 1s linear forwards;
+  -moz-animation: stage1_foodDrop 1s linear forwards;
+}
+
+
 
 /* ------------------------------------------ */
 /* PANELS ----------------------------------- */

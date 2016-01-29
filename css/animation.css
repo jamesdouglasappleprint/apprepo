@@ -20,76 +20,127 @@
 /* ------------------------------------------ */
 
 @-webkit-keyframes slidePanelInFromRight {
-  0% {
-  -ms-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-  25% {
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  60% {
-    -ms-transform: translateX(40px);
-    -webkit-transform: translateX(40px);
-    transform: translateX(40px);
-  }
-  100% {
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
+0% {
+-ms-transform: translateX(100%);
+-webkit-transform: translateX(100%);
+transform: translateX(100%);
+}
+25% {
+-ms-transform: translateX(0);
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
+60% {
+-ms-transform: translateX(40px);
+-webkit-transform: translateX(40px);
+transform: translateX(40px);
+}
+100% {
+-ms-transform: translateX(0);
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
 }
 
 @-moz-keyframes slidePanelInFromRight {
-  0% {
-  -ms-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-  25% {
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  60% {
-    -ms-transform: translateX(40px);
-    -webkit-transform: translateX(40px);
-    transform: translateX(40px);
-  }
-  100% {
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
+0% {
+-ms-transform: translateX(100%);
+-webkit-transform: translateX(100%);
+transform: translateX(100%);
+}
+25% {
+-ms-transform: translateX(0);
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
+60% {
+-ms-transform: translateX(40px);
+-webkit-transform: translateX(40px);
+transform: translateX(40px);
+}
+100% {
+-ms-transform: translateX(0);
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
 }
 
 @keyframes slidePanelInFromRight {
+0% {
+-ms-transform: translateX(100%);
+-webkit-transform: translateX(100%);
+transform: translateX(100%);
+}
+25% {
+-ms-transform: translateX(0);
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
+60% {
+-ms-transform: translateX(40px);
+-webkit-transform: translateX(40px);
+transform: translateX(40px);
+}
+100% {
+-ms-transform: translateX(0);
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
+}
+/* ------------------------------------------ */
+/* Stage 1 Food Drop ------------------------ */
+/* ------------------------------------------ */
+
+@-webkit-keyframes stage1_foodDrop {
   0% {
-  -ms-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
+    bottom:560px;
+    margin-left: -35px;
+    transform:rotate(0deg);
   }
-  25% {
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+  30% {
+    bottom:250px;
+    margin-left: -35px;
+    transform:rotate(0deg);
   }
+
+  40%{
+    bottom:280px;
+  }
+
+
+
   60% {
-    -ms-transform: translateX(40px);
-    -webkit-transform: translateX(40px);
-    transform: translateX(40px);
+    bottom:150px;
+    margin-left: 40px;
+    transform:rotate(420deg);
+  }
+  90% {
+    bottom:150px;
+    margin-left: 40px;
+    transform:rotate(420deg);
+    opacity:1;
   }
   100% {
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    bottom:150px;
+    margin-left: 40px;
+    transform:rotate(420deg);
+    opacity:0;
   }
+
 }
 
+/*@-moz-keyframes rotateStars {
+0% {-ms-transform: rotate(0deg);-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+100% {-ms-transform: rotate(360deg);-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}
+
+@keyframes rotateStars {
+0% {-ms-transform: rotate(0deg);-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+100% {-ms-transform: rotate(360deg);-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}*/
+
 /* ------------------------------------------ */
-/* PANEL ANIMATIONS ------------------------- */
+/* STARS ------------------------------------ */
 /* ------------------------------------------ */
 
 @-webkit-keyframes rotateStars {
@@ -106,3 +157,147 @@
 0% {-ms-transform: rotate(0deg);-webkit-transform: rotate(0deg);transform: rotate(0deg);}
 100% {-ms-transform: rotate(360deg);-webkit-transform: rotate(360deg);transform: rotate(360deg);}
 }
+
+/* ------------------------------------------ */
+/* Egg Roll --------------------------------- */
+/* ------------------------------------------ */
+
+@-webkit-keyframes eggRoll {
+
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  52% {
+    -ms-transform: rotate(8deg);
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+  55% {
+    -ms-transform: rotate(-8deg);
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  57% {
+    -ms-transform: rotate(12deg);
+    -webkit-transform: rotate(12deg);
+    transform: rotate(12deg);
+  }
+  65% {
+    -ms-transform: rotate(-8deg);
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  80% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+}
+
+@-moz-keyframes eggRoll {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  52% {
+    -ms-transform: rotate(8deg);
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+  55% {
+    -ms-transform: rotate(-8deg);
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  57% {
+    -ms-transform: rotate(12deg);
+    -webkit-transform: rotate(12deg);
+    transform: rotate(12deg);
+  }
+  65% {
+    -ms-transform: rotate(-8deg);
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  80% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+}
+
+@keyframes eggRoll {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  52% {
+    -ms-transform: rotate(8deg);
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+  55% {
+    -ms-transform: rotate(-8deg);
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  57% {
+    -ms-transform: rotate(12deg);
+    -webkit-transform: rotate(12deg);
+    transform: rotate(12deg);
+  }
+  65% {
+    -ms-transform: rotate(-8deg);
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  80% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+}
+
+/* ------------------------------------------ */
+/* Egg Roll --------------------------------- */
+/* ------------------------------------------ */

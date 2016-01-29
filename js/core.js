@@ -4,12 +4,27 @@ function Core(){
   console.log('Core Loaded');
   var self = this;
 
+  self.currentMood = '';
+  self.currentStage = '';
+
+
   self.loadPanelContent();//Load panels with content
   self.loginOrRegister(); //Load form options
   self.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
-  self.creationStory(); //Load temp files +++ DELETE THIS +++
+  self.creationStory();
+  self.init();//Load panels with content
 
 }
+
+Core.prototype.init = function (x) {
+  var self = this
+
+  //Click to feed!
+  $(document).on("click",".buttonFeed",function(e){
+    e.preventDefault()
+    self.actionFeed(self.currentStage)
+  })
+};
 
 Core.prototype.loadPanelContent = function(){
   console.log('Loading Panel Content')
@@ -19,6 +34,7 @@ Core.prototype.loadPanelContent = function(){
   $('.mainPanel').load("main.html")
 }
 
+//Login and Register Functions
 Core.prototype.loginOrRegister = function(){
   console.log('Loading Panel Content')
 
@@ -93,26 +109,44 @@ Core.prototype.loginOrRegister = function(){
 
 }//END
 
+//Assigns global mood to whatever you feed it
+Core.prototype.assignMood = function(mood){
+  var self = this;
+  var thisMood = mood;
+  self.currentMood = thisMood;
+}
+
+//All code for creation story, including assigning which pet you've picked
 Core.prototype.creationStory = function(){
   //this code is probably temporary...
+  var self = this
 
-  //Create Ringo
-  $(document).on("click",".createRingo",function(e){
+  function createRingo(){
     var userPetName = $('#petname').val();
     var userPetType = "Ringo";
     localStorage.setItem("petName", userPetName);
     localStorage.setItem("petType", userPetType);
     $('.mainPanel').show().addClass('ringoBackground')
+    $('.petMain').attr('src', 'img/ringo-'+self.currentMood+'-stage1.png')
+  }
 
-  })
-
-  //Create Insatsu
-  $(document).on("click",".createInsatsu",function(e){
+  function createInsatsu(){
     var userPetName = $('#petname').val();
     var userPetType = "Insatsu";
     localStorage.setItem("petName", userPetName);
     localStorage.setItem("petType", userPetType);
     $('.mainPanel').show().addClass('insatsuBackground')
+    $('.petMain').attr('src', 'img/insatsu-'+self.currentMood+'-stage1.png')
+  }
+
+  //Create Ringo
+  $(document).on("click",".createRingo",function(e){
+    createRingo()
+  })
+
+  //Create Insatsu
+  $(document).on("click",".createInsatsu",function(e){
+    createInsatsu()
   })
 
 
@@ -120,13 +154,26 @@ Core.prototype.creationStory = function(){
 
 }
 
-Core.prototype.actionFeed = function(){
+//Pet Action: Feeding
+Core.prototype.actionFeed = function(stage){
+  var self =  this
+  var petStage = stage
+
+  //If egg stage
+  if (petStage == 1){
+    $('.petFood').show()
+    $('.petFood').addClass('stage1_foodDrop')
+  }
+
 
 }
 
 Core.prototype.buildFunctionsDelete = function(){
+  var self = this
   // +++ DELETE THIS FOR PRODUCTION +++
   console.log('Loading Pointless functions')
+  self.assignMood('happy');//Assign default mood - this will probbably change once we ajax..
+  self.currentStage = 1
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
