@@ -118,13 +118,11 @@ transform: translateX(0);
     bottom:150px;
     margin-left: 40px;
     transform:rotate(420deg);
-    opacity:1;
   }
   100% {
     bottom:150px;
     margin-left: 40px;
     transform:rotate(420deg);
-    opacity:0;
   }
 
 }

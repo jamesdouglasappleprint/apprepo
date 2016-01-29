@@ -163,6 +163,10 @@ Core.prototype.actionFeed = function(stage){
   if (petStage == 1){
     $('.petFood').show()
     $('.petFood').addClass('stage1_foodDrop')
+    setTimeout(function(){
+      $('.petFood').hide()
+      $('.petFood').removeClass('stage1_foodDrop')
+    },2000)
   }
 
 
