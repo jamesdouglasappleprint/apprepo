@@ -7,6 +7,7 @@ function Core(){
   self.loadPanelContent();//Load panels with content
   self.loginOrRegister(); //Load form options
   self.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
+  self.creationStory(); //Load temp files +++ DELETE THIS +++
 
 }
 
@@ -92,6 +93,37 @@ Core.prototype.loginOrRegister = function(){
 
 }//END
 
+Core.prototype.creationStory = function(){
+  //this code is probably temporary...
+
+  //Create Ringo
+  $(document).on("click",".createRingo",function(e){
+    var userPetName = $('#petname').val();
+    var userPetType = "Ringo";
+    localStorage.setItem("petName", userPetName);
+    localStorage.setItem("petType", userPetType);
+    $('.mainPanel').show().addClass('ringoBackground')
+
+  })
+
+  //Create Insatsu
+  $(document).on("click",".createInsatsu",function(e){
+    var userPetName = $('#petname').val();
+    var userPetType = "Insatsu";
+    localStorage.setItem("petName", userPetName);
+    localStorage.setItem("petType", userPetType);
+    $('.mainPanel').show().addClass('insatsuBackground')
+  })
+
+
+
+
+}
+
+Core.prototype.actionFeed = function(){
+
+}
+
 Core.prototype.buildFunctionsDelete = function(){
   // +++ DELETE THIS FOR PRODUCTION +++
   console.log('Loading Pointless functions')
@@ -104,12 +136,6 @@ Core.prototype.buildFunctionsDelete = function(){
     $('.storyboardPanel').show()
   })
 
-  $(document).on("click",".createRingo",function(e){
-    $('.mainPanel').show()
-  })
-  $(document).on("click",".createInsatsu",function(e){
-    $('.mainPanel').show()
-  })
 }
 
 
