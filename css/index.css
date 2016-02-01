@@ -15,14 +15,14 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*
 .keyframeExample {
-	-webkit-animation: keyframeExample 1s linear infinite;
-	animation: keyframeExample 1s linear infinite;
-	-moz-animation: keyframeExample 1s linear infinite;
+-webkit-animation: keyframeExample 1s linear infinite;
+animation: keyframeExample 1s linear infinite;
+-moz-animation: keyframeExample 1s linear infinite;
 
-	-webkit-transition: left 500ms ease;
-	-moz-transition: left 500ms ease;
-	-o-transition: left 500ms ease;
-	 transition: left 500ms ease;
+-webkit-transition: left 500ms ease;
+-moz-transition: left 500ms ease;
+-o-transition: left 500ms ease;
+transition: left 500ms ease;
 }
 
 @-webkit-keyframes keyframeExample {0% {}50% {}100% {}}
@@ -30,40 +30,40 @@
 @keyframes keyframeExample {0% {}50% {}100% {}}
 
 .flexBoxExample {
-	display: flex;
-	display: -webkit-flex;
-	-webkit-box-pack: start;
-	flex-direction: row;
-	-webkit-flex-direction: row;
-	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap;
-	align-content: center;
-	-webkit-align-content: center;
-	justify-content: space-between;
-	-webkit-justify-content: space-between;
-	align-items: center;
-	-webkit-align-items: center;
+display: flex;
+display: -webkit-flex;
+-webkit-box-pack: start;
+flex-direction: row;
+-webkit-flex-direction: row;
+flex-wrap: wrap;
+-webkit-flex-wrap: wrap;
+align-content: center;
+-webkit-align-content: center;
+justify-content: space-between;
+-webkit-justify-content: space-between;
+align-items: center;
+-webkit-align-items: center;
 }
 */
 .button.bypasslogin {
-    position: absolute;
-    top: 0;
-    width: 40px;
-    overflow: hidden;
-    color: red;
-    left: 20px;
+position: absolute;
+top: 0;
+width: 40px;
+overflow: hidden;
+color: red;
+left: 20px;
 }
 .createRingo, .createInsatsu {
-    color: #fff;
-    height: 40px;
-    width: 80%;
-    display: block;
-    text-align: center;
-    line-height: 40px;
-    border: 1px solid #fff;
-    margin-bottom: 20px;
-    left: 10%;
-    position: relative;
+color: #fff;
+height: 40px;
+width: 80%;
+display: block;
+text-align: center;
+line-height: 40px;
+border: 1px solid #fff;
+margin-bottom: 20px;
+left: 10%;
+position: relative;
 }
 
 /*PAGE RESET*/
@@ -71,40 +71,34 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 /*PAGE RESET*/
 
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
 body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#333;
-    background-attachment:fixed;
-    font-family: ralewayregular;
-    font-size:12px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    width:100%;
-    letter-spacing: 1px;
+-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+background-color:#333;
+background-attachment:fixed;
+font-family: ralewayregular;
+font-size:12px;
+height:100%;
+margin:0px;
+padding:0px;
+width:100%;
+letter-spacing: 1px;
 }
 h1 {font-size: 20px;margin:10px 0px;}
 h2 {font-size: 18px;margin:10px 0px;}
 h3 {font-size: 16px;margin:10px 0px;}
 h4 {font-size: 14px;margin:10px 0px;}
 h5 {font-size: 10px;margin:10px 0px;}
-.registerLoginContainer h1 {
-    font-size: 50px;
-    padding-bottom: 20px;
-    color: #E3097E;
-    font-family: 'pacificoregular';
-    letter-spacing: 0;
-}
+.registerLoginContainer h1 {font-size: 50px;padding-bottom: 20px;color: #E3097E;font-family: 'pacificoregular';letter-spacing: 0;}
 /* ------------------------------------------ */
 /* BUTTONS ---------------------------------- */
 /* ------------------------------------------ */
 .button {display: block;width: 100%;height: 44px;background: rgba(255,255,255,0.4);color: #fff;line-height: 44px;text-align: center;position: relative;border-radius: 6px;margin: 10px 0px;color: #000;text-transform: uppercase;text-decoration: none;font-size: 15px;}
-
+.killLink {pointer-events: none;cursor: default;}
 /* ------------------------------------------ */
 /* LOGIN PAGE ------------------------------- */
 /* ------------------------------------------ */
@@ -115,83 +109,14 @@ h5 {font-size: 10px;margin:10px 0px;}
 .rememberMeButton.statusRemember {background: #E3097E;}
 .rememberMeButton {font-size: 40px;display: inline-block;width: 40px;height: 25px;text-align: center;line-height: 40px;background: rgba(255,255,255,0.5);border-radius: 4px;position: absolute;right: 0;bottom: 7px;}
 .rememberMe {height: 40px;text-align: left;width: 250px;position: relative;margin-bottom: 15px;}
-.rememberMe p {
-    height: 40px;
-    line-height: 40px;
-    display: inline-block;
-    vertical-align: top;
-    padding: 0px;
-    font-size: 16px;
-    text-transform: uppercase;
-    color:#fff;
-}
-.registerLoginContainer {
-    display: flex;
-    display: -webkit-flex;
-    -webkit-box-pack: start;
-    flex-direction: row;
-    -webkit-flex-direction: row;
-    flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    align-content: flex-start;
-    -webkit-align-content: flex-start;
-    justify-content: center;
-    -webkit-justify-content: center;
-    align-items: center;
-    -webkit-align-items: center;
-    height: 80%;
-    width: 100%;
-    -webkit-transition: all 300ms ease;
-    -moz-transition: all 300ms ease;
-    -o-transition: all 300ms ease;
-    transition: all 300ms ease;
-    max-width: 250px;
-    margin-left: auto;
-    padding-top: 40px;
-    margin-right: auto;
-}
+.rememberMe p {height: 40px;line-height: 40px;display: inline-block;vertical-align: top;padding: 0px;font-size: 16px;text-transform: uppercase;color:#fff;}
+.registerLoginContainer {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: flex-start;-webkit-align-content: flex-start;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;height: 80%;width: 100%;-webkit-transition: all 300ms ease;-moz-transition: all 300ms ease;-o-transition: all 300ms ease;transition: all 300ms ease;max-width: 250px;margin-left: auto;padding-top: 40px;margin-right: auto;}
 .slideLogin {display: none;margin-top: 40px;padding-top: 60px;position: relative;}
 .slideRegister {display: none;padding-top: 50px;position: relative;}
-.hideSlideLogin, .hideSlideRegister {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 35px;
-    color: #fff;
-    text-decoration: none;
-    font-family: ralewaythin;
-}
+.hideSlideLogin, .hideSlideRegister {position: absolute;top: 0px;right: 0px;width: 40px;height: 40px;line-height: 40px;text-align: center;font-size: 35px;color: #fff;text-decoration: none;font-family: ralewaythin;}
 .registerLoginContainer.registerLoginReduceMax {height: 0px;overflow: hidden;padding-top: 0;}
-.registerLoginContainer.registerLoginReduce {
-    height: 350px;
-    margin-top: -183px;
-    padding-top: 0;
-}
-input {
-    height: 44px;
-    position: relative;
-    font-size: 15px;
-    margin-bottom: 15px;
-    border: none;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    padding: 0;
-    box-sizing: content-box;
-    background: rgba(255,255,255,0.5);
-    border-radius: 4px;
-    text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    font-family: ralewaythin;
-    letter-spacing: 1px;
-    width: 250px;
-    display: block;
-    position: relative;
-}
+.registerLoginContainer.registerLoginReduce {height: 350px;margin-top: -183px;padding-top: 0;}
+input {height: 44px;position: relative;font-size: 15px;margin-bottom: 15px;border: none;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;padding: 0;box-sizing: content-box;background: rgba(255,255,255,0.5);border-radius: 4px;text-align: center;color: #fff;text-transform: uppercase;font-family: ralewaythin;letter-spacing: 1px;width: 250px;display: block;position: relative;}
 form#registerForm input {margin-bottom: 5px;}
 .submitLogin {height: 44px;display: block;width: 250px;border: none;background: #E3097E;color: #fff;font-size: inherit;text-transform: uppercase;border-radius: 4px;font-size: 15px;font-family: ralewayregular;letter-spacing: 1px;}
 ::-webkit-input-placeholder {color:    #fff;}
@@ -201,8 +126,8 @@ form#registerForm input {margin-bottom: 5px;}
 :placeholder-shown {color:    #fff;}
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {background-color: rgb(250, 255, 189, 0);background-image: none;color: rgb(0, 0, 0);}
 form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;max-width: 250px;
-    margin-left: auto;
-    margin-right: auto;}
+margin-left: auto;
+margin-right: auto;}
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */
@@ -224,28 +149,7 @@ form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction
 /* Main Panel ------------------------------- */
 /* ------------------------------------------ */
 .fullHeightPanel.mainPanel{display: none;}
-.starContainer{
-    content: "";
-    background: url("../img/stars.png");
-    background-size: cover;
-    height: 3000px;
-    left: calc(50% - 1500px);
-    position: absolute;
-    z-index: 1;
-    top: calc(100% - 1500px);
-    border: 2px solid red;
-    width: 3000px;
-    -webkit-transition: all 1.5s linear;
-    -moz-transition: all 1.5s linear;
-    -o-transition: all 1.5s linear;
-    transition: all 1.5s linear;
-    -webkit-animation: rotateStars 120s linear infinite;
-    animation: rotateStars 120s linear infinite;
-    -moz-animation: rotateStars 120s linear infinite;
-    -ms-transform-origin: 50% 50 0;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-}
+.starContainer{content: "";background: url("../img/stars.png");background-size: cover;height: 3000px;left: calc(50% - 1500px);position: absolute;z-index: 1;top: calc(100% - 1500px);border: 2px solid red;width: 3000px;-webkit-transition: all 1.5s linear;-moz-transition: all 1.5s linear;-o-transition: all 1.5s linear;transition: all 1.5s linear;-webkit-animation: rotateStars 120s linear infinite;animation: rotateStars 120s linear infinite;-moz-animation: rotateStars 120s linear infinite;-ms-transform-origin: 50% 50 0;-webkit-transform-origin: center;transform-origin: center;}
 .statusContainer img {position: absolute;display: block;height: 15px;width: 15px;bottom: 0;left: 0;}
 .statusContainer .statusFoodIcon {left: 14px;bottom: 1px;}
 .statusContainer .statusEntertainIcon {left: 32px;}
@@ -253,23 +157,15 @@ form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction
 
 .ringoBackground > .landContainer {content: "";background: url("../img/background-ringo.png");background-size: cover;bottom: -40px;z-index: 2;height: 290px;left: 0;display: block;position: absolute;width: 100%;}
 
-.insatsuBackground > .landContainer {content: "";background: url("../img/background-insatsu.png");background-size: cover;bottom: -100px;z-index: 2;height: 290px;left: 0;display: block;position: absolute;width: 100%;}
+.insatsuBackground > .landContainer {content: "";background: url("../img/background-insatsu.png");background-size: cover;bottom: -40px;z-index: 2;height: 290px;left: 0;display: block;position: absolute;width: 100%;}
 
-.buttonContainer {width: 100%;height: 40px;display: block;position: absolute;bottom: 14px;z-index: 3;}
+.buttonContainer {width: 100%;height: 40px;display: block;position: absolute;bottom: 14px;z-index: 6;}
 .buttonContainer a {width: 24%;height: 40px;display: inline-block;text-align: center;}
 .buttonContainer img {height: 80%;}
-.scoreContainer {position: absolute;right: 0;top: 20px;color: #1f9cd9;font-family: ralewaybold;font-size: 15px;text-shadow: 0px 2px 6px rgba(0,0,0,0.5);width: 100px;text-align: center;z-index: 4;}
-.currentScore {font-size: 28px;font-family: ralewaybold;margin-top: -10px;}
-.statusContainer {
-    position: absolute;
-    top: 65px;
-    right: 9px;
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    z-index: 3;
-}
-.statusContainer>div {width: 10px;height: 60px;display: inline-block;background: rgba(255,255,255,0.7);border-radius: 8px;margin: 0px 2px;position: relative;overflow: hidden;box-shadow: 0px 2px 6px rgba(0,0,0,0.5);}
+.scoreContainer {position: absolute;right: 0;top: 110px;color: #fff;font-family: ralewayregular;font-size: 12px;text-shadow: 0px 2px 6px rgba(0,0,0,0.2);width: 76px;text-align: center;z-index: 4;background: rgba(255,255,255,0.3);padding: 2px 0px;}
+.currentScore {font-size: 28px;font-family: ralewaybold;margin-top: -7px;}
+.statusContainer {position: absolute;top: 20px;right: 9px;width: 80px;height: 80px;text-align: center;z-index: 3;}
+.statusContainer>div {width: 15px;height: 60px;display: inline-block;background: rgba(255,255,255,0.7);border-radius: 5px;margin: 0;position: relative;overflow: hidden;box-shadow: 0px 2px 6px rgba(0,0,0,0.5);}
 .statusContainer>div>div {width: 100%;height: 20%;display: block;position: absolute;bottom: 0;border-radius: 4px;-webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;}
 .statusFood .statusLevel{background:#f8ea21;}
 .statusEntertain .statusLevel{background:#E3097E;}
@@ -279,19 +175,8 @@ form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction
 /* ------------------------------------------ */
 /* PET -------------------------------------- */
 /* ------------------------------------------ */
-.petContainer {
-    position: absolute;
-    z-index: 4;
-    bottom: 130px;
-    left: 50%;
-    width: 200px;
-    height: 238px;
-    display: block;
-    margin-left: -100px;
-}
-.petMain{
-  width:100%;
-}
+.petContainer {position: absolute;z-index: 4;bottom: 130px;left: 50%;width: 200px;height: 238px;display: block;margin-left: -100px;}
+.petMain{width:100%;}
 
 /*Random Egg rock*/
 .stage1 {-webkit-transition: all 1.5s linear;-moz-transition: all 1.5s linear;-o-transition: all 1.5s linear;transition: all 1.5s linear;-webkit-animation: eggRoll 6s linear infinite;animation: eggRoll 6s linear infinite;-moz-animation: eggRoll 6s linear infinite;-ms-transform-origin: 50% 100%;-webkit-transform-origin: 50% 100%;transform-origin: 50% 75%;
@@ -300,30 +185,92 @@ form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction
 /*.petContainer:after {content: "";width: 100%;height: 1px;background: yellow;display: block;position: absolute;top: 75%;left: 0;}
 .petContainer:before {content: "";height: 100%;width: 1px;background: green;display: block;position: absolute;top: 0;left: 50%;}*/
 /* ------------------------------------------ */
+/* PET Clean --------------------------------- */
+/* ------------------------------------------ */
+.cleaningBubblesLayer1 {width: 70px;position: absolute;bottom: 170px;z-index: 4;left: 50%;margin-left: -50px;display: none;opacity: 0;-webkit-transition: all 1.5s ease-in-out;-moz-transition: all 1.5s ease-in-out;-o-transition: all 1.5s ease-in-out;transition: all 1.5s ease-in-out;}
+.cleaningBubblesLayer2 {width: 90px;position: absolute;bottom: 140px;z-index: 4;left: 50%;margin-left: -52px;display: none;opacity: 0;-webkit-transition: all 1.5s ease-in-out;-moz-transition: all 1.5s ease-in-out;-o-transition: all 1.5s ease-in-out;transition: all 1.5s ease-in-out;}
+.cleaningBubblesLayer3 {width: 84px;position: absolute;bottom: 150px;z-index: 4;left: 50%;margin-left: -46px;display: none;opacity: 0;-webkit-transition: all 1.5s ease-in-out;-moz-transition: all 1.5s ease-in-out;-o-transition: all 1.5s ease-in-out;transition: all 1.5s ease-in-out;}
+.cleaningBubblesLayer4 {
+  width: 120%;
+  position: absolute;
+  bottom: 0;
+  z-index: 4;
+  left: -10%;
+display: none;
+opacity: 0;
+-webkit-transition: all 1.5s ease;
+-moz-transition: all 1.5s ease;
+-o-transition: all 1.5s ease;
+transition: all 1.5s ease;
+}
+.cleaningBubblesLayer5 {
+  width: 120%;
+  position: absolute;
+  bottom: 0;
+  z-index: 4;
+  left: -10%;
+display: none;
+opacity: 0;
+-webkit-transition: all 1.5s ease;
+-moz-transition: all 1.5s ease;
+-o-transition: all 1.5s ease;
+transition: all 1.5s ease;
+}
+/* ------------------------------------------ */
+/* PET ENTERTAIN ---------------------------- */
+/* ------------------------------------------ */
+
+.entertainStreamers {z-index: 5;position: relative;}
+.fallingStreamer1 {width: 53px;position: absolute;top: -36px;left: 20px;display: none;transform: rotate(18deg);-webkit-transform: rotate(18deg);-ms-transform: rotate(18deg);}
+.fallingStreamer2 {width: 69px;position: absolute;top: -46px;left: 50px;display: none;transform: rotate(-20deg);-webkit-transform: rotate(-20deg);-ms-transform: rotate(-20deg);}
+.fallingStreamer3 {width: 72px;position: absolute;top: -41px;left: 152px;display: none;transform: rotate(19deg);-webkit-transform: rotate(19deg);-ms-transform: rotate(19deg);}
+.fallingStreamer4 {width: 83px;position: absolute;top: -30px;right: 1px;display: none;}
+.fallingStreamer5 {width: 43px;position: absolute;top: -40px;right: 150px;display: none;}
+.fallingStreamer6 {
+    width: 100%;
+    position: absolute;
+    top: -200px;
+    display: none;
+}
+.fallingStreamer7 {
+    width: 100%;
+    position: absolute;
+    top: -200px;
+    display: none;
+}
+/* ------------------------------------------ */
 /* PET FOOD --------------------------------- */
 /* ------------------------------------------ */
 .petFood {
-    position: absolute;
-    bottom: 560px;
-    width: 70px;
-    height: 70px;
-    display: none;
-    background: url('../img/food.png');
-    z-index: 5;
-    background-size: cover;
-    left: 50%;
-    margin-left: -35px;
+position: absolute;
+bottom: 560px;
+width: 70px;
+height: 70px;
+display: none;
+background: url('../img/food.png');
+z-index: 5;
+background-size: cover;
+left: 50%;
+margin-left: -35px;
 }
 .stage1_foodDrop{
-  -webkit-transition: all 1.5s linear;
-  -moz-transition: all 1.5s linear;
-  -o-transition: all 1.5s linear;
-  transition: all 1.5s linear;
-  -webkit-animation: stage1_foodDrop 1.2s linear forwards;
-  animation: stage1_foodDrop 1.2s linear forwards;
-  -moz-animation: stage1_foodDrop 1.2s linear forwards;
+-webkit-transition: all 1.5s linear;
+-moz-transition: all 1.5s linear;
+-o-transition: all 1.5s linear;
+transition: all 1.5s linear;
+-webkit-animation: stage1_foodDrop 1.2s linear forwards;
+animation: stage1_foodDrop 1.2s linear forwards;
+-moz-animation: stage1_foodDrop 1.2s linear forwards;
 }
-
+.stage2_foodDrop{
+-webkit-transition: all 1.5s linear;
+-moz-transition: all 1.5s linear;
+-o-transition: all 1.5s linear;
+transition: all 1.5s linear;
+-webkit-animation: stage2_foodDrop 1.2s linear forwards;
+animation: stage2_foodDrop 1.2s linear forwards;
+-moz-animation: stage2_foodDrop 1.2s linear forwards;
+}
 
 
 /* ------------------------------------------ */

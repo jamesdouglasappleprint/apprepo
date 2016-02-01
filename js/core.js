@@ -24,6 +24,18 @@ Core.prototype.init = function (x) {
     e.preventDefault()
     self.actionFeed(self.currentStage)
   })
+
+  //Click to feed!
+  $(document).on("click",".buttonClean",function(e){
+    e.preventDefault()
+    self.actionClean(self.currentStage)
+  })
+
+  //Click to Entertain!
+  $(document).on("click",".buttonEntertain",function(e){
+    e.preventDefault()
+    self.actionEntertain(self.currentStage)
+  })
 };
 
 Core.prototype.loadPanelContent = function(){
@@ -127,7 +139,7 @@ Core.prototype.creationStory = function(){
     localStorage.setItem("petName", userPetName);
     localStorage.setItem("petType", userPetType);
     $('.mainPanel').show().addClass('ringoBackground')
-    $('.petMain').attr('src', 'img/ringo-'+self.currentMood+'-stage1.png')
+    $('.petMain').attr('src', 'img/ringo/ringo-'+self.currentMood+'-stage'+self.currentStage+'.png').addClass('stage'+self.currentStage)
   }
 
   function createInsatsu(){
@@ -136,7 +148,7 @@ Core.prototype.creationStory = function(){
     localStorage.setItem("petName", userPetName);
     localStorage.setItem("petType", userPetType);
     $('.mainPanel').show().addClass('insatsuBackground')
-    $('.petMain').attr('src', 'img/insatsu-'+self.currentMood+'-stage1.png')
+    $('.petMain').attr('src', 'img/insatsu/insatsu-'+self.currentMood+'-stage'+self.currentStage+'.png').addClass('stage'+self.currentStage)
   }
 
   //Create Ringo
@@ -158,16 +170,61 @@ Core.prototype.creationStory = function(){
 Core.prototype.actionFeed = function(stage){
   var self =  this
   var petStage = stage
+  $('.buttonContainer a').addClass('killLink')
+  $('.petFood').show()
+  $('.petFood').addClass('stage'+petStage+'_foodDrop')
+  setTimeout(function(){
+    $('.petFood').hide()
+    $('.petFood').removeClass('stage'+petStage+'_foodDrop')
+    $('.buttonContainer a').removeClass('killLink')
+  },2000)
 
-  //If egg stage
-  if (petStage == 1){
-    $('.petFood').show()
-    $('.petFood').addClass('stage1_foodDrop')
-    setTimeout(function(){
-      $('.petFood').hide()
-      $('.petFood').removeClass('stage1_foodDrop')
-    },2000)
-  }
+
+}
+
+//Pet Action: Cleaning
+Core.prototype.actionClean = function(stage){
+  var self =  this
+  var petStage = stage
+  $('.buttonContainer a').addClass('killLink')
+  $('.cleaningBubblesLayer1').fadeIn()
+  $('.cleaningBubblesLayer1').addClass('animateBubbles1')
+  setTimeout(function(){
+    $('.cleaningBubblesLayer4').fadeIn()
+    $('.cleaningBubblesLayer4').addClass('animateBubbles4')
+  },300)
+  setTimeout(function(){
+    $('.cleaningBubblesLayer5').fadeIn()
+    $('.cleaningBubblesLayer5').addClass('animateBubbles5')
+  },400)
+  setTimeout(function(){
+    $('.cleaningBubblesLayer2').fadeIn()
+    $('.cleaningBubblesLayer2').addClass('animateBubbles2')
+  },300)
+  setTimeout(function(){
+    $('.cleaningBubblesLayer3').fadeIn()
+    $('.cleaningBubblesLayer3').addClass('animateBubbles1')
+  },500)
+  setTimeout(function(){
+    $('.animateBubbles1').removeClass('animateBubbles1')
+    $('.animateBubbles2').removeClass('animateBubbles2')
+    $('.animateBubbles4').removeClass('animateBubbles4')
+    $('.animateBubbles5').removeClass('animateBubbles5')
+    $('.buttonContainer a').removeClass('killLink')
+  },4000)
+
+}
+
+//Pet Action: Entertain
+Core.prototype.actionEntertain = function(stage){
+  var self =  this
+  var petStage = stage
+  $('.entertainStreamers img').show()
+  $('.buttonContainer a').addClass('killLink')
+  setTimeout(function(){
+    $('.entertainStreamers img').hide()
+    $('.buttonContainer a').removeClass('killLink')
+  },4000)
 
 
 }
@@ -177,7 +234,7 @@ Core.prototype.buildFunctionsDelete = function(){
   // +++ DELETE THIS FOR PRODUCTION +++
   console.log('Loading Pointless functions')
   self.assignMood('happy');//Assign default mood - this will probbably change once we ajax..
-  self.currentStage = 1
+  self.currentStage = 2
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
