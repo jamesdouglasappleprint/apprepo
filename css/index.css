@@ -190,32 +190,8 @@ margin-right: auto;}
 .cleaningBubblesLayer1 {width: 70px;position: absolute;bottom: 170px;z-index: 4;left: 50%;margin-left: -50px;display: none;opacity: 0;-webkit-transition: all 1.5s ease-in-out;-moz-transition: all 1.5s ease-in-out;-o-transition: all 1.5s ease-in-out;transition: all 1.5s ease-in-out;}
 .cleaningBubblesLayer2 {width: 90px;position: absolute;bottom: 140px;z-index: 4;left: 50%;margin-left: -52px;display: none;opacity: 0;-webkit-transition: all 1.5s ease-in-out;-moz-transition: all 1.5s ease-in-out;-o-transition: all 1.5s ease-in-out;transition: all 1.5s ease-in-out;}
 .cleaningBubblesLayer3 {width: 84px;position: absolute;bottom: 150px;z-index: 4;left: 50%;margin-left: -46px;display: none;opacity: 0;-webkit-transition: all 1.5s ease-in-out;-moz-transition: all 1.5s ease-in-out;-o-transition: all 1.5s ease-in-out;transition: all 1.5s ease-in-out;}
-.cleaningBubblesLayer4 {
-  width: 120%;
-  position: absolute;
-  bottom: 0;
-  z-index: 4;
-  left: -10%;
-display: none;
-opacity: 0;
--webkit-transition: all 1.5s ease;
--moz-transition: all 1.5s ease;
--o-transition: all 1.5s ease;
-transition: all 1.5s ease;
-}
-.cleaningBubblesLayer5 {
-  width: 120%;
-  position: absolute;
-  bottom: 0;
-  z-index: 4;
-  left: -10%;
-display: none;
-opacity: 0;
--webkit-transition: all 1.5s ease;
--moz-transition: all 1.5s ease;
--o-transition: all 1.5s ease;
-transition: all 1.5s ease;
-}
+.cleaningBubblesLayer4 {width: 120%;position: absolute;bottom: 0;z-index: 4;left: -10%;display: none;opacity: 0;-webkit-transition: all 1.5s ease;-moz-transition: all 1.5s ease;-o-transition: all 1.5s ease;transition: all 1.5s ease;}
+.cleaningBubblesLayer5 {width: 120%;position: absolute;bottom: 0;z-index: 4;left: -10%;display: none;opacity: 0;-webkit-transition: all 1.5s ease;-moz-transition: all 1.5s ease;-o-transition: all 1.5s ease;transition: all 1.5s ease;}
 /* ------------------------------------------ */
 /* PET ENTERTAIN ---------------------------- */
 /* ------------------------------------------ */
@@ -226,18 +202,8 @@ transition: all 1.5s ease;
 .fallingStreamer3 {width: 72px;position: absolute;top: -41px;left: 152px;display: none;transform: rotate(19deg);-webkit-transform: rotate(19deg);-ms-transform: rotate(19deg);}
 .fallingStreamer4 {width: 83px;position: absolute;top: -30px;right: 1px;display: none;}
 .fallingStreamer5 {width: 43px;position: absolute;top: -40px;right: 150px;display: none;}
-.fallingStreamer6 {
-    width: 100%;
-    position: absolute;
-    top: -200px;
-    display: none;
-}
-.fallingStreamer7 {
-    width: 100%;
-    position: absolute;
-    top: -200px;
-    display: none;
-}
+.fallingStreamer6 {width: 100%;position: absolute;top: -200px;display: none;}
+.fallingStreamer7 {width: 100%;position: absolute;top: -200px;display: none;}
 /* ------------------------------------------ */
 /* PET FOOD --------------------------------- */
 /* ------------------------------------------ */
