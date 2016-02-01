@@ -74,40 +74,9 @@
 /* Stage 2 Food Drop ------------------------ */
 /* ------------------------------------------ */
 
-@-webkit-keyframes stage2_foodDrop {
-0% {
-  bottom:560px;
-}
-90% {
-  bottom:160px;
-  opacity:1;
-}
-
-100% {
-  bottom:160px;
-  opacity:0;
-}
-
-
-}
-
-/*@-moz-keyframes rotateStars {
-  0% {bottom:560px;margin-left: -35px;transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
-  30% {bottom:250px;margin-left: -35px;transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
-  40%{bottom:280px;}
-  60% {bottom:150px;margin-left: 40px;transform:rotate(420deg);-ms-transform:rotate(420deg);-webkit-transform:rotate(420deg);}
-  90% {bottom:150px;margin-left: 40px;transform:rotate(420deg);-ms-transform:rotate(420deg);-webkit-transform:rotate(420deg);}
-  100% {bottom:150px;margin-left: 40px;transform:rotate(420deg);-ms-transform:rotate(420deg);-webkit-transform:rotate(420deg);}
-}
-
-@keyframes rotateStars {
-  0% {bottom:560px;margin-left: -35px;transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
-  30% {bottom:250px;margin-left: -35px;transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
-  40%{bottom:280px;}
-  60% {bottom:150px;margin-left: 40px;transform:rotate(420deg);-ms-transform:rotate(420deg);-webkit-transform:rotate(420deg);}
-  90% {bottom:150px;margin-left: 40px;transform:rotate(420deg);-ms-transform:rotate(420deg);-webkit-transform:rotate(420deg);}
-  100% {bottom:150px;margin-left: 40px;transform:rotate(420deg);-ms-transform:rotate(420deg);-webkit-transform:rotate(420deg);}
-}*/
+@-webkit-keyframes stage2_foodDrop {0% {bottom:560px;}90% {bottom:160px;opacity:1;}100% {bottom:160px;opacity:0;}}
+@-moz-keyframes rotateStars {0% {bottom:560px;}90% {bottom:160px;opacity:1;}100% {bottom:160px;opacity:0;}}
+@keyframes rotateStars {0% {bottom:560px;}90% {bottom:160px;opacity:1;}100% {bottom:160px;opacity:0;}}
 
 /* ------------------------------------------ */
 /* Entertainment - Streamers ---------------- */
@@ -179,7 +148,8 @@
 /* ------------------------------------------ */
 /* Egg Roll --------------------------------- */
 /* ------------------------------------------ */
-
+.stage1 {-webkit-transition: all 1.5s linear;-moz-transition: all 1.5s linear;-o-transition: all 1.5s linear;transition: all 1.5s linear;-webkit-animation: eggRoll 6s linear infinite;animation: eggRoll 6s linear infinite;-moz-animation: eggRoll 6s linear infinite;-ms-transform-origin: 50% 100%;-webkit-transform-origin: 50% 100%;transform-origin: 50% 75%;
+}
 @-webkit-keyframes eggRoll {
 
   0% {
@@ -317,5 +287,36 @@
 }
 
 /* ------------------------------------------ */
-/* Egg Roll --------------------------------- */
+/* Stage 2 Bounce --------------------------- */
 /* ------------------------------------------ */
+.stage2 {
+  -webkit-transition: all 1.5s linear;
+  -moz-transition: all 1.5s linear;
+  -o-transition: all 1.5s linear;
+  transition: all 1.5s linear;
+  -webkit-animation: stage2_bounce 15s linear infinite;
+  animation: stage2_bounce 15s linear infinite;
+  -moz-animation: stage2_bounce 15s linear infinite;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 75%;
+}
+@-webkit-keyframes stage2_bounce {
+0% {left:0;}
+33%{left:60px;transform: rotateY(0deg);}
+34%{
+  transform: rotateY(180deg);
+}
+66%{left:-60px;transform: rotateY(180deg);}
+67%{
+  transform: rotateY(0deg);
+}
+100% {left:0;}
+
+}
+
+/*@-moz-keyframes rotateStars {
+}
+
+@keyframes rotateStars {
+}*/
