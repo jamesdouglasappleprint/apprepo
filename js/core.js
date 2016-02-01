@@ -234,7 +234,7 @@ Core.prototype.buildFunctionsDelete = function(){
   // +++ DELETE THIS FOR PRODUCTION +++
   console.log('Loading Pointless functions')
   self.assignMood('happy');//Assign default mood - this will probbably change once we ajax..
-  self.currentStage = 1
+  self.currentStage = 2
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
