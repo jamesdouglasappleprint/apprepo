@@ -302,15 +302,67 @@
   transform-origin: 50% 75%;
 }
 @-webkit-keyframes stage2_bounce {
-0% {left:0;}
-33%{left:60px;transform: rotateY(0deg);}
+0% {left:0;top:0;}
+
+2%{top:0px;}
+3%{top:-10px;}
+4%{top:0px;}
+5%{top:-10px;}
+6%{top:0px;}
+
+22%{top:0px;}
+23%{top:-10px;}
+24%{top:0px;}
+25%{top:-10px;}
+26%{top:0px;}
+
+33%{
+  left:60px;
+  transform: rotateY(0deg);
+}
+
 34%{
   transform: rotateY(180deg);
 }
-66%{left:-60px;transform: rotateY(180deg);}
+42%{top:0px;}
+43%{top:-10px;}
+44%{top:0px;}
+45%{top:-10px;}
+46%{top:0px;}
+
+52%{top:0px;}
+53%{top:-10px;}
+54%{top:0px;}
+55%{top:-10px;}
+56%{top:0px;}
+
+66%{
+  left:-60px;
+  transform: rotateY(180deg);
+}
+
 67%{
   transform: rotateY(0deg);
 }
+
+72%{top:0px;}
+73%{top:-10px;}
+74%{top:0px;}
+75%{top:-10px;}
+76%{top:0px;}
+
+82%{top:0px;}
+83%{top:-10px;}
+84%{top:0px;}
+85%{top:-10px;}
+86%{top:0px;}
+
+92%{top:0px;}
+93%{top:-10px;}
+94%{top:0px;}
+95%{top:-10px;}
+96%{top:0px;}
+
 100% {left:0;}
 
 }
