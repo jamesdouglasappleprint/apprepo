@@ -47,7 +47,25 @@ Core.prototype.loadPanelContent = function(){
 }
 
 //Login and Register Functions
+Core.prototype.retrievePetData = function(uid){
+  $.ajax({
+    type: 'POST',
+    data: 'uid='+uid,
+    dataType:'jsonp',
+    jsonp: 'callback',
+    url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
+    success: function(data){
+      console.log(data);
+    },
+    error: function(){
+      console.log('Error registering user.')
+    }
+  });
+};
+
+//Login and Register Functions
 Core.prototype.loginOrRegister = function(){
+  var self = this
   console.log('Loading Panel Content')
 
   //If remmber me button clicked
@@ -80,29 +98,6 @@ Core.prototype.loginOrRegister = function(){
     $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
   })
 
-  $(document).on("click",".submitLogin",function(e){
-    e.preventDefault()
-    console.log('yup')
-
-    var postData = $('form#loginForm').serialize();
-  	console.log(postData)
-
-  	$.ajax({
-  		type: 'POST',
-  		data: postData,
-  		url: 'http://applegochi.apple-dev.co.uk/Ajax/ghTest.ashx?e='+postData,
-  		success: function(data){
-  			console.log(data);
-  			alert(data);
-  		},
-  		error: function(){
-  			console.log(data);
-  			alert('There was an error adding your comment');
-  		}
-  	});
-
-  });
-
   //Login Opened
   $(document).on("click",".registerButton",function(e){
     $('.registerLoginContainer').addClass('registerLoginReduceMax')
@@ -118,6 +113,72 @@ Core.prototype.loginOrRegister = function(){
     $('.registerLoginPanel').removeClass('displaceBackgroundRegister')
   })
 
+  //REGISTER USER
+  $(document).on("click",".submitRegister",function(e){
+  	e.preventDefault()
+  	console.log('Submit Register has been clicked')
+  	var postData = $('form#registerForm').serialize();
+    var fakeDetailsRemoved = postData.replace('&fakeusernameremembered=&fakepasswordremembered=','');
+  	console.log(fakeDetailsRemoved)
+
+  	$.ajax({
+  		type: 'POST',
+  		data: fakeDetailsRemoved,
+      dataType:'jsonp',
+      jsonp: 'callback',
+  		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
+  		success: function(data){
+  			console.log(data);
+        var userID = data.userID
+        console.log()
+        localStorage.setItem("userID", userID);
+  		},
+  		error: function(){
+        console.log('Error registering user.')
+  		}
+    });
+
+  });
+
+  //USER LOGIN
+  $(document).on("click",".submitLogin",function(e){
+  	e.preventDefault()
+  	console.log('Submit Login has been clicked')
+  	var postData = $('form#loginForm').serialize();
+    var fakeDetailsRemoved = decodeURIComponent(postData.replace('fakeusernameremembered=&fakepasswordremembered=&',''));
+    console.log(fakeDetailsRemoved)
+  	$.ajax({
+  		type: 'POST',
+  		data: fakeDetailsRemoved,
+      dataType:'jsonp',
+      jsonp: 'callback',
+  		url: 'http://applegotchi.co.uk/Ajax/ghLogon.ashx',
+  		success: function(data){
+  			console.log(data);
+        localStorage.setItem("loginAuth", 1);
+        petData = self.retrievePetData(data.uid)
+        if (petData == undefined){
+          console.log('undefined')
+          navigator.notification.alert(
+              'You are the winner!',  // message
+              alertDismissed,         // callback
+              'Game Over',            // title
+              'Done'                  // buttonName
+          );
+          $('.storyboardPanel').show()
+        }else{
+          console.log(petData)
+          //skip to creature
+        }
+
+  		},
+  		error: function(){
+        console.log('Error registering user.')
+  		}
+    });
+
+  });
+// /Ajax/ghLogon.ashx?uid=0&e=fred@bloggs.com&pw=abcd1234
 
 }//END
 
