@@ -18,6 +18,7 @@
 function Core(){
   console.log('Core Loaded');
   var self = this;
+  //initPushwoosh();
 
   self.currentMood = 'happy';
   self.petNamedType = ""; //current pet type as a name
@@ -55,39 +56,60 @@ Core.prototype.loadPanelContent = function(){
   $('.storyboardPanel').load("storyboard.html")
   $('.mainPanel').load("main.html")
   $('.menuPanel').load("menu.html")
+  $('.contactDetailsPanel').load("contactdetails.html")
 
   //Click to feed!
   $(document).on("click",".buttonFeed",function(e){
     e.preventDefault()
-    self.actionFeed(self.petLevel)
+    self.actionFeed(localStorage.getItem('petLevel'))
   })
 
   //Click to feed!
   $(document).on("click",".buttonClean",function(e){
     e.preventDefault()
-    self.actionClean(self.petLevel)
+    self.actionClean(localStorage.getItem('petLevel'))
   })
 
   //Click to Entertain!
   $(document).on("click",".buttonEntertain",function(e){
     e.preventDefault()
-    self.actionEntertain(self.petLevel)
+    self.actionEntertain(localStorage.getItem('petLevel'))
   })
+
+  //Click to open contact details menu
+  $(document).on("click",".updateContactDeets",function(e){
+    e.preventDefault()
+    $('.contactDetailsPanel').show()
+  })
+
+  //Click to close contact details menu
+  $(document).on("click",".closeContactDetails",function(e){
+    e.preventDefault()
+    $('.contactDetailsPanel').hide()
+  })
+
+
 
   //Click to Entertain!
   $(document).on("click",".menuTrigger",function(e){
     e.preventDefault()
 
-    $('.accountDeetsFirstName').html(localStorage.getItem('firstName'))
-    $('.accountDeetsLastName').html(localStorage.getItem('lastName'))
-    $('.accountDeetsAddressLine1').html(localStorage.getItem('AddressLine1'))
-    $('.accountDeetsAddressLine2').html(localStorage.getItem('AddressLine2'))
-    $('.accountDeetsAddressLine3').html(localStorage.getItem('AddressLine3'))
-    $('.accountDeetsTown').html(localStorage.getItem('town'))
-    $('.accountDeetsPostcode').html(localStorage.getItem('postcode'))
-    $('.accountDeetsEmailAddress').html(localStorage.getItem('emailaddress'))
+    $('.accountDeetsFirstName>span').html(localStorage.getItem('firstName'))
+    $('.accountDeetsLastName>span').html(localStorage.getItem('lastName'))
+    $('.accountDeetsAddressLine1>span').html(localStorage.getItem('AddressLine1'))
+    $('.accountDeetsAddressLine2>span').html(localStorage.getItem('AddressLine2'))
+    $('.accountDeetsAddressLine3>span').html(localStorage.getItem('AddressLine3'))
+    $('.accountDeetsTown>span').html(localStorage.getItem('town'))
+    $('.accountDeetsPostcode>span').html(localStorage.getItem('postcode'))
+    $('.accountDeetsEmailAddress>span').html(localStorage.getItem('emailaddress'))
 
     $('.menuPanel').show()
+  })
+
+  //Click to close contact details menu
+  $(document).on("click",".closeMenu",function(e){
+    e.preventDefault()
+    $('.menuPanel').hide()
   })
 }
 
@@ -374,6 +396,8 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
 
+        //TODO: score is not updating
+
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
         $('.statusEntertain>.statusLevel').css({height:data[0].ps+'%'})
         $('.statusClean>.statusLevel').css({height:data[0].cs+'%'})
@@ -402,6 +426,23 @@ Core.prototype.actionFeed = function(stage){
     $('.petFood').hide()
     $('.petFood').removeClass('stage'+petStage+'_foodDrop')
     $('.buttonContainer a').removeClass('killLink')
+
+    $.ajax({
+  		type: 'POST',
+  		data: 'pid='+localStorage.getItem('petID')+'&t=f',
+      dataType:'jsonp',
+      jsonp: 'callback',
+      async: false,
+  		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
+  		success: function(data){
+  			console.log(data);
+        self.updateActionLevels(localStorage.getItem('userID'))
+  		},
+  		error: function(){
+        console.log('Error creating pet.')
+  		}
+    });
+
   },2000)
 
 
@@ -431,6 +472,22 @@ Core.prototype.actionClean = function(stage){
     $('.cleaningBubblesLayer3').addClass('animateBubbles1')
   },500)
   setTimeout(function(){
+    $.ajax({
+  		type: 'POST',
+  		data: 'pid='+localStorage.getItem('petID')+'&t=c',
+      dataType:'jsonp',
+      jsonp: 'callback',
+      async: false,
+  		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
+  		success: function(data){
+  			console.log(data);
+        self.updateActionLevels(localStorage.getItem('userID'))
+  		},
+  		error: function(){
+        console.log('Error creating pet.')
+  		}
+    });
+
     $('.animateBubbles1').removeClass('animateBubbles1')
     $('.animateBubbles2').removeClass('animateBubbles2')
     $('.animateBubbles4').removeClass('animateBubbles4')
@@ -447,6 +504,22 @@ Core.prototype.actionEntertain = function(stage){
   $('.entertainStreamers img').show()
   $('.buttonContainer a').addClass('killLink')
   setTimeout(function(){
+    $.ajax({
+  		type: 'POST',
+  		data: 'pid='+localStorage.getItem('petID')+'&t=p',
+      dataType:'jsonp',
+      jsonp: 'callback',
+      async: false,
+  		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
+  		success: function(data){
+  			console.log(data);
+        self.updateActionLevels(localStorage.getItem('userID'))
+  		},
+  		error: function(){
+        console.log('Error creating pet.')
+  		}
+    });
+
     $('.entertainStreamers img').hide()
     $('.buttonContainer a').removeClass('killLink')
   },4000)
