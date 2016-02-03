@@ -42,8 +42,3 @@ document.addEventListener('push-notification', function(event) {
              alert(notification.aps.alert);
              pushNotification.setApplicationIconBadgeNumber(0);
 });
-
-
-
-
-initPushwoosh();
