@@ -57,35 +57,20 @@
 
 
 
-        <script type="text/javascript" src="cordova.js"></script>
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
         <script type="text/javascript" src="js/pushwoosh.js"></script>
+        <!-- <script type="text/javascript" src="js/index.js"></script> -->
         <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
         <script type="text/javascript" src="js/core.js"></script>
 
-        <!-- <script type="text/javascript" src="js/index.js"></script> -->
+        <!--  -->
         <script type="text/javascript">
             //app.initialize();
         </script>
         <script>
-            // var value = window.localStorage.getItem("stayloggedon")
-            // if( value == 1){
-            //     $('.appContainer').load("home.html")
-            //     $('.navigateBack').hide()
-            //     $('.prelaunchButtons').hide()
-            //     $('.socialStrip').show()
-            //     //BDM Data load
-            //     getBdmData()
-            //
-            //     //User Data
-            // }else{
-            //     $('.navigateBack').hide()
-            //     $('.prelaunchButtons').show()
-            //     $('.socialStrip').hide()
-            //     $('.appContainer').load("login.html")
-            // }
-            //   var string = device.uuid;
-            //   createPushRegister(string)
-            //   initPushwoosh()
+              var string = device.uuid;
+              createPushRegister(string)
+              initPushwoosh()
         </script>
     </body>
 </html>

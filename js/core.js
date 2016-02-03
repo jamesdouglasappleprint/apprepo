@@ -18,7 +18,7 @@
 function Core(){
   console.log('Core Loaded');
   var self = this;
-  initPushwoosh();
+  //initPushwoosh();
 
   self.currentMood = 'happy';
   self.petNamedType = ""; //current pet type as a name
