@@ -56,21 +56,22 @@
         <div class="fullHeightPanel contactDetailsPanel"></div>
 
 
-
+        <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
         <!-- <script type="text/javascript" src="cordova.js"></script> -->
         <script type="text/javascript" src="js/pushwoosh.js"></script>
-        <!-- <script type="text/javascript" src="js/index.js"></script> -->
-        <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
         <script type="text/javascript" src="js/core.js"></script>
 
         <!--  -->
         <script type="text/javascript">
-            //app.initialize();
+            app.initialize();
+            initPushwoosh()
         </script>
         <script>
-              var string = device.uuid;
-              createPushRegister(string)
-              initPushwoosh()
+              // var string = device.uuid;
+              // createPushRegister(string)
+
         </script>
     </body>
 </html>
