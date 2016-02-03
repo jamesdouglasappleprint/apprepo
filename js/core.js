@@ -1,67 +1,110 @@
-//APPLE PRINT 2016
+/* APPLE PRINT & CREATIVE //////////////////////////////////////////////////////////////////////////////////////////////////
+// APPLEGOTCHI /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SITE: APPLEGOTCHI ///////////////////////////////////////////////////////////////////////////////////////////////////////
+// DEV: JAMES DOUGLAS //////////////////////////////////////////////////////////////////////////////////////////////////////
+// BUILD: 2016 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////.d888888////////////////////dP//////////////888888ba///////////oo////////////dP//////dP////////d888888P/888888ba///////
+////d8'////88////////////////////88//////////////88////`8b////////////////////////88//////88///////////88////88////`8b//////
+////88aaaaa88a/88d888b./88d888b./88/.d8888b.////a88aaaa8P'/88d888b./dP/88d888b./d8888P////88///////////88////88/////88//////
+////88/////88//88'//`88/88'//`88/88/88ooood8/////88////////88'//`88/88/88'//`88///88//////88///////////88////88/////88//////
+////88/////88//88.//.88/88.//.88/88/88.//.../////88////////88///////88/88////88///88//////88///////////88////88////.8P//////
+////88/////88//88Y888P'/88Y888P'/dP/`88888P'/////dP////////dP///////dP/dP////dP///dP//////88888888P////dP////8888888P///////
+///////////////88///////88//////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////dP///////dP//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 
 function Core(){
   console.log('Core Loaded');
   var self = this;
 
-  self.currentMood = '';
-  self.currentStage = '';
+  self.currentMood = 'happy';
+  self.petNamedType = ""; //current pet type as a name
+  self.petLevel = 0; //current pet type as a name
+  self.userID = 0; //Pet Name
 
 
   self.loadPanelContent();//Load panels with content
   self.loginOrRegister(); //Load form options
   self.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
-  self.creationStory();
-  self.init();//Load panels with content
+  self.init();//Initial load checks
+  self.logOut()
 
 }
 
+//Initialiser
 Core.prototype.init = function (x) {
   var self = this
 
-  //Click to feed!
-  $(document).on("click",".buttonFeed",function(e){
-    e.preventDefault()
-    self.actionFeed(self.currentStage)
-  })
+  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
+    //get up to date pet data
+    self.loadPet(localStorage.getItem("userID"))
+  }else{
 
-  //Click to feed!
-  $(document).on("click",".buttonClean",function(e){
-    e.preventDefault()
-    self.actionClean(self.currentStage)
-  })
+  }
 
-  //Click to Entertain!
-  $(document).on("click",".buttonEntertain",function(e){
-    e.preventDefault()
-    self.actionEntertain(self.currentStage)
-  })
 };
 
+//Load HTML into panels
 Core.prototype.loadPanelContent = function(){
+  var self = this
   console.log('Loading Panel Content')
 
   $('.registerLoginPanel').load("registerlogin.html")
   $('.storyboardPanel').load("storyboard.html")
   $('.mainPanel').load("main.html")
+  $('.menuPanel').load("menu.html")
+
+  //Click to feed!
+  $(document).on("click",".buttonFeed",function(e){
+    e.preventDefault()
+    self.actionFeed(self.petLevel)
+  })
+
+  //Click to feed!
+  $(document).on("click",".buttonClean",function(e){
+    e.preventDefault()
+    self.actionClean(self.petLevel)
+  })
+
+  //Click to Entertain!
+  $(document).on("click",".buttonEntertain",function(e){
+    e.preventDefault()
+    self.actionEntertain(self.petLevel)
+  })
+
+  //Click to Entertain!
+  $(document).on("click",".menuTrigger",function(e){
+    e.preventDefault()
+
+    $('.accountDeetsFirstName').html(localStorage.getItem('firstName'))
+    $('.accountDeetsLastName').html(localStorage.getItem('lastName'))
+    $('.accountDeetsAddressLine1').html(localStorage.getItem('AddressLine1'))
+    $('.accountDeetsAddressLine2').html(localStorage.getItem('AddressLine2'))
+    $('.accountDeetsAddressLine3').html(localStorage.getItem('AddressLine3'))
+    $('.accountDeetsTown').html(localStorage.getItem('town'))
+    $('.accountDeetsPostcode').html(localStorage.getItem('postcode'))
+    $('.accountDeetsEmailAddress').html(localStorage.getItem('emailaddress'))
+
+    $('.menuPanel').show()
+  })
 }
 
-//Login and Register Functions
-Core.prototype.retrievePetData = function(uid){
-  $.ajax({
-    type: 'POST',
-    data: 'uid='+uid,
-    dataType:'jsonp',
-    jsonp: 'callback',
-    url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
-    success: function(data){
-      console.log(data);
-    },
-    error: function(){
-      console.log('Error registering user.')
-    }
-  });
-};
+//Log out and clear all local data
+Core.prototype.logOut = function(){
+  //Click to Entertain!
+  $(document).on("click",".logOut",function(e){
+    e.preventDefault()
+    localStorage.clear();
+    $('.menuPanel').hide()
+    $('.mainPanel').hide()
+    $('.storyboardPanel').hide()
+    $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
+    $('.registerLoginContainer').removeClass('registerLoginReduce')
+    $('.slideLogin').hide()
+  })
+}
 
 //Login and Register Functions
 Core.prototype.loginOrRegister = function(){
@@ -116,10 +159,10 @@ Core.prototype.loginOrRegister = function(){
   //REGISTER USER
   $(document).on("click",".submitRegister",function(e){
   	e.preventDefault()
+    localStorage.clear();
   	console.log('Submit Register has been clicked')
   	var postData = $('form#registerForm').serialize();
     var fakeDetailsRemoved = postData.replace('&fakeusernameremembered=&fakepasswordremembered=','');
-  	console.log(fakeDetailsRemoved)
 
   	$.ajax({
   		type: 'POST',
@@ -128,10 +171,12 @@ Core.prototype.loginOrRegister = function(){
       jsonp: 'callback',
   		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
   		success: function(data){
-  			console.log(data);
-        var userID = data.userID
-        console.log()
-        localStorage.setItem("userID", userID);
+        localStorage.setItem("userID", data.userID);
+        console.log('Register Success! We need to fire a notification here')
+
+        $('.registerLoginContainer').removeClass('registerLoginReduceMax')
+        $('.slideRegister').hide()
+        $('.registerLoginPanel').removeClass('displaceBackgroundRegister')
   		},
   		error: function(){
         console.log('Error registering user.')
@@ -146,7 +191,6 @@ Core.prototype.loginOrRegister = function(){
   	console.log('Submit Login has been clicked')
   	var postData = $('form#loginForm').serialize();
     var fakeDetailsRemoved = decodeURIComponent(postData.replace('fakeusernameremembered=&fakepasswordremembered=&',''));
-    console.log(fakeDetailsRemoved)
   	$.ajax({
   		type: 'POST',
   		data: fakeDetailsRemoved,
@@ -155,20 +199,54 @@ Core.prototype.loginOrRegister = function(){
   		url: 'http://applegotchi.co.uk/Ajax/ghLogon.ashx',
   		success: function(data){
   			console.log(data);
-        localStorage.setItem("loginAuth", 1);
-        petData = self.retrievePetData(data.uid)
-        if (petData == undefined){
-          console.log('undefined')
-          navigator.notification.alert(
-              'You are the winner!',  // message
-              alertDismissed,         // callback
-              'Game Over',            // title
-              'Done'                  // buttonName
-          );
-          $('.storyboardPanel').show()
+        self.userID = data.uid
+
+        localStorage.setItem('firstName', data.firstname)
+        localStorage.setItem('lastName', data.lastname)
+        localStorage.setItem('postcode', data.postcode)
+        localStorage.setItem('AddressLine1', data.add1)
+        localStorage.setItem('AddressLine2', data.add2)
+        localStorage.setItem('AddressLine3', data.add3)
+        localStorage.setItem('emailaddress', data.emailaddress)
+        localStorage.setItem('town', data.town)
+        localStorage.setItem('password', data.password)
+
+        //TODO: if we get a retrn of 'user not found' do something here
+
+        if (localStorage.getItem("hasPet") != 'true'){
+          console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
+
+          //Check to see if user already has login, but has cleared localstorage
+          $.ajax({
+            type: 'POST',
+            data: 'uid='+data.uid,
+            dataType:'jsonp',
+            jsonp: 'callback',
+            url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
+            success: function(data){
+              console.log(data);
+
+              //If pet data exists
+              if (data.length == 1){
+                console.log('No localstorage was present, but the user has a pet. Loading Pet...')
+                self.loadPet(self.userID)
+              }else{
+                //Start creation story
+                self.creationStory();
+                $('.storyboardPanel').show()
+              }
+
+
+
+            },
+            error: function(){
+              console.log('Error registering user.')
+            }
+          });
         }else{
-          console.log(petData)
+          console.log('You have signed in and already have a pet!')
           //skip to creature
+          self.loadPet(self.userID)
         }
 
   		},
@@ -178,8 +256,6 @@ Core.prototype.loginOrRegister = function(){
     });
 
   });
-// /Ajax/ghLogon.ashx?uid=0&e=fred@bloggs.com&pw=abcd1234
-
 }//END
 
 //Assigns global mood to whatever you feed it
@@ -194,37 +270,125 @@ Core.prototype.creationStory = function(){
   //this code is probably temporary...
   var self = this
 
-  function createRingo(){
-    var userPetName = $('#petname').val();
-    var userPetType = "Ringo";
-    localStorage.setItem("petName", userPetName);
-    localStorage.setItem("petType", userPetType);
-    $('.mainPanel').show().addClass('ringoBackground')
-    $('.petMain').attr('src', 'img/ringo/ringo-'+self.currentMood+'-stage'+self.currentStage+'.png').addClass('stage'+self.currentStage)
-  }
+  function createPet(petType){
+    console.log('Create Pet function Firing')
 
-  function createInsatsu(){
-    var userPetName = $('#petname').val();
-    var userPetType = "Insatsu";
-    localStorage.setItem("petName", userPetName);
-    localStorage.setItem("petType", userPetType);
-    $('.mainPanel').show().addClass('insatsuBackground')
-    $('.petMain').attr('src', 'img/insatsu/insatsu-'+self.currentMood+'-stage'+self.currentStage+'.png').addClass('stage'+self.currentStage)
+    $.ajax({
+  		type: 'POST',
+  		data: 'uid='+localStorage.getItem("userID")+'&pn='+$('#petname').val()+'&pt='+petType,
+      dataType:'jsonp',
+      jsonp: 'callback',
+      async: false,
+  		url: 'http://applegotchi.co.uk/Ajax/ghCreatePet.ashx',
+  		success: function(data){
+  			console.log(data);
+        console.log('pet created')
+        localStorage.setItem("petName", $('#petname').val());
+        localStorage.setItem("petType", petType);
+        localStorage.setItem("hasPet", true);
+        self.loadPet(localStorage.getItem("userID"))
+  		},
+  		error: function(){
+        console.log('Error creating pet.')
+  		}
+    });
+
   }
 
   //Create Ringo
   $(document).on("click",".createRingo",function(e){
-    createRingo()
+    e.preventDefault()
+    console.log('creating ringo')
+    createPet(1)
   })
 
   //Create Insatsu
   $(document).on("click",".createInsatsu",function(e){
-    createInsatsu()
+    e.preventDefault()
+    console.log('creating insatsu')
+    createPet(2)
   })
 
+}
+
+//Load pet data
+Core.prototype.loadPet = function(uid){
+  var self = this
+
+  console.log('Loading Pet')
+
+  $.ajax({
+    type: 'POST',
+    data: 'uid='+uid,
+    async: false,
+    dataType:'jsonp',
+    jsonp: 'callback',
+    url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
+    success: function(data){
+      console.log(data);
+      if (data.length == 1){
+        if (data[0].pt == 1){
+          //Ringo
+          self.petNamedType = 'ringo'
+        }else{
+          //Insatsu
+          self.petNamedType = 'insatsu'
+        }
+
+        $('.mainPanel').show().addClass(self.petNamedType+'Background')
+        $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        self.updateActionLevels(uid)
+      }else{
+        console.log('retreievePetData has been fired, but there\'s no pet data to recall')
+      }
+
+    },
+    error: function(){
+      console.log('Error registering user.')
+    }
+  });
+};
+
+//Update current action levels of pet (and score)
+Core.prototype.updateActionLevels = function(uid){
+  var self = this
+
+  $.ajax({
+    type: 'POST',
+    data: 'uid='+uid,
+    async: false,
+    dataType:'jsonp',
+    jsonp: 'callback',
+    url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
+    success: function(data){
+      console.log(data);
+      if (data.length == 1){
+        localStorage.setItem("cleanStatus", data[0].cs)
+        localStorage.setItem("foodStatus", data[0].fs)
+        localStorage.setItem("funStatus", data[0].ps)
+        localStorage.setItem("petLevel", data[0].pl)
+        localStorage.setItem("petPoints", data[0].pp)
+        localStorage.setItem("petType", data[0].pt)
+        localStorage.setItem("petName", data[0].pn)
+        localStorage.setItem("petID", data[0].pid)
+        localStorage.setItem("userID", data[0].uid)
+        localStorage.setItem("hasPet", true);
+
+        $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
+        $('.statusEntertain>.statusLevel').css({height:data[0].ps+'%'})
+        $('.statusClean>.statusLevel').css({height:data[0].cs+'%'})
+        $('.currentScore').html(data[0].pp)
 
 
+      }else{
+        console.log('retreievePetData has been fired, but there\'s no pet data to recall')
+      }
 
+    },
+    error: function(){
+      console.log('Error registering user.')
+    }
+  });
 }
 
 //Pet Action: Feeding
@@ -290,22 +454,18 @@ Core.prototype.actionEntertain = function(stage){
 
 }
 
+//TEMP SHIT DELETE THIS WHEN YO DONE
 Core.prototype.buildFunctionsDelete = function(){
   var self = this
   // +++ DELETE THIS FOR PRODUCTION +++
-  console.log('Loading Pointless functions')
-  self.assignMood('happy');//Assign default mood - this will probbably change once we ajax..
-  self.currentStage = 2
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
   })
 
-  $(document).on("click",".bypasslogin",function(e){
-    $('.storyboardPanel').show()
-  })
 
 }
 
 
+//Let's make a pet!
 var Core = new Core();
