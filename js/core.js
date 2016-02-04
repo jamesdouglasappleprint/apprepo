@@ -538,7 +538,3 @@ Core.prototype.buildFunctionsDelete = function(){
 
 
 }
-
-
-//Let's make a pet!
-var Core = new Core();

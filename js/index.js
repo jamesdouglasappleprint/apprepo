@@ -54,5 +54,8 @@ document.addEventListener("deviceready", OnDeviceReady, false);
 
 function OnDeviceReady()    {
   console.log('device is ready')
+  //Let's make a pet!
+  var Core = new Core();
   initPushwoosh()
+
 }
