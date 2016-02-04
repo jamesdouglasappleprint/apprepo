@@ -36,7 +36,6 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         console.log('device ready')
-        initPushwoosh()
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
