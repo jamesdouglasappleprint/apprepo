@@ -209,7 +209,6 @@ Core.prototype.loginOrRegister = function(){
   //USER LOGIN
   $(document).on("click",".submitLogin",function(e){
   	e.preventDefault()
-    initPushwoosh()
   	console.log('Submit Login has been clicked')
   	var postData = $('form#loginForm').serialize();
     var fakeDetailsRemoved = decodeURIComponent(postData.replace('fakeusernameremembered=&fakepasswordremembered=&',''));
