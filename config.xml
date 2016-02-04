@@ -11,6 +11,9 @@
 
   <author href="http://yoursite.com" email="you@youremail.com">Your Name</author>
 
+  <access origin="*"/> <!-- allow all pages, use for development -->
+  <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
+
   <platform name="ios" >
     <preference name="orientation" value="portrait" />
   </platform>
@@ -20,8 +23,8 @@
     <preference name="android-build-tool" value="gradle" />
   </platform>
 
+  <gap:platform name="ios" >
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" />
-  <gap:plugin name="phonegap-plugin-push" source="npm" />
   <gap:plugin name="org.apache.cordova.device" source="pgb" />
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
 
@@ -64,7 +67,6 @@
   <gap:splash src="screen-iphone-portrait-736h.png"  gap:platform="ios" width="1242" height="2208" />
 
 
-  <access origin="*"/> <!-- allow all pages, use for development -->
-  <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
+
 
 </widget>
