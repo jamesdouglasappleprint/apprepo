@@ -23,7 +23,6 @@
     <preference name="android-build-tool" value="gradle" />
   </platform>
 
-  <gap:platform name="ios" >
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" />
   <gap:plugin name="org.apache.cordova.device" source="pgb" />
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
