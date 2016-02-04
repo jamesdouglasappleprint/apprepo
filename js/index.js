@@ -54,5 +54,6 @@ var app = {
 document.addEventListener("deviceready", OnDeviceReady, false);
 
 function OnDeviceReady()    {
-
+  console.log('device is ready')
+  initPushwoosh()
 }

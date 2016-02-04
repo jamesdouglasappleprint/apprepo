@@ -533,7 +533,6 @@ Core.prototype.buildFunctionsDelete = function(){
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
-    initPushwoosh()
   })
 
 
