@@ -28,7 +28,6 @@
   <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
   <gap:plugin name="phonegap-plugin-push" source="npm" /><!-- Enable notifications INSIDE app -->
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
-  <gap:plugin name="org.apache.cordova.dialogs" />
 
 
   <icon src="res/icon/icon-36-ldpi.png"  gap:platform="android"  gap:qualifier="ldpi"/>
