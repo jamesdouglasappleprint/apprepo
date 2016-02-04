@@ -50,3 +50,9 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+document.addEventListener("deviceready", OnDeviceReady, false);
+
+function OnDeviceReady()    {
+initPushwoosh()
+}
