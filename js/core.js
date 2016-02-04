@@ -588,7 +588,7 @@ function OnDeviceReady()    {
         alert(notification.aps.alert);
         pushNotification.setApplicationIconBadgeNumber(0);
 
-          console.log('Push notification recieved!'+title+userData)
+        console.log('Push notification recieved!')
       });
 
       //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
