@@ -16,6 +16,70 @@
 /*
 
 /* ------------------------------------------ */
+/* Gentle Egg Rock Left --------------------- */
+/* ------------------------------------------ */
+.gentleeggrockLeft{
+  -webkit-animation: gentleeggrockLeft 3s linear infinite;
+  animation: gentleeggrockLeft 3s linear infinite;
+  -moz-animation: gentleeggrockLeft 3s linear infinite;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 75%;
+}
+@-webkit-keyframes gentleeggrockLeft {
+0% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+25% {transform:rotate(10deg);-ms-transform:rotate(10deg);-webkit-transform:rotate(10deg);}
+50% {transform:rotate(-10deg);-ms-transform:rotate(-10deg);-webkit-transform:rotate(-10deg);}
+100% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+}
+@-moz-keyframes gentleeggrockLeft {
+0% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+25% {transform:rotate(10deg);-ms-transform:rotate(10deg);-webkit-transform:rotate(10deg);}
+50% {transform:rotate(-10deg);-ms-transform:rotate(-10deg);-webkit-transform:rotate(-10deg);}
+100% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+}
+
+@keyframes gentleeggrockLeft {
+0% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+25% {transform:rotate(10deg);-ms-transform:rotate(10deg);-webkit-transform:rotate(10deg);}
+50% {transform:rotate(-10deg);-ms-transform:rotate(-10deg);-webkit-transform:rotate(-10deg);}
+100% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+}
+/* ------------------------------------------ */
+/* Gentle Egg Rock Right --------------------- */
+/* ------------------------------------------ */
+.gentleeggrockRight{
+  -webkit-animation: gentleeggrockRight 5s linear infinite;
+  animation: gentleeggrockRight 5s linear infinite;
+  -moz-animation: gentleeggrockRight 5s linear infinite;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 75%;
+  -webkit-animation-delay: 500ms; /* Chrome, Safari, Opera */
+  animation-delay: 500ms;
+}
+@-webkit-keyframes gentleeggrockRight {
+0% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+25% {transform:rotate(-10deg);-ms-transform:rotate(-10deg);-webkit-transform:rotate(-10deg);}
+50% {transform:rotate(10deg);-ms-transform:rotate(10deg);-webkit-transform:rotate(10deg);}
+100% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+}
+@-moz-keyframes gentleeggrockRight {
+  0% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+  25% {transform:rotate(-10deg);-ms-transform:rotate(-10deg);-webkit-transform:rotate(-10deg);}
+  50% {transform:rotate(10deg);-ms-transform:rotate(10deg);-webkit-transform:rotate(10deg);}
+  100% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+}
+
+@keyframes gentleeggrockRight {
+  0% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+  25% {transform:rotate(-10deg);-ms-transform:rotate(-10deg);-webkit-transform:rotate(-10deg);}
+  50% {transform:rotate(10deg);-ms-transform:rotate(10deg);-webkit-transform:rotate(10deg);}
+  100% {transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
+}
+
+
+/* ------------------------------------------ */
 /* PANEL ANIMATIONS ------------------------- */
 /* ------------------------------------------ */
 
@@ -42,6 +106,15 @@
 /* ------------------------------------------ */
 /* Stage 1 Food Drop ------------------------ */
 /* ------------------------------------------ */
+.stage1_foodDrop{
+-webkit-transition: all 1.5s linear;
+-moz-transition: all 1.5s linear;
+-o-transition: all 1.5s linear;
+transition: all 1.5s linear;
+-webkit-animation: stage1_foodDrop 1.2s linear forwards;
+animation: stage1_foodDrop 1.2s linear forwards;
+-moz-animation: stage1_foodDrop 1.2s linear forwards;
+}
 
 @-webkit-keyframes stage1_foodDrop {
 0% {bottom:560px;margin-left: -35px;transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);}
@@ -73,10 +146,47 @@
 /* ------------------------------------------ */
 /* Stage 2 Food Drop ------------------------ */
 /* ------------------------------------------ */
+.stage2_foodDrop{
+-webkit-transition: all 1s ease;
+-moz-transition: all 1s ease;
+-o-transition: all 1s ease;
+transition: all 1s ease;
 
-@-webkit-keyframes stage2_foodDrop {0% {bottom:560px;}90% {bottom:160px;opacity:1;}100% {bottom:160px;opacity:0;}}
-@-moz-keyframes rotateStars {0% {bottom:560px;}90% {bottom:160px;opacity:1;}100% {bottom:160px;opacity:0;}}
-@keyframes rotateStars {0% {bottom:560px;}90% {bottom:160px;opacity:1;}100% {bottom:160px;opacity:0;}}
+-webkit-animation: stage2_foodDrop 400ms linear forwards;
+animation: stage2_foodDrop 400ms linear forwards;
+-moz-animation: stage2_foodDrop 400ms linear forwards;
+}
+
+@-webkit-keyframes stage2_foodDrop {
+  0% {
+    opacity:1;
+    bottom:160px;
+    transform:rotate(0deg);-ms-transform:rotate(0deg);-webkit-transform:rotate(0deg);
+  }
+  25%{
+    bottom:210px;
+  }
+  50%{
+    bottom:260px;
+  }
+  75%{
+    bottom:210px;
+  }
+  100% {
+    bottom:160px;
+    left:50%;
+    opacity:1;
+    transform:rotate(360deg);-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);
+  }
+}
+
+/*@-moz-keyframes stage2_foodDrop {
+
+}
+@keyframes stage2_foodDrop {
+
+
+}*/
 
 /* ------------------------------------------ */
 /* Entertainment - Streamers ---------------- */
@@ -301,74 +411,67 @@
   -webkit-transform-origin: 50% 100%;
   transform-origin: 50% 75%;
 }
+
 @-webkit-keyframes stage2_bounce {
-0% {left:0;top:0;}
-
-2%{top:0px;}
-3%{top:-10px;}
-4%{top:0px;}
-5%{top:-10px;}
-6%{top:0px;}
-
-22%{top:0px;}
-23%{top:-10px;}
-24%{top:0px;}
-25%{top:-10px;}
-26%{top:0px;}
-
-33%{
-  left:60px;
-  transform: rotateY(0deg);
-}
-
-34%{
-  transform: rotateY(180deg);
-}
-42%{top:0px;}
-43%{top:-10px;}
-44%{top:0px;}
-45%{top:-10px;}
-46%{top:0px;}
-
-52%{top:0px;}
-53%{top:-10px;}
-54%{top:0px;}
-55%{top:-10px;}
-56%{top:0px;}
-
-66%{
-  left:-60px;
-  transform: rotateY(180deg);
-}
-
-67%{
-  transform: rotateY(0deg);
-}
-
-72%{top:0px;}
-73%{top:-10px;}
-74%{top:0px;}
-75%{top:-10px;}
-76%{top:0px;}
-
-82%{top:0px;}
-83%{top:-10px;}
-84%{top:0px;}
-85%{top:-10px;}
-86%{top:0px;}
-
-92%{top:0px;}
-93%{top:-10px;}
-94%{top:0px;}
-95%{top:-10px;}
-96%{top:0px;}
-
-100% {left:0;}
+0%{left:0;top:0;}2%{top:0px;}3%{top:-10px;}4%{top:0px;}5%{top:-10px;}6%{top:0px;}22%{top:0px;}23%{top:-10px;}24%{top:0px;}25%{top:-10px;}26%{top:0px;}
+33%{left:60px;transform: rotateY(0deg);}34%{transform: rotateY(180deg);}
+42%{top:0px;}43%{top:-10px;}44%{top:0px;}45%{top:-10px;}46%{top:0px;}52%{top:0px;}53%{top:-10px;}54%{top:0px;}55%{top:-10px;}56%{top:0px;}
+66%{left:-60px;transform: rotateY(180deg);}67%{transform: rotateY(0deg);}72%{top:0px;}
+73%{top:-10px;}74%{top:0px;}75%{top:-10px;}76%{top:0px;}82%{top:0px;}83%{top:-10px;}84%{top:0px;}85%{top:-10px;}86%{top:0px;}92%{top:0px;}93%{top:-10px;}94%{top:0px;}95%{top:-10px;}96%{top:0px;}100% {left:0;}
 
 }
 
-/*@-moz-keyframes rotateStars {
+@-moz-keyframes stage2_bounce {
+0%{left:0;top:0;}2%{top:0px;}3%{top:-10px;}4%{top:0px;}5%{top:-10px;}6%{top:0px;}22%{top:0px;}23%{top:-10px;}24%{top:0px;}25%{top:-10px;}26%{top:0px;}
+33%{left:60px;transform: rotateY(0deg);}34%{transform: rotateY(180deg);}
+42%{top:0px;}43%{top:-10px;}44%{top:0px;}45%{top:-10px;}46%{top:0px;}52%{top:0px;}53%{top:-10px;}54%{top:0px;}55%{top:-10px;}56%{top:0px;}
+66%{left:-60px;transform: rotateY(180deg);}67%{transform: rotateY(0deg);}72%{top:0px;}
+73%{top:-10px;}74%{top:0px;}75%{top:-10px;}76%{top:0px;}82%{top:0px;}83%{top:-10px;}84%{top:0px;}85%{top:-10px;}86%{top:0px;}92%{top:0px;}93%{top:-10px;}94%{top:0px;}95%{top:-10px;}96%{top:0px;}100% {left:0;}
 }
 
-@keyframes rotateStars {
-}*/
+@keyframes stage2_bounce {
+0%{left:0;top:0;}2%{top:0px;}3%{top:-10px;}4%{top:0px;}5%{top:-10px;}6%{top:0px;}22%{top:0px;}23%{top:-10px;}24%{top:0px;}25%{top:-10px;}26%{top:0px;}
+33%{left:60px;transform: rotateY(0deg);}34%{transform: rotateY(180deg);}
+42%{top:0px;}43%{top:-10px;}44%{top:0px;}45%{top:-10px;}46%{top:0px;}52%{top:0px;}53%{top:-10px;}54%{top:0px;}55%{top:-10px;}56%{top:0px;}
+66%{left:-60px;transform: rotateY(180deg);}67%{transform: rotateY(0deg);}72%{top:0px;}
+73%{top:-10px;}74%{top:0px;}75%{top:-10px;}76%{top:0px;}82%{top:0px;}83%{top:-10px;}84%{top:0px;}85%{top:-10px;}86%{top:0px;}92%{top:0px;}93%{top:-10px;}94%{top:0px;}95%{top:-10px;}96%{top:0px;}100% {left:0;}
+}
+
+/* ------------------------------------------ */
+/* Stage 3 Bounce --------------------------- */
+/* ------------------------------------------ */
+.stage3 {
+  -webkit-transition: all 1.5s linear;
+  -moz-transition: all 1.5s linear;
+  -o-transition: all 1.5s linear;
+  transition: all 1.5s linear;
+  -webkit-animation: stage3_bounce 15s linear infinite;
+  animation: stage3_bounce 15s linear infinite;
+  -moz-animation: stage3_bounce 15s linear infinite;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 75%;
+}
+@-webkit-keyframes stage3_bounce {
+  0%{left:0;top:0;}2%{top:0px;}3%{top:-10px;}4%{top:0px;}5%{top:-10px;}6%{top:0px;}22%{top:0px;}23%{top:-10px;}24%{top:0px;}25%{top:-10px;}26%{top:0px;}
+  33%{left:60px;transform: rotateY(0deg);}34%{transform: rotateY(180deg);}
+  42%{top:0px;}43%{top:-10px;}44%{top:0px;}45%{top:-10px;}46%{top:0px;}52%{top:0px;}53%{top:-10px;}54%{top:0px;}55%{top:-10px;}56%{top:0px;}
+  66%{left:-60px;transform: rotateY(180deg);}67%{transform: rotateY(0deg);}72%{top:0px;}
+  73%{top:-10px;}74%{top:0px;}75%{top:-10px;}76%{top:0px;}82%{top:0px;}83%{top:-10px;}84%{top:0px;}85%{top:-10px;}86%{top:0px;}92%{top:0px;}93%{top:-10px;}94%{top:0px;}95%{top:-10px;}96%{top:0px;}100% {left:0;}
+}
+
+@-moz-keyframes stage3_bounce {
+  0%{left:0;top:0;}2%{top:0px;}3%{top:-10px;}4%{top:0px;}5%{top:-10px;}6%{top:0px;}22%{top:0px;}23%{top:-10px;}24%{top:0px;}25%{top:-10px;}26%{top:0px;}
+  33%{left:60px;transform: rotateY(0deg);}34%{transform: rotateY(180deg);}
+  42%{top:0px;}43%{top:-10px;}44%{top:0px;}45%{top:-10px;}46%{top:0px;}52%{top:0px;}53%{top:-10px;}54%{top:0px;}55%{top:-10px;}56%{top:0px;}
+  66%{left:-60px;transform: rotateY(180deg);}67%{transform: rotateY(0deg);}72%{top:0px;}
+  73%{top:-10px;}74%{top:0px;}75%{top:-10px;}76%{top:0px;}82%{top:0px;}83%{top:-10px;}84%{top:0px;}85%{top:-10px;}86%{top:0px;}92%{top:0px;}93%{top:-10px;}94%{top:0px;}95%{top:-10px;}96%{top:0px;}100% {left:0;}
+}
+
+@keyframes stage3_bounce {
+  0%{left:0;top:0;}2%{top:0px;}3%{top:-10px;}4%{top:0px;}5%{top:-10px;}6%{top:0px;}22%{top:0px;}23%{top:-10px;}24%{top:0px;}25%{top:-10px;}26%{top:0px;}
+  33%{left:60px;transform: rotateY(0deg);}34%{transform: rotateY(180deg);}
+  42%{top:0px;}43%{top:-10px;}44%{top:0px;}45%{top:-10px;}46%{top:0px;}52%{top:0px;}53%{top:-10px;}54%{top:0px;}55%{top:-10px;}56%{top:0px;}
+  66%{left:-60px;transform: rotateY(180deg);}67%{transform: rotateY(0deg);}72%{top:0px;}
+  73%{top:-10px;}74%{top:0px;}75%{top:-10px;}76%{top:0px;}82%{top:0px;}83%{top:-10px;}84%{top:0px;}85%{top:-10px;}86%{top:0px;}92%{top:0px;}93%{top:-10px;}94%{top:0px;}95%{top:-10px;}96%{top:0px;}100% {left:0;}
+}

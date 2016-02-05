@@ -22,7 +22,7 @@ function Core(){
 
   self.currentMood = 'happy';
   self.petNamedType = ""; //current pet type as a name
-  self.petLevel = 0; //current pet type as a name
+  self.petLevel = 1; //current pet type as a name
   self.userID = 0; //Pet Name
 
 
@@ -290,6 +290,95 @@ Core.prototype.assignMood = function(mood){
 Core.prototype.creationStory = function(){
   //this code is probably temporary...
   var self = this
+  var flag1 = ''; //first stage check
+  var flag2 = ''; //second stage check
+  var flag3 = ''; //third stage check
+
+  $(document).on("click",".option_a",function(e){
+    e.preventDefault()
+    console.log('option A')
+    $('.storyboardContainer').css({left:'0'})
+    flag1 = 'insatsu'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  $(document).on("click",".option_b",function(e){
+    e.preventDefault()
+    console.log('option B')
+    $('.storyboardContainer').css({left:'-200%'})
+    flag1 = 'ringo'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create Ringo
+  $(document).on("click",".option_c",function(e){
+    e.preventDefault()
+    console.log('option C')
+    $('.storyboardContainer').css({left:'0', top:'-100%'})
+    flag2 = 'insatsu'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create Ringo
+  $(document).on("click",".option_d",function(e){
+    e.preventDefault()
+    console.log('option d')
+    $('.storyboardContainer').css({left:'0', top:'-100%'})
+    flag2 = 'ringo'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create Ringo
+  $(document).on("click",".option_e",function(e){
+    e.preventDefault()
+    console.log('option e')
+    $('.storyboardContainer').css({left:'-200%', top:'-100%'})
+    flag2 = 'insatsu'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create Ringo
+  $(document).on("click",".option_f",function(e){
+    e.preventDefault()
+    console.log('option f')
+    $('.storyboardContainer').css({left:'-200%', top:'-100%'})
+    flag2 = 'ringo'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create insatsu
+  $(document).on("click",".option_g",function(e){
+    e.preventDefault()
+    console.log('option g')
+    flag3 = 'insatsu'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create Ringo
+  $(document).on("click",".option_h",function(e){
+    e.preventDefault()
+    console.log('option h')
+    flag3 = 'ringo'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create insastsu
+  $(document).on("click",".option_i",function(e){
+    e.preventDefault()
+    console.log('option i')
+    flag3 = 'insatsu'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+  //Create Ringo
+  $(document).on("click",".option_j",function(e){
+    e.preventDefault()
+    console.log('option j')
+    flag3 = 'ringo'
+    console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
+  })
+
+
 
   function createPet(petType){
     console.log('Create Pet function Firing')
@@ -317,19 +406,36 @@ Core.prototype.creationStory = function(){
   }
 
   //Create Ringo
-  $(document).on("click",".createRingo",function(e){
+  $(document).on("click",".createPet",function(e){
     e.preventDefault()
-    console.log('creating ringo')
-    createPet(1)
+    if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      console.log('Create Pet INSATSU //')
+      createPet(1)
+    }else if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      console.log('Create Pet INSATSU //')
+      createPet(1)
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      console.log('Create Pet INSATSU //')
+      createPet(1)
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'ringo'){
+      console.log('Create Pet RINGO //')
+      createPet(2)
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'ringo'){
+      console.log('Create Pet RINGO //')
+      createPet(2)
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      console.log('Create Pet RINGO //')
+      createPet(2)
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      console.log('Create Pet INSATSU //')
+      createPet(1)
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      console.log('Create Pet RINGO')
+      createPet(2)
+    }else{
+      console.log('error, you\'ve somehow chosen an option I didn\'t think of.')
+    }
   })
-
-  //Create Insatsu
-  $(document).on("click",".createInsatsu",function(e){
-    e.preventDefault()
-    console.log('creating insatsu')
-    createPet(2)
-  })
-
 }
 
 //Load pet data
@@ -348,7 +454,7 @@ Core.prototype.loadPet = function(uid){
     success: function(data){
       console.log(data);
       if (data.length == 1){
-        if (data[0].pt == 1){
+        if (data[0].pt == 2){
           //Ringo
           self.petNamedType = 'ringo'
         }else{
@@ -356,8 +462,18 @@ Core.prototype.loadPet = function(uid){
           self.petNamedType = 'insatsu'
         }
 
+        //TODO: mood doens't get reset after actions because the loadpet is only ever happening once
+        if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
+          self.currentMood = 'happy';
+        }else if ((data[0].cs + data[0].fs + data[0].ps) >= 100 && (data[0].cs + data[0].fs + data[0].ps) < 200 ){
+          self.currentMood = 'meh';
+        }else{
+          self.currentMood = 'sad';
+        }
+
         $('.mainPanel').show().addClass(self.petNamedType+'Background')
         $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        //$('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+2+'.png').addClass('stage'+2)
         self.updateActionLevels(uid)
       }else{
         console.log('retreievePetData has been fired, but there\'s no pet data to recall')
@@ -388,14 +504,13 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("foodStatus", data[0].fs)
         localStorage.setItem("funStatus", data[0].ps)
         localStorage.setItem("petLevel", data[0].pl)
+        //localStorage.setItem("petLevel", data[0].pl)
         localStorage.setItem("petPoints", data[0].pp)
         localStorage.setItem("petType", data[0].pt)
         localStorage.setItem("petName", data[0].pn)
         localStorage.setItem("petID", data[0].pid)
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
-
-        //TODO: score is not updating
 
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
         $('.statusEntertain>.statusLevel').css({height:data[0].ps+'%'})
@@ -423,7 +538,7 @@ Core.prototype.actionFeed = function(stage){
   $('.petFood').addClass('stage'+petStage+'_foodDrop')
   setTimeout(function(){
     $('.petFood').hide()
-    $('.petFood').removeClass('stage'+petStage+'_foodDrop')
+    //$('.petFood').removeClass('stage'+petStage+'_foodDrop')
     $('.buttonContainer a').removeClass('killLink')
 
     $.ajax({
@@ -533,6 +648,11 @@ Core.prototype.buildFunctionsDelete = function(){
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
+  })
+
+  $(document).on("click",".creationBypass",function(e){
+    self.creationStory();
+    $('.storyboardPanel').show()
   })
 
 
