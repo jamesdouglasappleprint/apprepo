@@ -457,18 +457,11 @@ Core.prototype.loadPet = function(uid){
         if (data[0].pt == 2){
           //Ringo
           self.petNamedType = 'ringo'
+          localStorage.setItem("petNamedType", "ringo")
         }else{
           //Insatsu
+          localStorage.setItem("petNamedType", "insatsu")
           self.petNamedType = 'insatsu'
-        }
-
-        //TODO: mood doens't get reset after actions because the loadpet is only ever happening once
-        if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
-          self.currentMood = 'happy';
-        }else if ((data[0].cs + data[0].fs + data[0].ps) >= 100 && (data[0].cs + data[0].fs + data[0].ps) < 200 ){
-          self.currentMood = 'meh';
-        }else{
-          self.currentMood = 'sad';
         }
 
         $('.mainPanel').show().addClass(self.petNamedType+'Background')
@@ -511,6 +504,16 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("petID", data[0].pid)
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
+
+        if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
+          self.currentMood = 'happy';
+        }else if ((data[0].cs + data[0].fs + data[0].ps) > 100 && (data[0].cs + data[0].fs + data[0].ps) < 200 ){
+          self.currentMood = 'meh';
+        }else{
+          self.currentMood = 'sad';
+        }
+
+        $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
 
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
         $('.statusEntertain>.statusLevel').css({height:data[0].ps+'%'})
