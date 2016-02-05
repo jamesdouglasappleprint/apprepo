@@ -497,7 +497,6 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("foodStatus", data[0].fs)
         localStorage.setItem("funStatus", data[0].ps)
         localStorage.setItem("petLevel", data[0].pl)
-        //localStorage.setItem("petLevel", data[0].pl)
         localStorage.setItem("petPoints", data[0].pp)
         localStorage.setItem("petType", data[0].pt)
         localStorage.setItem("petName", data[0].pn)

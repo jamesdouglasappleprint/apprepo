@@ -440,7 +440,7 @@ animation: stage2_foodDrop 400ms linear forwards;
 /* ------------------------------------------ */
 /* Stage 3 Bounce --------------------------- */
 /* ------------------------------------------ */
-.stage3 {
+/*.stage3 {
   -webkit-transition: all 1.5s linear;
   -moz-transition: all 1.5s linear;
   -o-transition: all 1.5s linear;
@@ -474,4 +474,4 @@ animation: stage2_foodDrop 400ms linear forwards;
   42%{top:0px;}43%{top:-10px;}44%{top:0px;}45%{top:-10px;}46%{top:0px;}52%{top:0px;}53%{top:-10px;}54%{top:0px;}55%{top:-10px;}56%{top:0px;}
   66%{left:-60px;transform: rotateY(180deg);}67%{transform: rotateY(0deg);}72%{top:0px;}
   73%{top:-10px;}74%{top:0px;}75%{top:-10px;}76%{top:0px;}82%{top:0px;}83%{top:-10px;}84%{top:0px;}85%{top:-10px;}86%{top:0px;}92%{top:0px;}93%{top:-10px;}94%{top:0px;}95%{top:-10px;}96%{top:0px;}100% {left:0;}
-}
+}*/
