@@ -193,6 +193,7 @@ Core.prototype.loginOrRegister = function(){
   		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
   		success: function(data){
         localStorage.setItem("userID", data.userID);
+        navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
         console.log('Register Success! We need to fire a notification here')
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
@@ -201,6 +202,7 @@ Core.prototype.loginOrRegister = function(){
   		},
   		error: function(){
         console.log('Error registering user.')
+        navigator.notification.alert('Oops! It looks like something went wrong...', null, 'Registration Failure :(', 'Try again?')
   		}
     });
 
