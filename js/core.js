@@ -230,60 +230,59 @@ Core.prototype.loginOrRegister = function(){
         }
 
         if (data.error == "user not found"){
+          console.log('user not found')
           navigator.notification.alert('User not found. Please check your login details and try again!', loginFailure, 'Login failure', ['Retry','Cancel'])
-        }
-
-
-        self.userID = data.uid
-
-        localStorage.setItem('firstName', data.firstname)
-        localStorage.setItem('lastName', data.lastname)
-        localStorage.setItem('postcode', data.postcode)
-        localStorage.setItem('AddressLine1', data.add1)
-        localStorage.setItem('AddressLine2', data.add2)
-        localStorage.setItem('AddressLine3', data.add3)
-        localStorage.setItem('emailaddress', data.emailaddress)
-        localStorage.setItem('town', data.town)
-        localStorage.setItem('password', data.password)
-
-        //TODO: if we get a retrn of 'user not found' do something here
-
-        if (localStorage.getItem("hasPet") != 'true'){
-          console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
-
-          //Check to see if user already has login, but has cleared localstorage
-          $.ajax({
-            type: 'POST',
-            data: 'uid='+data.uid,
-            dataType:'jsonp',
-            jsonp: 'callback',
-            url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
-            success: function(data){
-              console.log(data);
-
-              //If pet data exists
-              if (data.length == 1){
-                console.log('No localstorage was present, but the user has a pet. Loading Pet...')
-                self.loadPet(self.userID)
-              }else{
-                //Start creation story
-                self.creationStory();
-                $('.storyboardPanel').show()
-              }
-
-
-
-            },
-            error: function(){
-              console.log('Error registering user.')
-            }
-          });
         }else{
-          console.log('You have signed in and already have a pet!')
-          //skip to creature
-          self.loadPet(self.userID)
-        }
+          self.userID = data.uid
 
+          localStorage.setItem('firstName', data.firstname)
+          localStorage.setItem('lastName', data.lastname)
+          localStorage.setItem('postcode', data.postcode)
+          localStorage.setItem('AddressLine1', data.add1)
+          localStorage.setItem('AddressLine2', data.add2)
+          localStorage.setItem('AddressLine3', data.add3)
+          localStorage.setItem('emailaddress', data.emailaddress)
+          localStorage.setItem('town', data.town)
+          localStorage.setItem('password', data.password)
+
+          //TODO: if we get a retrn of 'user not found' do something here
+
+          if (localStorage.getItem("hasPet") != 'true'){
+            console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
+
+            //Check to see if user already has login, but has cleared localstorage
+            $.ajax({
+              type: 'POST',
+              data: 'uid='+data.uid,
+              dataType:'jsonp',
+              jsonp: 'callback',
+              url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
+              success: function(data){
+                console.log(data);
+
+                //If pet data exists
+                if (data.length == 1){
+                  console.log('No localstorage was present, but the user has a pet. Loading Pet...')
+                  self.loadPet(self.userID)
+                }else{
+                  //Start creation story
+                  self.creationStory();
+                  $('.storyboardPanel').show()
+                }
+
+
+
+              },
+              error: function(){
+                console.log('Error registering user.')
+              }
+            });
+          }else{
+            console.log('You have signed in and already have a pet!')
+            //skip to creature
+            self.loadPet(self.userID)
+          }
+        }
   		},
   		error: function(){
         console.log('Error registering user.')
