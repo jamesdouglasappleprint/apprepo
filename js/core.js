@@ -225,12 +225,14 @@ Core.prototype.loginOrRegister = function(){
 
         function loginFailure(buttonIndex) {
           console.log('login failure loop'+buttonIndex)
-
+          if (buttonIndex == 1){
+            $('.submitLogin').trigger('click')
+          }
         }
 
         if (data.error == "user not found"){
           console.log('user not found')
-          navigator.notification.alert('User not found. Please check your login details and try again!', loginFailure, 'Login failure', ['Retry','Cancel'])
+          navigator.notification.confirm('User not found. Please check your login details and try again!', loginFailure, 'Login failure', ['Retry','Cancel'])
         }else{
           self.userID = data.uid
 
