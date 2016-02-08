@@ -20,9 +20,9 @@
 
   <platform name="android" >
     <preference name="orientation" value="portrait" />
-    <preference name="android-build-tool" value="gradle" />
   </platform>
 
+  <preference name="android-build-tool" value="gradle" />
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" />
   <gap:plugin name="org.apache.cordova.device" source="pgb" /><!-- for Device ready status -->
   <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
