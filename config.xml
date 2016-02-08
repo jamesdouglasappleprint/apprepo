@@ -3,7 +3,7 @@
 
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        id          = "com.applegotchi"
-       version     = "1.1.46">
+       version     = "1.1.47">
 
   <name>AppleGotchi</name>
 
@@ -23,8 +23,8 @@
   </platform>
 
   <preference name="android-build-tool" value="gradle" />
-  <gap:plugin name="org.apache.cordova.dialogs" source="pgb" />
-  <gap:plugin name="org.apache.cordova.device" source="pgb" /><!-- for Device ready status -->
+  <gap:plugin name="cordova-plugin-dialogs" spec="1.1.1" source="pgb" />
+
   <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
 
