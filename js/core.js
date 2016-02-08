@@ -44,37 +44,6 @@ Core.prototype.init = function (x) {
 
   }
 
-  function initPushwoosh() {
-      alert('pushwoosh init')
-
-      var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
-
-      //set push notifications handler
-      document.addEventListener('push-notification', function(event) {
-        var notification = event.notification;
-        alert(notification.aps.alert);
-        pushNotification.setApplicationIconBadgeNumber(0);
-
-        alert('Push notification recieved!')
-      });
-
-      //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-      pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
-
-      //register for pushes
-      pushNotification.registerDevice(
-          function(status) {
-              var pushToken = status;
-              alert('push token: ' + pushToken);
-          },
-          function(status) {
-              alert(JSON.stringify(['failed to register ', status]));
-          }
-      );
-  }
-
-  initPushwoosh()
-
 };
 
 //Load HTML into panels
@@ -692,46 +661,75 @@ Core.prototype.buildFunctionsDelete = function(){
 
 }
 
-// var app = {
-//     // Application Constructor
-//     initialize: function() {
-//         this.bindEvents();
-//         console.log('device initialise')
-//     },
-//     // Bind Event Listeners
-//     //
-//     // Bind any events that are required on startup. Common events are:
-//     // 'load', 'deviceready', 'offline', and 'online'.
-//     bindEvents: function() {
-//         document.addEventListener('deviceready', this.onDeviceReady, false);
-//     },
-//     // deviceready Event Handler
-//     //
-//     // The scope of 'this' is the event. In order to call the 'receivedEvent'
-//     // function, we must explicitly call 'app.receivedEvent(...);'
-//     onDeviceReady: function() {
-//         app.receivedEvent('deviceready');
-//         console.log('device ready')
-//     },
-//     // Update DOM on a Received Event
-//     receivedEvent: function(id) {
-//         var parentElement = document.getElementById(id);
-//         var listeningElement = parentElement.querySelector('.listening');
-//         var receivedElement = parentElement.querySelector('.received');
-//
-//         listeningElement.setAttribute('style', 'display:none;');
-//         receivedElement.setAttribute('style', 'display:block;');
-//
-//         console.log('Received Event: ' + id);
-//     }
-// };
-//
-// document.addEventListener("deviceready", OnDeviceReady, false);
-//
-// function OnDeviceReady()    {
-//   console.log('device is ready')
-//   //Let's make a pet!
-//
-// }
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+        console.log('device initialise')
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+        console.log('device ready')
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+    }
+};
+
+document.addEventListener("deviceready", OnDeviceReady, false);
+
+function OnDeviceReady()    {
+  console.log('device is ready')
+  //Let's make a pet!
+  function initPushwoosh() {
+      alert('pushwoosh init')
+
+      var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+
+      //set push notifications handler
+      document.addEventListener('push-notification', function(event) {
+        var notification = event.notification;
+        alert(notification.aps.alert);
+        pushNotification.setApplicationIconBadgeNumber(0);
+
+        alert('Push notification recieved!')
+      });
+
+      //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+      pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
+
+      //register for pushes
+      pushNotification.registerDevice(
+          function(status) {
+              var pushToken = status;
+              alert('push token: ' + pushToken);
+          },
+          function(status) {
+              alert(JSON.stringify(['failed to register ', status]));
+          }
+      );
+  }
+
+  initPushwoosh()
+}
 
 var Core = new Core();
