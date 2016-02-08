@@ -650,7 +650,6 @@ Core.prototype.buildFunctionsDelete = function(){
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
-    initPushwoosh()
   })
 
   $(document).on("click",".creationBypass",function(e){
@@ -701,7 +700,8 @@ function OnDeviceReady()    {
   console.log('device is ready')
   //Let's make a pet!
   function initPushwoosh() {
-      alert('pushwoosh init')
+      //alert('pushwoosh init')
+      navigator.notification.alert('pushwoosh init', alertCallback, ['title'], ['buttonname'])
 
       var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
