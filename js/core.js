@@ -710,7 +710,7 @@ function OnDeviceReady()    {
         alert(notification.aps.alert);
         pushNotification.setApplicationIconBadgeNumber(0);
 
-        console.log('Push notification recieved!')
+        alert('Push notification recieved!')
       });
 
       //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
@@ -720,10 +720,10 @@ function OnDeviceReady()    {
       pushNotification.registerDevice(
           function(status) {
               var pushToken = status;
-              console.warn('push token: ' + pushToken);
+              alert('push token: ' + pushToken);
           },
           function(status) {
-              console.warn(JSON.stringify(['failed to register ', status]));
+              alert(JSON.stringify(['failed to register ', status]));
           }
       );
   }
