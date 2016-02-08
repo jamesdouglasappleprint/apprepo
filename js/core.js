@@ -477,7 +477,7 @@ Core.prototype.loadPet = function(uid){
           localStorage.setItem("petNamedType", "insatsu")
           self.petNamedType = 'insatsu'
         }
-
+        $('.petName').html(data[0].pn)
         $('.mainPanel').show().addClass(self.petNamedType+'Background')
         $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
         //$('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+2+'.png').addClass('stage'+2)
@@ -526,7 +526,6 @@ Core.prototype.updateActionLevels = function(uid){
         }else{
           self.currentMood = 'sad';
         }
-        $('.petName').html(data[0].pn)
         $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
 
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
