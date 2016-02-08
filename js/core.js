@@ -222,6 +222,12 @@ Core.prototype.loginOrRegister = function(){
   		url: 'http://applegotchi.co.uk/Ajax/ghLogon.ashx',
   		success: function(data){
   			console.log(data);
+
+        if (data.error == "user not found"){
+          navigator.notification.alert('User not found. Please check your login details and try again!', null, 'Login failure', 'OK')
+        }
+
+
         self.userID = data.uid
 
         localStorage.setItem('firstName', data.firstname)
@@ -472,6 +478,7 @@ Core.prototype.loadPet = function(uid){
         self.updateActionLevels(uid)
       }else{
         console.log('retreievePetData has been fired, but there\'s no pet data to recall')
+        localStorage.clear();
       }
 
     },
