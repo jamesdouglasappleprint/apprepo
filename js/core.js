@@ -202,7 +202,7 @@ Core.prototype.loginOrRegister = function(){
   		},
   		error: function(){
         console.log('Error registering user.')
-        navigator.notification.alert('Oops! It looks like something went wrong...', null, 'Registration Failure :(', 'Try again?')
+        navigator.notification.alert('Oops! It looks like something went wrong...', null, 'Registration Failure :(', 'ok')
   		}
     });
 
@@ -223,8 +223,14 @@ Core.prototype.loginOrRegister = function(){
   		success: function(data){
   			console.log(data);
 
+        function loginFailure(buttonIndex) {
+          if (buttonIndex == 1){
+            $('.submitLogin').trigger( "click" );
+          }
+        }
+
         if (data.error == "user not found"){
-          navigator.notification.alert('User not found. Please check your login details and try again!', null, 'Login failure', 'OK')
+          navigator.notification.alert('User not found. Please check your login details and try again!', loginFailure, 'Login failure', ['Retry','Cancel'])
         }
 
 
