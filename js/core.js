@@ -701,7 +701,7 @@ function OnDeviceReady()    {
   //Let's make a pet!
   function initPushwoosh() {
       //alert('pushwoosh init')
-      navigator.notification.alert('pushwoosh init', alertCallback, ['title'], ['buttonname'])
+      navigator.notification.alert('pushwoosh init', alertCallback, 'title', 'buttonname')
 
       var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
