@@ -3,7 +3,7 @@
 
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        id          = "com.applegotchi"
-       version     = "1.1.38">
+       version     = "1.1.39">
 
   <name>AppleGotchi</name>
 
@@ -26,8 +26,8 @@
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" />
   <gap:plugin name="org.apache.cordova.device" source="pgb" /><!-- for Device ready status -->
   <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
-  <gap:plugin name="phonegap-plugin-push" source="npm" /><!-- Enable notifications INSIDE app -->
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
+  <gap:plugin name="phonegap-plugin-push" source="npm" /><!-- Enable notifications INSIDE app -->
 
 
   <icon src="res/icon/icon-36-ldpi.png"  gap:platform="android"  gap:qualifier="ldpi"/>
