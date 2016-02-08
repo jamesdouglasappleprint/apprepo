@@ -747,8 +747,10 @@ function OnDeviceReady()    {
   initPushwoosh()
 }
 
-document.addEventListener("offline", function(){
+document.addEventListener("offline", onOffline, false);
+
+function onOffline() {
   navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet and try again!', null, 'Connectivity error', 'Continue')
-}, false);
+}
 
 var Core = new Core();
