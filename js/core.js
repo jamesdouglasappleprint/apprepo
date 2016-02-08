@@ -44,6 +44,11 @@ Core.prototype.init = function (x) {
 
   }
 
+  document.addEventListener("offline", function(){
+    navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet and try again!', null, 'Connectivity error', 'Continue')
+  }, false);
+
+
 };
 
 //Load HTML into panels
