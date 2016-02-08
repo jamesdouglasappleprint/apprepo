@@ -3,7 +3,7 @@
 
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        id          = "com.applegotchi"
-       version     = "1.1.52">
+       version     = "1.1.53">
 
   <name>AppleGotchi</name>
 
@@ -15,17 +15,18 @@
   <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
 
   <platform name="ios" >
-    <preference name="orientation" value="portrait" />
+    <preference name="orientation" value="portrait" /><!--force portrait orientation-->
   </platform>
 
   <platform name="android" >
-    <preference name="orientation" value="portrait" />
+    <preference name="orientation" value="portrait" /><!--force portrait orientation-->
   </platform>
 
-  <preference name="android-build-tool" value="gradle" />
-  <gap:plugin name="cordova-plugin-dialogs" source="pgb" />
-  <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
-  <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
+  <preference name="android-build-tool" value="gradle" /><!--Android build gradle-->
+  <gap:plugin name="cordova-plugin-dialogs" source="pgb" /><!--Internal notifications -->
+  <gap:plugin name="cordova-plugin-network-information" source="pgb" /><!-- Celluar info (offline//online) -->
+  <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" /><!-- hide status bar in app -->
+  <gap:plugin name="pushwoosh-pgb-plugin" source="npm" /><!--Pushwoosh plugin-->
 
 
   <icon src="res/icon/icon-36-ldpi.png"  gap:platform="android"  gap:qualifier="ldpi"/>

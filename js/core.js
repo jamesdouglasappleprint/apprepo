@@ -44,11 +44,6 @@ Core.prototype.init = function (x) {
 
   }
 
-  document.addEventListener("offline", function(){
-    navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet and try again!', null, 'Connectivity error', 'Continue')
-  }, false);
-
-
 };
 
 //Load HTML into panels
@@ -740,15 +735,20 @@ function OnDeviceReady()    {
       pushNotification.registerDevice(
           function(status) {
               var pushToken = status;
-              alert('push token: ' + pushToken);
+              //alert('push token: ' + pushToken);
           },
           function(status) {
-              alert(JSON.stringify(['failed to register ', status]));
+            navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+              //alert(JSON.stringify(['failed to register ', status]));
           }
       );
   }
 
   initPushwoosh()
 }
+
+document.addEventListener("offline", function(){
+  navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet and try again!', null, 'Connectivity error', 'Continue')
+}, false);
 
 var Core = new Core();
