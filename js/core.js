@@ -234,8 +234,10 @@ Core.prototype.loginOrRegister = function(){
           console.log('user not found')
           navigator.notification.confirm('User not found. Please check your login details and try again!', loginFailure, 'Login failure', ['Retry','Cancel'])
         }else{
+          console.log('user found')
           self.userID = data.uid
 
+          localStorage.setItem('userID', data.uid)
           localStorage.setItem('firstName', data.firstname)
           localStorage.setItem('lastName', data.lastname)
           localStorage.setItem('postcode', data.postcode)
@@ -396,10 +398,20 @@ Core.prototype.creationStory = function(){
 
   function createPet(petType){
     console.log('Create Pet function Firing')
+    var nameofpet = ''
+    $('.petname').each(function(){
+      console.log($(this).val())
+      if ($(this).val() == ''){
+
+      }else{
+        nameofpet = $(this).val()
+        return false;
+      }
+    })
 
     $.ajax({
   		type: 'POST',
-  		data: 'uid='+localStorage.getItem("userID")+'&pn='+$('#petname').val()+'&pt='+petType,
+  		data: 'uid='+localStorage.getItem("userID")+'&pn='+nameofpet+'&pt='+petType,
       dataType:'jsonp',
       jsonp: 'callback',
       async: false,
@@ -407,7 +419,7 @@ Core.prototype.creationStory = function(){
   		success: function(data){
   			console.log(data);
         console.log('pet created')
-        localStorage.setItem("petName", $('#petname').val());
+        localStorage.setItem("petName", nameofpet);
         localStorage.setItem("petType", petType);
         localStorage.setItem("hasPet", true);
         self.loadPet(localStorage.getItem("userID"))

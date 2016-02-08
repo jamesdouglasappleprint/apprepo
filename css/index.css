@@ -315,7 +315,18 @@ margin-right: auto;}
 /* ------------------------------------------ */
 .petContainer {position: absolute;z-index: 4;bottom: 130px;left: 50%;width: 200px;height: 238px;display: block;margin-left: -100px;perspective:1000;}
 .petMain{width:100%;position: relative;left: 0;top: 0;}
-
+.petName {
+    color: #fff;
+    font-size: 18px;
+    position: absolute;
+    width: 40%;
+    display: block;
+    text-align: center;
+    top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #fff;
+    left: 30%;
+}
 /*.petContainer:after {content: "";width: 100%;height: 1px;background: yellow;display: block;position: absolute;top: 75%;left: 0;}
 .petContainer:before {content: "";height: 100%;width: 1px;background: green;display: block;position: absolute;top: 0;left: 50%;}*/
 /* ------------------------------------------ */
