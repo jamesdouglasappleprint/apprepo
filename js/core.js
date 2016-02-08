@@ -224,9 +224,8 @@ Core.prototype.loginOrRegister = function(){
   			console.log(data);
 
         function loginFailure(buttonIndex) {
-          if (buttonIndex == 1){
-            $('.submitLogin').trigger( "click" );
-          }
+          console.log('login failure loop'+buttonIndex)
+
         }
 
         if (data.error == "user not found"){
