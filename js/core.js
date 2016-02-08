@@ -526,7 +526,7 @@ Core.prototype.updateActionLevels = function(uid){
         }else{
           self.currentMood = 'sad';
         }
-
+        $('.petName').html(data[0].pn)
         $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
 
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
@@ -750,7 +750,7 @@ function OnDeviceReady()    {
 document.addEventListener("offline", onOffline, false);
 
 function onOffline() {
-  navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet and try again!', null, 'Connectivity error', 'Continue')
+  navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet!', null, 'Connectivity error', 'Continue')
 }
 
 var Core = new Core();
