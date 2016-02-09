@@ -726,6 +726,7 @@ Core.prototype.initPushwoosh = function(message){
   pushNotification.registerDevice(
       function(status) {
         var deviceToken = status['deviceToken'];
+        alert('working')
         navigator.notification.alert('device', null, 'Pushwoosh Registered', 'ok')
         console.log('registerDevice: ' + deviceToken);
       },
