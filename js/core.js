@@ -722,22 +722,7 @@ Core.prototype.initPushwoosh = function(callMe, email){
 
   //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
   pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
-
-  //register for pushes
-  pushNotification.registerDevice(
-      function(status) {
-        var deviceToken = status['deviceToken'];
-        console.log('registerDevice: ' + deviceToken);
-        getSetTags(callMe, email)
-      },
-      function(status) {
-        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
-
-        console.log('failed to register : ' + JSON.stringify(status));
-        alert(JSON.stringify(['failed to register ', status]));
-      }
-  );
-
+  
   function getSetTags(func, address){
     if (func == 'setTags'){
       console.log('set tags setting their tags?')
@@ -771,6 +756,23 @@ Core.prototype.initPushwoosh = function(callMe, email){
       );
     }
   }
+
+  //register for pushes
+  pushNotification.registerDevice(
+      function(status) {
+        var deviceToken = status['deviceToken'];
+        console.log('registerDevice: ' + deviceToken);
+        getSetTags(callMe, email)
+      },
+      function(status) {
+        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+
+        console.log('failed to register : ' + JSON.stringify(status));
+        alert(JSON.stringify(['failed to register ', status]));
+      }
+  );
+
+
 
 
 }
