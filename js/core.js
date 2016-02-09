@@ -251,6 +251,8 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('town', data.town)
           localStorage.setItem('password', data.password)
 
+          self.initPushwoosh('setTags', data.emailaddress)
+
           //TODO: if we get a retrn of 'user not found' do something here
 
           if (localStorage.getItem("hasPet") != 'true'){
@@ -739,10 +741,10 @@ Core.prototype.initPushwoosh = function(callMe, email){
     console.log('set tags setting their tags?')
     pushNotification.setTags({emailaddress:email},
       function(status) {
-          console('setTags success');
+          console.log('setTags success');
       },
       function(status) {
-          console('setTags failed');
+          console.log('setTags failed');
       });
   }
 
