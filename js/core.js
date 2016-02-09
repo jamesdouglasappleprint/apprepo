@@ -749,6 +749,15 @@ Core.prototype.initPushwoosh = function(callMe, email){
             console.log('setTags failed');
         }
       );
+
+      console.log('Getting Tags')
+      pushNotification.getTags(function(tags) {
+        console.warn('tags for the device: ' + JSON.stringify(tags));
+        },
+        function(error) {
+          console.warn('get tags error: ' + JSON.stringify(error));
+        }
+      );
     }
 
     if(func == 'getTags'){
