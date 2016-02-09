@@ -687,7 +687,7 @@ Core.prototype.buildFunctionsDelete = function(){
   $(document).on("click",".creationBypass",function(e){
     // self.creationStory();
     // $('.storyboardPanel').show()
-    self.initPushwoosh()
+    self.initPushwoosh('getTags')
   })
 
 
@@ -745,7 +745,19 @@ Core.prototype.initPushwoosh = function(callMe, email){
       },
       function(status) {
           console.log('setTags failed');
-      });
+      }
+    );
+  }
+
+  if(callMe == 'getTags'){
+    console.log('Getting Tags')
+    pushNotification.getTags(function(tags) {
+      console.warn('tags for the device: ' + JSON.stringify(tags));
+      },
+      function(error) {
+        console.warn('get tags error: ' + JSON.stringify(error));
+      }
+    );
   }
 
 }
