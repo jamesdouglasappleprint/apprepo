@@ -188,7 +188,7 @@ Core.prototype.loginOrRegister = function(){
   	console.log('Submit Register has been clicked')
   	var postData = $('form#registerForm').serialize();
     var fakeDetailsRemoved = postData.replace('&fakeusernameremembered=&fakepasswordremembered=','');
-
+    var emailAddress = $('#email').val()
   	$.ajax({
   		type: 'POST',
   		data: fakeDetailsRemoved,
@@ -198,7 +198,15 @@ Core.prototype.loginOrRegister = function(){
   		success: function(data){
         localStorage.setItem("userID", data.userID);
         navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
-        console.log('Register Success! We need to fire a notification here')
+
+        //TODO:: add user email address here, pushNotification needs to set tags
+        pushNotification.setTags({emailaddress:emailAddress},
+        function(status) {
+            console('setTags success');
+        },
+        function(status) {
+            console('setTags failed');
+        });
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
         $('.slideRegister').hide()
@@ -692,6 +700,7 @@ Core.prototype.buildFunctionsDelete = function(){
 
 
 }
+
 Core.prototype.speechBubble = function(message){
   var self = this
   $('.speechBubble').show()

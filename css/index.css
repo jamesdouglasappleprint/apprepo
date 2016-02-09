@@ -224,9 +224,9 @@ margin-right: auto;}
     -moz-transition: all 1.5s linear;
     -o-transition: all 1.5s linear;
     transition: all 1.5s linear;
-    -webkit-animation: expandBubble 200ms linear forwards;
-    animation: expandBubble 200ms linear forwards;
-    -moz-animation: expandBubble 200ms linear forwards;
+    -webkit-animation: expandBubble 100ms linear forwards;
+    animation: expandBubble 100ms linear forwards;
+    -moz-animation: expandBubble 100ms linear forwards;
     -ms-transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
