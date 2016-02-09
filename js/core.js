@@ -810,12 +810,12 @@ function initPushwoosh() {
         function(status) {
           var deviceToken = status['deviceToken'];
           navigator.notification.alert('device', null, 'Pushwoosh Registered', 'ok')
-          console('registerDevice: ' + deviceToken);
+          console.log('registerDevice: ' + deviceToken);
         },
         function(status) {
           navigator.notification.alert('Connection error', null, 'Error', 'Continue')
 
-          console('failed to register : ' + JSON.stringify(status));
+          console.log('failed to register : ' + JSON.stringify(status));
           alert(JSON.stringify(['failed to register ', status]));
         }
     );
