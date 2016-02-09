@@ -743,10 +743,10 @@ Core.prototype.initPushwoosh = function(callMe, email){
       console.log('set tags setting their tags?')
       pushNotification.setTags({emailaddress:address},
         function(status) {
-            console.log('setTags success');
+            console.log('setTags success'+status);
         },
         function(status) {
-            console.log('setTags failed');
+            console.log('setTags failed'+status);
         }
       );
 
