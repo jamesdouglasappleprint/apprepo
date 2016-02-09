@@ -685,6 +685,7 @@ Core.prototype.buildFunctionsDelete = function(){
   $(document).on("click",".creationBypass",function(e){
     // self.creationStory();
     // $('.storyboardPanel').show()
+    self.initPushwoosh()
   })
 
 
