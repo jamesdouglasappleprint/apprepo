@@ -788,6 +788,7 @@ var app = {
 document.addEventListener("deviceready", OnDeviceReady, false);
 
 function initPushwoosh() {
+    navigator.notification.alert('success', null, 'Pushwoosh Initialised', 'ok')
 
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
@@ -808,7 +809,7 @@ function initPushwoosh() {
     pushNotification.registerDevice(
         function(status) {
           var deviceToken = status['deviceToken'];
-          navigator.notification.alert(deviceToken, null, 'Pushwoosh Initialised', 'ok')
+          navigator.notification.alert(deviceToken, null, 'Pushwoosh Registered', 'ok')
           console('registerDevice: ' + deviceToken);
         },
         function(status) {
