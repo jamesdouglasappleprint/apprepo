@@ -220,12 +220,46 @@ margin-right: auto;}
     left: 50%;
     margin-left: -200px;
     display: none;
+    -webkit-transition: all 1.5s linear;
+    -moz-transition: all 1.5s linear;
+    -o-transition: all 1.5s linear;
+    transition: all 1.5s linear;
+    -webkit-animation: expandBubble 200ms linear forwards;
+    animation: expandBubble 200ms linear forwards;
+    -moz-animation: expandBubble 200ms linear forwards;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
 }
-.speechBubbleText{
-  position: absolute;
-  top: 200px;
-  font-size:18px;
 
+.speechBubbleText {
+    position: absolute;
+    top: 145px;
+    font-size: 18px;
+    z-index: 20;
+    display: block;
+    width: 150px;
+    left: 50%;
+    margin-left: -75px;
+    height: 100px;
+    text-align: center;
+    display: none;
+    -webkit-box-pack: start;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-content: center;
+    -webkit-align-content: center;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    align-items: center;
+    -webkit-align-items: center;
+}
+
+.showSpeechText{
+  display: flex;
+  display: -webkit-flex;
 }
 /* ------------------------------------------ */
 /* PET -------------------------------------- */

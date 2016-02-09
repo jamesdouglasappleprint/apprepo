@@ -235,7 +235,23 @@ animation: stage2_foodDrop 400ms linear forwards;
 @-webkit-keyframes animateBubbles5 {0% {opacity:0;}10% {opacity:1;}75% {opacity:1;}100% {opacity:0;bottom:30px;}}
 @-moz-keyframes animateBubbles5 {0% {opacity:0;}10% {opacity:1;}75% {opacity:1;}100% {opacity:0;bottom:30px;}}
 @keyframes animateBubbles5 {0% {opacity:0;}10% {opacity:1;}75% {opacity:1;}100% {opacity:0;bottom:30px;}}
+/* ------------------------------------------ */
+/* Expand Bubble ---------------------------- */
+/* ------------------------------------------ */
+@-webkit-keyframes expandBubble {
+0% {width:0;margin-left:0px;top:150px}
+100% {width:400px;margin-left: -200px;top:0px;}
+}
 
+/*@-moz-keyframes expandBubble {
+  0% {width:0;margin-left:0px;}
+  100% {width:400px;margin-left: -200px;}
+}
+
+@keyframes expandBubble {
+  0% {width:0;margin-left:0px;}
+  100% {width:400px;margin-left: -200px;}
+}*/
 /* ------------------------------------------ */
 /* STARS ------------------------------------ */
 /* ------------------------------------------ */

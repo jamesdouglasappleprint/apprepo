@@ -57,6 +57,10 @@ Core.prototype.loadPanelContent = function(){
   $('.menuPanel').load("menu.html")
   $('.contactDetailsPanel').load("contactdetails.html")
 
+  $(document).on('click',".buttonPhoto", function(e){
+    e.preventDefault()
+    self.speechBubble('This is some test content')
+  })
   //Click to feed!
   $(document).on("click",".buttonFeed",function(e){
     e.preventDefault()
@@ -680,10 +684,23 @@ Core.prototype.buildFunctionsDelete = function(){
   })
 
   $(document).on("click",".creationBypass",function(e){
-    self.creationStory();
-    $('.storyboardPanel').show()
+    // self.creationStory();
+    // $('.storyboardPanel').show()
+
+
   })
 
+
+}
+Core.prototype.speechBubble = function(message){
+  var self = this
+  $('.speechBubble').show()
+  $('.speechBubbleText').addClass('showSpeechText').html(message)
+
+  $('.speechBubble').click(function(){
+    $('.speechBubble').addClass('shrinkBubble')
+    $('.speechBubbleText').removeClass('showSpeechText')
+  })
 
 }
 
@@ -747,12 +764,14 @@ function OnDeviceReady()    {
       //register for pushes
       pushNotification.registerDevice(
           function(status) {
-              var pushToken = status;
-              //alert('push token: ' + pushToken);
+            var deviceToken = status['deviceToken'];
+            console('registerDevice: ' + deviceToken);
           },
           function(status) {
             navigator.notification.alert('Connection error', null, 'Error', 'Continue')
-              //alert(JSON.stringify(['failed to register ', status]));
+
+            console('failed to register : ' + JSON.stringify(status));
+            alert(JSON.stringify(['failed to register ', status]));
           }
       );
   }
