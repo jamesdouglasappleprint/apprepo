@@ -489,6 +489,7 @@ Core.prototype.loadPet = function(uid){
           localStorage.setItem("petNamedType", "insatsu")
           self.petNamedType = 'insatsu'
         }
+        $('.speechBubble').attr('src','img/'+self.petNamedType+'-speech.png')
         $('.petName').html(data[0].pn)
         $('.mainPanel').show().addClass(self.petNamedType+'Background')
         $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
@@ -735,8 +736,9 @@ function OnDeviceReady()    {
         var notification = event.notification;
         console.log();
         pushNotification.setApplicationIconBadgeNumber(0);
-
-        navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
+        $('.speechBubble').show()
+        $('.speechBubbleText').show().html(notification.aps.alert)
+        //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
       });
 
       //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
