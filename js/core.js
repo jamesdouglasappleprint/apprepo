@@ -29,8 +29,8 @@ function Core(){
   self.loginOrRegister(); //Load form options
   self.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
   self.init();//Initial load checks
-  self.initPushwoosh()
   self.logOut()
+  self.initPushwoosh()
 }
 
 //Initialiser
