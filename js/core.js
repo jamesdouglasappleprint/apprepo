@@ -722,27 +722,29 @@ Core.prototype.initPushwoosh = function(callMe, email){
 
   //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
   pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
-  
+
   function getSetTags(func, address){
     if (func == 'setTags'){
       console.log('set tags setting their tags?')
       pushNotification.setTags({emailaddress:address},
         function(status) {
             console.log('setTags success'+status);
+
+            console.log('Getting Tags')
+            pushNotification.getTags(function(tags) {
+              console.warn('tags for the device: ' + JSON.stringify(tags));
+              },
+              function(error) {
+                console.warn('get tags error: ' + JSON.stringify(error));
+              }
+            );
         },
         function(status) {
             console.log('setTags failed'+status);
         }
       );
 
-      console.log('Getting Tags')
-      pushNotification.getTags(function(tags) {
-        console.warn('tags for the device: ' + JSON.stringify(tags));
-        },
-        function(error) {
-          console.warn('get tags error: ' + JSON.stringify(error));
-        }
-      );
+
     }
 
     if(func == 'getTags'){
