@@ -711,7 +711,7 @@ Core.prototype.initPushwoosh = function(callMe, email){
   //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
   document.addEventListener('push-notification', function(event) {
     var notification = event.notification;
-    console.log();
+    console.log('push message recieved');
     pushNotification.setApplicationIconBadgeNumber(0);
     $('.speechBubble').show()
     $('.speechBubbleText').show().html(notification.aps.alert)
@@ -736,6 +736,7 @@ Core.prototype.initPushwoosh = function(callMe, email){
   );
 
   if (callMe == 'setTags'){
+    console.log('set tags setting their tags?')
     pushNotification.setTags({emailaddress:email},
       function(status) {
           console('setTags success');
