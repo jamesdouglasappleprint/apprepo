@@ -30,6 +30,7 @@ function Core(){
   self.loginOrRegister(); //Load form options
   self.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
   self.init();//Initial load checks
+  self.initPushwoosh();//Initial load checks
   self.logOut()
 }
 
@@ -188,7 +189,6 @@ Core.prototype.loginOrRegister = function(){
   	console.log('Submit Register has been clicked')
   	var postData = $('form#registerForm').serialize();
     var fakeDetailsRemoved = postData.replace('&fakeusernameremembered=&fakepasswordremembered=','');
-    var emailAddress = $('#email').val()
   	$.ajax({
   		type: 'POST',
   		data: fakeDetailsRemoved,
@@ -197,16 +197,7 @@ Core.prototype.loginOrRegister = function(){
   		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
   		success: function(data){
         localStorage.setItem("userID", data.userID);
-        navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
-
-        //TODO:: add user email address here, pushNotification needs to set tags
-        pushNotification.setTags({emailaddress:emailAddress},
-        function(status) {
-            console('setTags success');
-        },
-        function(status) {
-            console('setTags failed');
-        });
+        //navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
         $('.slideRegister').hide()
@@ -713,6 +704,54 @@ Core.prototype.speechBubble = function(message){
 
 }
 
+Core.prototype.initPushwoosh = function(message){
+
+  var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+
+  //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
+  document.addEventListener('push-notification', function(event) {
+    var notification = event.notification;
+    console.log();
+    pushNotification.setApplicationIconBadgeNumber(0);
+    $('.speechBubble').show()
+    $('.speechBubbleText').show().html(notification.aps.alert)
+    //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
+  });
+
+  //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+  pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
+
+  //register for pushes
+  pushNotification.registerDevice(
+      function(status) {
+        navigator.notification.alert(deviceToken, null, 'Pushwoosh Registered!', 'ok')
+        var deviceToken = status['deviceToken'];
+        console('registerDevice: ' + deviceToken);
+      },
+      function(status) {
+        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+
+        console('failed to register : ' + JSON.stringify(status));
+        alert(JSON.stringify(['failed to register ', status]));
+      }
+  );
+
+  // $(document).on("click",".submitRegister",function(e){
+  //   var emailAddress = document.getElementById('email').val()
+  //   console.log(emailAddress)
+  //   console.log('SETTAGS')
+  //   //TODO:: add user email address here, pushNotification needs to set tags
+  //   pushNotification.setTags({emailaddress:emailAddress},
+  //   function(status) {
+  //       console('setTags success');
+  //   },
+  //   function(status) {
+  //       console('setTags failed');
+  //   });
+  // })
+
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -747,46 +786,61 @@ var app = {
     }
 };
 
-document.addEventListener("deviceready", OnDeviceReady, false);
-
-function OnDeviceReady()    {
-  console.log('device is ready')
-  //Let's make a pet!
-  function initPushwoosh() {
-      navigator.notification.alert('Success!', null, 'Pushwoosh Initialised', 'ok')
-
-      var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
-
-      //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
-      document.addEventListener('push-notification', function(event) {
-        var notification = event.notification;
-        console.log();
-        pushNotification.setApplicationIconBadgeNumber(0);
-        $('.speechBubble').show()
-        $('.speechBubbleText').show().html(notification.aps.alert)
-        //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
-      });
-
-      //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-      pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
-
-      //register for pushes
-      pushNotification.registerDevice(
-          function(status) {
-            var deviceToken = status['deviceToken'];
-            console('registerDevice: ' + deviceToken);
-          },
-          function(status) {
-            navigator.notification.alert('Connection error', null, 'Error', 'Continue')
-
-            console('failed to register : ' + JSON.stringify(status));
-            alert(JSON.stringify(['failed to register ', status]));
-          }
-      );
-  }
-
-  initPushwoosh()
-}
+// document.addEventListener("deviceready", OnDeviceReady, false);
+//
+// function OnDeviceReady()    {
+//   console.log('device is ready')
+//   //Let's make a pet!
+//   function initPushwoosh() {
+//       navigator.notification.alert('Success!', null, 'Pushwoosh Initialised', 'ok')
+//
+//       var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+//
+//       //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
+//       document.addEventListener('push-notification', function(event) {
+//         var notification = event.notification;
+//         console.log();
+//         pushNotification.setApplicationIconBadgeNumber(0);
+//         $('.speechBubble').show()
+//         $('.speechBubbleText').show().html(notification.aps.alert)
+//         //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
+//       });
+//
+//       //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+//       pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
+//
+//       //register for pushes
+//       pushNotification.registerDevice(
+//           function(status) {
+//             var deviceToken = status['deviceToken'];
+//             console('registerDevice: ' + deviceToken);
+//           },
+//           function(status) {
+//             navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+//
+//             console('failed to register : ' + JSON.stringify(status));
+//             alert(JSON.stringify(['failed to register ', status]));
+//           }
+//       );
+//
+//       $(document).on("click",".submitRegister",function(e){
+//         var emailAddress = document.getElementById('email').val()
+//         console.log(emailAddress)
+//         console.log('SETTAGS')
+//         //TODO:: add user email address here, pushNotification needs to set tags
+//         pushNotification.setTags({emailaddress:emailAddress},
+//         function(status) {
+//             console('setTags success');
+//         },
+//         function(status) {
+//             console('setTags failed');
+//         });
+//       })
+//
+//   }
+//
+//   initPushwoosh()
+// }
 
 document.addEventListener("offline", onOffline, false);
 
