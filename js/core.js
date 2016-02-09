@@ -704,7 +704,7 @@ Core.prototype.speechBubble = function(message){
 }
 
 Core.prototype.initPushwoosh = function(message){
-  navigator.notification.alert('Success!', null, 'Pushwoosh Initialised', 'ok')
+  navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
@@ -725,12 +725,12 @@ Core.prototype.initPushwoosh = function(message){
   pushNotification.registerDevice(
       function(status) {
         var deviceToken = status['deviceToken'];
-        console('registerDevice: ' + deviceToken);
+        console.log('registerDevice: ' + deviceToken);
       },
       function(status) {
         navigator.notification.alert('Connection error', null, 'Error', 'Continue')
 
-        console('failed to register : ' + JSON.stringify(status));
+        console.log('failed to register : ' + JSON.stringify(status));
         alert(JSON.stringify(['failed to register ', status]));
       }
   );
