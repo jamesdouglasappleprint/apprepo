@@ -728,6 +728,7 @@ Core.prototype.initPushwoosh = function(callMe, email){
       function(status) {
         var deviceToken = status['deviceToken'];
         console.log('registerDevice: ' + deviceToken);
+        getSetTags(callMe, email)
       },
       function(status) {
         navigator.notification.alert('Connection error', null, 'Error', 'Continue')
@@ -737,28 +738,31 @@ Core.prototype.initPushwoosh = function(callMe, email){
       }
   );
 
-  if (callMe == 'setTags'){
-    console.log('set tags setting their tags?')
-    pushNotification.setTags({emailaddress:email},
-      function(status) {
-          console.log('setTags success');
-      },
-      function(status) {
-          console.log('setTags failed');
-      }
-    );
+  function getSetTags(func, address){
+    if (func == 'setTags'){
+      console.log('set tags setting their tags?')
+      pushNotification.setTags({emailaddress:address},
+        function(status) {
+            console.log('setTags success');
+        },
+        function(status) {
+            console.log('setTags failed');
+        }
+      );
+    }
+
+    if(func == 'getTags'){
+      console.log('Getting Tags')
+      pushNotification.getTags(function(tags) {
+        console.warn('tags for the device: ' + JSON.stringify(tags));
+        },
+        function(error) {
+          console.warn('get tags error: ' + JSON.stringify(error));
+        }
+      );
+    }
   }
 
-  if(callMe == 'getTags'){
-    console.log('Getting Tags')
-    pushNotification.getTags(function(tags) {
-      console.warn('tags for the device: ' + JSON.stringify(tags));
-      },
-      function(error) {
-        console.warn('get tags error: ' + JSON.stringify(error));
-      }
-    );
-  }
 
 }
 
