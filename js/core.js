@@ -809,7 +809,7 @@ function initPushwoosh() {
     pushNotification.registerDevice(
         function(status) {
           var deviceToken = status['deviceToken'];
-          navigator.notification.alert(deviceToken, null, 'Pushwoosh Registered', 'ok')
+          navigator.notification.alert('device', null, 'Pushwoosh Registered', 'ok')
           console('registerDevice: ' + deviceToken);
         },
         function(status) {
