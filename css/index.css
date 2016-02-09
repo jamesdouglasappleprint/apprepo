@@ -221,6 +221,12 @@ margin-right: auto;}
     margin-left: -200px;
     display: none;
 }
+.speechBubbleText{
+  position: absolute;
+  top: 200px;
+  font-size:18px;
+
+}
 /* ------------------------------------------ */
 /* PET -------------------------------------- */
 /* ------------------------------------------ */
