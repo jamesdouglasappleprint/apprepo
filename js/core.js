@@ -25,11 +25,11 @@ function Core(){
   self.petLevel = 1; //current pet type as a name
   self.userID = 0; //Pet Name
 
-
   self.loadPanelContent();//Load panels with content
   self.loginOrRegister(); //Load form options
   self.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
   self.init();//Initial load checks
+  self.initPushwoosh()
   self.logOut()
 }
 
@@ -197,6 +197,7 @@ Core.prototype.loginOrRegister = function(){
   		success: function(data){
         localStorage.setItem("userID", data.userID);
         //navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
+        self.initPushwoosh('setTags', data.emailaddress)
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
         $('.slideRegister').hide()
@@ -684,9 +685,6 @@ Core.prototype.buildFunctionsDelete = function(){
   $(document).on("click",".creationBypass",function(e){
     // self.creationStory();
     // $('.storyboardPanel').show()
-
-    self.initPushwoosh()
-
   })
 
 
@@ -704,7 +702,7 @@ Core.prototype.speechBubble = function(message){
 
 }
 
-Core.prototype.initPushwoosh = function(message){
+Core.prototype.initPushwoosh = function(callMe, email){
   navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
@@ -726,8 +724,6 @@ Core.prototype.initPushwoosh = function(message){
   pushNotification.registerDevice(
       function(status) {
         var deviceToken = status['deviceToken'];
-        alert('working')
-        navigator.notification.alert('device', null, 'Pushwoosh Registered', 'ok')
         console.log('registerDevice: ' + deviceToken);
       },
       function(status) {
@@ -738,19 +734,15 @@ Core.prototype.initPushwoosh = function(message){
       }
   );
 
-  // $(document).on("click",".submitRegister",function(e){
-  //   var emailAddress = document.getElementById('email').val()
-  //   console.log(emailAddress)
-  //   console.log('SETTAGS')
-  //   //TODO:: add user email address here, pushNotification needs to set tags
-  //   pushNotification.setTags({emailaddress:emailAddress},
-  //   function(status) {
-  //       console('setTags success');
-  //   },
-  //   function(status) {
-  //       console('setTags failed');
-  //   });
-  // })
+  if (callMe == 'setTags'){
+    pushNotification.setTags({emailaddress:email},
+      function(status) {
+          console('setTags success');
+      },
+      function(status) {
+          console('setTags failed');
+      });
+  }
 
 }
 
