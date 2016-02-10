@@ -197,9 +197,6 @@ Core.prototype.loginOrRegister = function(){
         localStorage.setItem("userID", data.userID);
         navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
 
-        //TODO: set pet level
-        self.initPushwoosh(data.emailaddress)
-
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
         $('.slideRegister').hide()
         $('.registerLoginPanel').removeClass('displaceBackgroundRegister')
@@ -252,7 +249,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('town', data.town)
           localStorage.setItem('password', data.password)
 
-          self.initPushwoosh(data.emailaddress)
+          self.initPushwoosh(data.emailaddress, null, false)
 
           //TODO: if we get a retrn of 'user not found' do something here
 
