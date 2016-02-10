@@ -732,6 +732,7 @@ Core.prototype.setPushwooshTags = function(email, petLevel){
 
 
 Core.prototype.initPushwoosh = function(email){
+  var self = this
   navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
