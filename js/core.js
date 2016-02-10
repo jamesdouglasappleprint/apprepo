@@ -538,7 +538,7 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
 
-        self.setPushwooshTags(localStorage.getItem("emailaddress"),data[0].pl,true)
+        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
 
         if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
           self.currentMood = 'happy';
