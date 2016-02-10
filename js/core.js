@@ -726,7 +726,7 @@ Core.prototype.initPushwoosh = function(callMe, email){
   function getSetTags(func, address){
     if (func == 'setTags'){
       console.log('set tags setting their tags?')
-      pushNotification.setTags({emailaddress:address},
+      pushNotification.setTags({"emailaddress":address},
         function(status) {
             console.log('setTags success'+status);
 
