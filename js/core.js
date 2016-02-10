@@ -18,7 +18,6 @@
 function Core(){
   console.log('Core Loaded');
   var self = this;
-  //initPushwoosh();
 
   self.currentMood = 'happy';
   self.petNamedType = ""; //current pet type as a name
@@ -197,7 +196,7 @@ Core.prototype.loginOrRegister = function(){
   		success: function(data){
         localStorage.setItem("userID", data.userID);
         //navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
-        self.initPushwoosh('setTags', data.emailaddress)
+        self.initPushwoosh(data.emailaddress)
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
         $('.slideRegister').hide()
@@ -723,12 +722,12 @@ Core.prototype.initPushwoosh = function(callMe, email){
   //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
   pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
 
-  function getSetTags(func, address){
+  function getSetTags(email){
+    console.log('email is: '+email)
     if (func == 'setTags'){
-      console.log('set tags setting their tags?')
-      pushNotification.setTags({"emailaddress":address},
+      pushNotification.setTags({"emailaddress":email},
         function(status) {
-            console.log('setTags success'+status);
+            console.log('setTags success '+status);
 
             console.log('Getting Tags')
             pushNotification.getTags(function(tags) {
@@ -743,20 +742,7 @@ Core.prototype.initPushwoosh = function(callMe, email){
             console.log('setTags failed'+status);
         }
       );
-
-
-    }
-
-    if(func == 'getTags'){
-      console.log('Getting Tags')
-      pushNotification.getTags(function(tags) {
-        console.warn('tags for the device: ' + JSON.stringify(tags));
-        },
-        function(error) {
-          console.warn('get tags error: ' + JSON.stringify(error));
-        }
-      );
-    }
+    }//endif
   }
 
   //register for pushes
@@ -764,7 +750,7 @@ Core.prototype.initPushwoosh = function(callMe, email){
       function(status) {
         var deviceToken = status['deviceToken'];
         console.log('registerDevice: ' + deviceToken);
-        getSetTags(callMe, email)
+        getSetTags(email)
       },
       function(status) {
         navigator.notification.alert('Connection error', null, 'Error', 'Continue')
@@ -817,43 +803,6 @@ document.addEventListener("deviceready", OnDeviceReady, false);
 
 function OnDeviceReady()    {
   console.log('device is ready')
-  //Let's make a pet!
-  // function initPushwoosh() {
-  //     navigator.notification.alert('success', null, 'Pushwoosh Initialised', 'ok')
-  //
-  //     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
-  //
-  //     //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
-  //     document.addEventListener('push-notification', function(event) {
-  //       var notification = event.notification;
-  //       console.log();
-  //       pushNotification.setApplicationIconBadgeNumber(0);
-  //       $('.speechBubble').show()
-  //       $('.speechBubbleText').show().html(notification.aps.alert)
-  //       //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
-  //     });
-  //
-  //     //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-  //     pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
-  //
-  //     //register for pushes
-  //     pushNotification.registerDevice(
-  //         function(status) {
-  //           var deviceToken = status['deviceToken'];
-  //           navigator.notification.alert('device', null, 'Pushwoosh Registered', 'ok')
-  //           console.log('registerDevice: ' + deviceToken);
-  //         },
-  //         function(status) {
-  //           navigator.notification.alert('Connection error', null, 'Error', 'Continue')
-  //
-  //           console.log('failed to register : ' + JSON.stringify(status));
-  //           alert(JSON.stringify(['failed to register ', status]));
-  //         }
-  //     );
-  //
-  // }
-  //
-  // initPushwoosh()
 }
 
 document.addEventListener("offline", onOffline, false);
