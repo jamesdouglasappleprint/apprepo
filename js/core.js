@@ -708,6 +708,7 @@ Core.prototype.speechBubble = function(message){
 Core.prototype.initPushwoosh = function(email,petLevel,setTags){
   var self = this
   navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
+  console.log('line711: '+email+'_'+petLevel+'_'+setTags)
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
@@ -741,7 +742,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
   }//end func
 
   //If we're calling set tags from pet data update, refire settags but with petlevel
-  if (setTags == true){
+  if (setTags === true){
     setTags(email,petLevel)
 
   //else assume we're registering
