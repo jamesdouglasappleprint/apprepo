@@ -717,7 +717,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
     pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
   });
 
-  function setTags(email,petLevel){
+  function setTagsFunc(email,petLevel){
     console.log(email+' : '+petLevel)
     pushNotification.setTags(
     {
@@ -743,7 +743,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
 
   //If we're calling set tags from pet data update, refire settags but with petlevel
   if (setTags === true){
-    setTags(email,petLevel)
+    setTagsFunc(email,petLevel)
 
   //else assume we're registering
   }else{
@@ -762,7 +762,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
       function(status) {
         var deviceToken = status['deviceToken'];
         console.log('registerDevice: ' + deviceToken);
-        setTags(email)
+        setTagsFunc(email)
       },
       function(status) {
         navigator.notification.alert('Connection error', null, 'Error', 'Continue')
