@@ -117,6 +117,7 @@ Core.prototype.loadPanelContent = function(){
 
 //Log out and clear all local data
 Core.prototype.logOut = function(){
+  var self = this
   //Click to Entertain!
   $(document).on("click",".logOut",function(e){
     e.preventDefault()
@@ -717,7 +718,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
   //If unRegister == true, un-register the user
 
   //navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
-  console.log('line711: '+email+'_'+petLevel+'_'+setTags)
+  console.log('line711: '+email+'_'+petLevel+'_'+setTags+'_'+unRegister)
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
@@ -756,6 +757,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
 
   //else assume we're registering
   }else if(unRegister === true){
+    console.log('Attempting unregister...')
     PushNotification.unregisterDevice (
       function(token){
           console.log("unregistered success!" + token);
