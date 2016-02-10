@@ -724,25 +724,24 @@ Core.prototype.initPushwoosh = function(callMe, email){
 
   function getSetTags(email){
     console.log('email is: '+email)
-    if (func == 'setTags'){
-      pushNotification.setTags({"emailaddress":email},
-        function(status) {
-            console.log('setTags success '+status);
+    
+    pushNotification.setTags({"emailaddress":email},
+      function(status) {
+          console.log('setTags success '+status);
 
-            console.log('Getting Tags')
-            pushNotification.getTags(function(tags) {
-              console.warn('tags for the device: ' + JSON.stringify(tags));
-              },
-              function(error) {
-                console.warn('get tags error: ' + JSON.stringify(error));
-              }
-            );
-        },
-        function(status) {
-            console.log('setTags failed'+status);
-        }
-      );
-    }//endif
+          console.log('Getting Tags')
+          pushNotification.getTags(function(tags) {
+            console.warn('tags for the device: ' + JSON.stringify(tags));
+            },
+            function(error) {
+              console.warn('get tags error: ' + JSON.stringify(error));
+            }
+          );
+      },
+      function(status) {
+          console.log('setTags failed'+status);
+      }
+    );
   }
 
   //register for pushes
