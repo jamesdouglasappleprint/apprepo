@@ -735,7 +735,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
   }
 
   function setTags(email, petLevel){
-    pushNotification.setTags({"emailaddress":email},
+    pushNotification.setTags({"emailaddress":email, "petlevel":petLevel},
       function(status) {
           console.log('setTags success '+status);
 
