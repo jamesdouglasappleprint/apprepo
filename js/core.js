@@ -127,6 +127,9 @@ Core.prototype.logOut = function(){
     $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
     $('.registerLoginContainer').removeClass('registerLoginReduce')
     $('.slideLogin').hide()
+
+    //Call unregister
+    self.initPushwoosh(null, null, false, true)
   })
 }
 
@@ -704,10 +707,16 @@ Core.prototype.speechBubble = function(message){
 
 }
 
-
-Core.prototype.initPushwoosh = function(email,petLevel,setTags){
+Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
   var self = this
-  navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
+
+  //FYI ///////////////////////////////////////////////////////////////
+  //Email = users email, petLevel = pets level and setTags = true/false
+  //If setTags == true, it will set the tags
+  //If setTags == false, register device will fire && tags will be set.
+  //If unRegister == true, un-register the user
+
+  //navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
   console.log('line711: '+email+'_'+petLevel+'_'+setTags)
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
@@ -741,11 +750,19 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
     );
   }//end func
 
-  //If we're calling set tags from pet data update, refire settags but with petlevel
+  //If we're calling set tags only set tags, don't call register etc
   if (setTags === true){
     setTagsFunc(email,petLevel)
 
   //else assume we're registering
+  }else if(unRegister === true){
+    PushNotification.unregisterDevice (
+      function(token){
+          console.log("unregistered success!" + token);
+      },
+      function(status){
+          console.log("unregistered failed!" + status);
+      }
   }else{
     //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
     document.addEventListener('push-notification', function(event) {
