@@ -195,7 +195,9 @@ Core.prototype.loginOrRegister = function(){
   		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
   		success: function(data){
         localStorage.setItem("userID", data.userID);
-        //navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
+        navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
+
+        //TODO: set pet level
         self.initPushwoosh(data.emailaddress)
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
@@ -250,7 +252,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('town', data.town)
           localStorage.setItem('password', data.password)
 
-          self.initPushwoosh('setTags', data.emailaddress)
+          self.initPushwoosh(data.emailaddress)
 
           //TODO: if we get a retrn of 'user not found' do something here
 
@@ -536,6 +538,8 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
 
+        self.setPushwooshTags(localStorage.getItem("emailaddress"),data[0].pl)
+
         if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
           self.currentMood = 'happy';
         }else if ((data[0].cs + data[0].fs + data[0].ps) > 100 && (data[0].cs + data[0].fs + data[0].ps) < 200 ){
@@ -686,7 +690,6 @@ Core.prototype.buildFunctionsDelete = function(){
   $(document).on("click",".creationBypass",function(e){
     // self.creationStory();
     // $('.storyboardPanel').show()
-    self.initPushwoosh('getTags')
   })
 
 
@@ -704,7 +707,31 @@ Core.prototype.speechBubble = function(message){
 
 }
 
-Core.prototype.initPushwoosh = function(callMe, email){
+Core.prototype.setPushwooshTags = function(email, petLevel){
+  var self = this
+  console.log('Attempting Pushwoosh TAG set...')
+  console.log('email is: '+email)
+
+  pushNotification.setTags({"emailaddress":email},
+    function(status) {
+        console.log('setTags success '+status);
+
+        pushNotification.getTags(function(tags) {
+          console.log('Returned Tags: ' + JSON.stringify(tags));
+          },
+          function(error) {
+            console.warn('get tags error: ' + JSON.stringify(error));
+          }
+        );
+    },
+    function(status) {
+        console.warn('setTags failed'+status);
+    }
+  );
+}
+
+
+Core.prototype.initPushwoosh = function(email){
   navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
@@ -720,48 +747,25 @@ Core.prototype.initPushwoosh = function(callMe, email){
   });
 
   //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-  pushNotification.onDeviceReady({ projectid: "", pw_appid : "4FF24-5ACEC" });
-
-  function getSetTags(email){
-    console.log('email is: '+email)
-    
-    pushNotification.setTags({"emailaddress":email},
-      function(status) {
-          console.log('setTags success '+status);
-
-          console.log('Getting Tags')
-          pushNotification.getTags(function(tags) {
-            console.warn('tags for the device: ' + JSON.stringify(tags));
-            },
-            function(error) {
-              console.warn('get tags error: ' + JSON.stringify(error));
-            }
-          );
-      },
-      function(status) {
-          console.log('setTags failed'+status);
-      }
-    );
-  }
+  pushNotification.onDeviceReady({
+    projectid: "", //Android
+    pw_appid : "4FF24-5ACEC" //ios
+  });
 
   //register for pushes
   pushNotification.registerDevice(
-      function(status) {
-        var deviceToken = status['deviceToken'];
-        console.log('registerDevice: ' + deviceToken);
-        getSetTags(email)
-      },
-      function(status) {
-        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+    function(status) {
+      var deviceToken = status['deviceToken'];
+      console.log('registerDevice: ' + deviceToken);
+      self.setPushwooshTags(email)
+    },
+    function(status) {
+      navigator.notification.alert('Connection error', null, 'Error', 'Continue')
 
-        console.log('failed to register : ' + JSON.stringify(status));
-        alert(JSON.stringify(['failed to register ', status]));
-      }
+      console.log('failed to register : ' + JSON.stringify(status));
+      alert(JSON.stringify(['failed to register ', status]));
+    }
   );
-
-
-
-
 }
 
 var app = {
