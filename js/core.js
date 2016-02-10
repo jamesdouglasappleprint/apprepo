@@ -722,7 +722,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
   pushNotification.onDeviceReady({
-    projectid: "", // GOOGLE_PROJECT_ID
+    projectid: "364045976404", // GOOGLE_PROJECT_ID
     pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
   });
 
@@ -762,7 +762,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
       },
       function(status){
           console.log("unregistered failed!" + status);
-      }
+      })
   }else{
     //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
     document.addEventListener('push-notification', function(event) {
