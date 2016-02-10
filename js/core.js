@@ -714,28 +714,18 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
 
   var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
-  //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
-  document.addEventListener('push-notification', function(event) {
-    var notification = event.notification;
-    console.log('push message recieved');
-    pushNotification.setApplicationIconBadgeNumber(0);
-    $('.speechBubble').show()
-    $('.speechBubbleText').show().html(notification.aps.alert)
-    //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
-  });
-
   pushNotification.onDeviceReady({
     projectid: "", // GOOGLE_PROJECT_ID
     pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
   });
 
-  //If we're calling set tags from pet data update, refire settags but with petlevel
-  if (setTags == true){
-    setTags(email, petLevel)
-  }
-
-  function setTags(email, petLevel){
-    pushNotification.setTags({"emailaddress":email, "petlevel":petLevel},
+  function setTags(email,petLevel){
+    console.log(email+' : '+petLevel)
+    pushNotification.setTags(
+    {
+      "emailaddress":email,
+      "petlevel":petLevel
+    },
       function(status) {
           console.log('setTags success '+status);
 
@@ -753,20 +743,38 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags){
     );
   }//end func
 
-  //register for pushes
-  pushNotification.registerDevice(
-    function(status) {
-      var deviceToken = status['deviceToken'];
-      console.log('registerDevice: ' + deviceToken);
-      setTags(email)
-    },
-    function(status) {
-      navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+  //If we're calling set tags from pet data update, refire settags but with petlevel
+  if (setTags == true){
+    setTags(email,petLevel)
 
-      console.log('failed to register : ' + JSON.stringify(status));
-      alert(JSON.stringify(['failed to register ', status]));
-    }
-  );
+  //else assume we're registering
+  }else{
+    //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
+    document.addEventListener('push-notification', function(event) {
+      var notification = event.notification;
+      console.log('push message recieved');
+      pushNotification.setApplicationIconBadgeNumber(0);
+      $('.speechBubble').show()
+      $('.speechBubbleText').show().html(notification.aps.alert)
+      //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
+    });
+
+    //register for pushes
+    pushNotification.registerDevice(
+      function(status) {
+        var deviceToken = status['deviceToken'];
+        console.log('registerDevice: ' + deviceToken);
+        setTags(email)
+      },
+      function(status) {
+        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+
+        console.log('failed to register : ' + JSON.stringify(status));
+        alert(JSON.stringify(['failed to register ', status]));
+      }
+    );
+  }
+
 }
 
 var app = {
