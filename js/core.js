@@ -538,7 +538,7 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
 
-        self.setPushwooshTags(localStorage.getItem("emailaddress"),data[0].pl)
+        self.setPushwooshTags(localStorage.getItem("emailaddress"),data[0].pl,true)
 
         if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
           self.currentMood = 'happy';
@@ -707,31 +707,8 @@ Core.prototype.speechBubble = function(message){
 
 }
 
-Core.prototype.setPushwooshTags = function(email, petLevel){
-  var self = this
-  console.log('Attempting Pushwoosh TAG set...')
-  console.log('email is: '+email)
 
-  pushNotification.setTags({"emailaddress":email},
-    function(status) {
-        console.log('setTags success '+status);
-
-        pushNotification.getTags(function(tags) {
-          console.log('Returned Tags: ' + JSON.stringify(tags));
-          },
-          function(error) {
-            console.warn('get tags error: ' + JSON.stringify(error));
-          }
-        );
-    },
-    function(status) {
-        console.warn('setTags failed'+status);
-    }
-  );
-}
-
-
-Core.prototype.initPushwoosh = function(email){
+Core.prototype.initPushwoosh = function(email,petLevel,setTags){
   var self = this
   navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
 
@@ -747,18 +724,41 @@ Core.prototype.initPushwoosh = function(email){
     //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
   });
 
-  //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
   pushNotification.onDeviceReady({
-    projectid: "", //Android
-    pw_appid : "4FF24-5ACEC" //ios
+    projectid: "", // GOOGLE_PROJECT_ID
+    pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
   });
+
+  //If we're calling set tags from pet data update, refire settags but with petlevel
+  if (setTags == true){
+    setTags(email, petLevel)
+  }
+
+  function setTags(email, petLevel){
+    pushNotification.setTags({"emailaddress":email},
+      function(status) {
+          console.log('setTags success '+status);
+
+          pushNotification.getTags(function(tags) {
+            console.log('Returned Tags: ' + JSON.stringify(tags));
+            },
+            function(error) {
+              console.warn('get tags error: ' + JSON.stringify(error));
+            }
+          );
+      },
+      function(status) {
+          console.warn('setTags failed'+status);
+      }
+    );
+  }//end func
 
   //register for pushes
   pushNotification.registerDevice(
     function(status) {
       var deviceToken = status['deviceToken'];
       console.log('registerDevice: ' + deviceToken);
-      self.setPushwooshTags(email)
+      setTags(email)
     },
     function(status) {
       navigator.notification.alert('Connection error', null, 'Error', 'Continue')
@@ -803,16 +803,17 @@ var app = {
     }
 };
 
+////////FIRE ON DEVICE READY
 document.addEventListener("deviceready", OnDeviceReady, false);
-
 function OnDeviceReady()    {
   console.log('device is ready')
 }
 
+////////FIRE ON DEVICE OFFLINE
 document.addEventListener("offline", onOffline, false);
-
 function onOffline() {
   navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet!', null, 'Connectivity error', 'Continue')
 }
 
+////////BOOT CORE
 var Core = new Core();
