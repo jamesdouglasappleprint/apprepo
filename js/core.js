@@ -262,7 +262,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('password', data.password)
 
           //TODO:: renable
-          //self.initPushwoosh(data.emailaddress, null, false)
+          self.initPushwoosh(data.emailaddress, null, false)
 
           if (localStorage.getItem("hasPet") != 'true'){
             console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
@@ -549,7 +549,7 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        //self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1){
           $('.levelupPanel').show()
@@ -795,8 +795,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
       var notification = event.notification;
       console.log('push message recieved');
       pushNotification.setApplicationIconBadgeNumber(0);
-      $('.speechBubble').show()
-      $('.speechBubbleText').show().html(notification.aps.alert)
+      self.speechBubble(notification.aps.alert)
       //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
     });
 
