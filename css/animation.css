@@ -708,79 +708,127 @@ animation: stage2_foodDrop 400ms linear forwards;
 }
 
 @-moz-keyframes stage3_animation {
-0%{left:0;}
+  0%{left:0;}
 
-38%{
-  top:0px;
-}
+  38%{
+    top:0px;
+  }
 
-39%{
-  left:120px;
-  top:2px;
-    transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-}
-40%{
-  top:-100px;
-}
-41%{
-  top:0px;
-  left:-120px;
-  transform: rotate(-360deg);
-  -ms-transform: rotate(-360deg);
-  -webkit-transform: rotate(-360deg);
-}
-70% {
-  left:0;
-  transform: rotate(-360deg);
-  -ms-transform: rotate(-360deg);
-  -webkit-transform: rotate(-360deg);
-}
+  39%{
+    left:120px;
+    top:2px;
+      transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+  }
+  40%{
+    top:-100px;
+  }
+  41%{
+    top:0px;
+    left:-120px;
+    transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+  70% {
+    left:0;
+    transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
 
-100% {
-  left:0;
-  transform: rotate(-360deg);
-  -ms-transform: rotate(-360deg);
-  -webkit-transform: rotate(-360deg);
-}
+  100% {
+    left:0;
+    transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
 }
 
 @keyframes stage3_animation {
-0%{left:0;}
+  0%{left:0;}
 
-38%{
-  top:0px;
+  38%{
+    top:0px;
+  }
+
+  39%{
+    left:120px;
+    top:2px;
+      transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+  }
+  40%{
+    top:-100px;
+  }
+  41%{
+    top:0px;
+    left:-120px;
+    transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+  70% {
+    left:0;
+    transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+
+  100% {
+    left:0;
+    transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
 }
 
-39%{
-  left:120px;
-  top:2px;
-    transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
+/* ------------------------------------------ */
+/* Stage 3 Bounce --------------------------- */
+/* ------------------------------------------ */
+.stage4 {
+  -webkit-transition: all 1.5s linear;
+  -moz-transition: all 1.5s linear;
+  -o-transition: all 1.5s linear;
+  transition: all 1.5s linear;
+  -webkit-animation: stage4_animation 2s linear infinite;
+  animation: stage4_animation 2s linear infinite;
+  -moz-animation: stage4_animation 2s linear infinite;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 75%;
 }
-40%{
-  top:-100px;
-}
-41%{
-  top:0px;
-  left:-120px;
-  transform: rotate(-360deg);
-  -ms-transform: rotate(-360deg);
-  -webkit-transform: rotate(-360deg);
-}
-70% {
-  left:0;
-  transform: rotate(-360deg);
-  -ms-transform: rotate(-360deg);
-  -webkit-transform: rotate(-360deg);
+@-webkit-keyframes stage4_animation {
+  0%{
+    top:0;
+  }
+
+  10%{
+    top:-100px;
+  }
+
+  20%{
+    top:0;
+  }
+  25%{
+    top:-20px;
+  }
+  30%{
+    top:0;
+  }
+
+  100% {
+    top:0;
+  }
+
 }
 
-100% {
-  left:0;
-  transform: rotate(-360deg);
-  -ms-transform: rotate(-360deg);
-  -webkit-transform: rotate(-360deg);
+/*@-moz-keyframes stage4_animation {
+
 }
-}
+
+@keyframes stage4_animation {
+
+}*/
