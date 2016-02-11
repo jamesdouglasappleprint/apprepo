@@ -101,9 +101,63 @@ h5 {font-size: 10px;margin:10px 0px;}
 .button {display: block;width: 100%;height: 44px;background: rgba(255,255,255,0.4);color: #fff;line-height: 44px;text-align: center;position: relative;border-radius: 6px;margin: 10px 0px;color: #000;text-transform: uppercase;text-decoration: none;font-size: 15px;}
 .killLink {pointer-events: none;cursor: default;}
 /* ------------------------------------------ */
-/* LOGIN PAGE ------------------------------- */
+/* LEVEL UP --------------------------------- */
 /* ------------------------------------------ */
 
+.fullHeightPanel.levelupPanel {display: none;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 0.2s ease-in-out forwards;animation: slidePanelInFromRight 0.2s ease-in-out forwards;-moz-animation: slidePanelInFromRight 0.2s ease-in-out forwards;-webkit-transition: all 1.5s ease;-moz-transition: all 1.5s ease;-o-transition: all 1.5s ease;transition: all 1.5s ease;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );  z-index: 10;}
+
+.levelUpContainer {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-box-pack: start;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  align-content: center;
+  -webkit-align-content: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  text-align: center;
+  height: 100%;
+
+}
+.levelUpTitle {
+    max-width: 250px;
+    font-size: 20px;
+    color: #fff;
+    display: block;
+    width: 100%;
+}
+
+.levelUpSubTitle {
+    max-width: 250px;
+    font-size: 35px;
+    color: #fff;
+    display: block;
+    width: 100%;
+    font-family: ralewaybold;
+}
+.levelUpSubText {
+    color: #fff;
+    font-size: 18px;
+    max-width: 300px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.closeLevelUp {
+    width: 100%;
+    font-size: 50px;
+    color: #fff;
+    font-family: ralewaythin;
+    text-decoration: none;
+    display: block;
+}
+/* ------------------------------------------ */
+/* LOGIN PAGE ------------------------------- */
+/* ------------------------------------------ */
 .fullHeightPanel.registerLoginPanel {display: none;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 0.2s ease-in-out forwards;animation: slidePanelInFromRight 0.2s ease-in-out forwards;-moz-animation: slidePanelInFromRight 0.2s ease-in-out forwards;background: url("../img/form-background.jpg");background-size: cover;background-position-y: -4px;-webkit-transition: all 1.5s ease;-moz-transition: all 1.5s ease;-o-transition: all 1.5s ease;transition: all 1.5s ease;}
 .fullHeightPanel.registerLoginPanel.displaceBackgroundLogin {background-position-y: -250px;}
 .fullHeightPanel.registerLoginPanel.displaceBackgroundRegister {background-position-y: 99%;}
@@ -212,38 +266,10 @@ margin-right: auto;}
 .menuButtonContainer {width: 80px;height: 80px;display: block;font-size: 40px;text-align: center;line-height: 80px;z-index: 3;position: relative;}
 .menuButtonContainer a {color: #fff;}
 
-.speechBubble {
-    width: 400px;
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -200px;
-    display: none;
-    -webkit-transition: all 1.5s linear;
-    -moz-transition: all 1.5s linear;
-    -o-transition: all 1.5s linear;
-    transition: all 1.5s linear;
-    -webkit-animation: expandBubble 100ms linear forwards;
-    animation: expandBubble 100ms linear forwards;
-    -moz-animation: expandBubble 100ms linear forwards;
-    -ms-transform-origin: 50% 50%;
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-}
-
-.speechBubbleText {
-    position: absolute;
-    top: 145px;
-    font-size: 18px;
-    z-index: 20;
-    display: block;
-    width: 150px;
-    left: 50%;
-    margin-left: -75px;
-    height: 100px;
-    text-align: center;
-    display: none;
+.speechBubbleContainer {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
     -webkit-box-pack: start;
     flex-direction: row;
     -webkit-flex-direction: row;
@@ -251,8 +277,69 @@ margin-right: auto;}
     -webkit-flex-wrap: wrap;
     align-content: center;
     -webkit-align-content: center;
-    justify-content: space-between;
-    -webkit-justify-content: space-between;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    height: 50%;
+    position: absolute;
+    top: 50px;
+}
+
+.speechBubble {
+    width: 240px;
+    z-index: 10;
+    position: relative;
+    top: 0;
+    left: 0;
+    display: none;
+    -webkit-transition: all 1.5s linear;
+    -moz-transition: all 1.5s linear;
+    -o-transition: all 1.5s linear;
+    transition: all 1.5s linear;
+    -webkit-animation: expandBubble 200ms linear forwards;
+    animation: expandBubble 200ms linear forwards;
+    -moz-animation: expandBubble 200ms linear forwards;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+.shrinkBubble {
+    -webkit-animation: shrinkBubble 200ms linear forwards;
+    animation: shrinkBubble 200ms linear forwards;
+    -moz-animation: shrinkBubble 200ms linear forwards;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.speechBubbleText {
+    position: absolute;
+    font-size: 18px;
+    z-index: 20;
+    left: 50%;
+    top: 50%;
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    margin-left: -73px;
+    margin-top: -85px;
+    opacity:0;
+    -webkit-transition: all 1.5s linear;
+    -moz-transition: all 1.5s linear;
+    -o-transition: all 1.5s linear;
+    transition: all 1.5s linear;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: start;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-content: center;
+    -webkit-align-content: center;
+    justify-content: center;
+    -webkit-justify-content: center;
     align-items: center;
     -webkit-align-items: center;
 }
@@ -260,6 +347,9 @@ margin-right: auto;}
 .showSpeechText{
   display: flex;
   display: -webkit-flex;
+  -webkit-animation: fadeText 1s linear forwards;
+  animation: fadeText 1s linear forwards;
+  -moz-animation: fadeText 1s linear forwards;
 }
 /* ------------------------------------------ */
 /* PET -------------------------------------- */
@@ -305,7 +395,7 @@ margin-right: auto;}
 /* ------------------------------------------ */
 .petFood {position: absolute;bottom: 560px;width: 70px;height: 70px;display: none;background: url('../img/food.png');z-index: 5;background-size: cover;left: 50%;margin-left: -35px;}
 
-.petFood.stage2_foodDrop {
+.petFood.stage2_foodDrop,.petFood.stage3_foodDrop {
     bottom: 160px;
     left: -70px;
     margin-left: 0;

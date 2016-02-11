@@ -54,6 +54,7 @@ Core.prototype.loadPanelContent = function(){
   $('.storyboardPanel').load("storyboard.html")
   $('.mainPanel').load("main.html")
   $('.menuPanel').load("menu.html")
+  $('.levelupPanel').load("levelup.html")
   $('.contactDetailsPanel').load("contactdetails.html")
 
   $(document).on('click',".buttonPhoto", function(e){
@@ -88,6 +89,12 @@ Core.prototype.loadPanelContent = function(){
   $(document).on("click",".closeContactDetails",function(e){
     e.preventDefault()
     $('.contactDetailsPanel').hide()
+  })
+
+  //Click to close contact details menu
+  $(document).on("click",".closeLevelUp",function(e){
+    e.preventDefault()
+    $('.levelupPanel').hide()
   })
 
 
@@ -198,8 +205,9 @@ Core.prototype.loginOrRegister = function(){
       jsonp: 'callback',
   		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
   		success: function(data){
+        console.log('Success! User registered.')
         localStorage.setItem("userID", data.userID);
-        navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
+        //navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
         $('.slideRegister').hide()
@@ -253,9 +261,8 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('town', data.town)
           localStorage.setItem('password', data.password)
 
-          self.initPushwoosh(data.emailaddress, null, false)
-
-          //TODO: if we get a retrn of 'user not found' do something here
+          //TODO:: renable
+          //self.initPushwoosh(data.emailaddress, null, false)
 
           if (localStorage.getItem("hasPet") != 'true'){
             console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
@@ -518,6 +525,8 @@ Core.prototype.loadPet = function(uid){
 Core.prototype.updateActionLevels = function(uid){
   var self = this
 
+  var prevPetLevel = localStorage.getItem("petLevel")
+
   $.ajax({
     type: 'POST',
     data: 'uid='+uid,
@@ -539,7 +548,12 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
 
-        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        //TODO: RENABLE
+        //self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+
+        if (prevPetLevel != data[0].pl && data[0].pl > 1){
+          $('.levelupPanel').show()
+        }
 
         if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
           self.currentMood = 'happy';
@@ -548,7 +562,13 @@ Core.prototype.updateActionLevels = function(uid){
         }else{
           self.currentMood = 'sad';
         }
+
         $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        $('.petMain').removeClass('stage'+(data[0].pl-1))
+        $('.petMain').removeClass('stage'+(data[0].pl-2))
+        $('.petMain').removeClass('stage'+(data[0].pl-3))
+        $('.petMain').removeClass('stage'+(data[0].pl-4))
+        $('.petMain').removeClass('stage'+(data[0].pl-5))
 
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
         $('.statusEntertain>.statusLevel').css({height:data[0].ps+'%'})
@@ -701,8 +721,12 @@ Core.prototype.speechBubble = function(message){
   $('.speechBubble').show()
   $('.speechBubbleText').addClass('showSpeechText').html(message)
 
-  $('.speechBubble').click(function(){
+  $(document).on("click",".speechBubbleContainer",function(e){
     $('.speechBubble').addClass('shrinkBubble')
+    setTimeout(function(){
+      $('.speechBubble').hide()
+      $('.speechBubble').removeClass('shrinkBubble')
+    },1000)
     $('.speechBubbleText').removeClass('showSpeechText')
   })
 
