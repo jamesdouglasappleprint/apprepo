@@ -839,7 +839,7 @@ Core.prototype.buildFunctionsDelete = function(){
       }else{
         console.log('ok',res.filePath);
       }
-    },'jpg',50);
+    });
   })
 
 
