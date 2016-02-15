@@ -259,7 +259,7 @@ margin-right: auto;}
     border-bottom: 1px solid rgba(255,255,255,0.4);
     padding-top: 10px;
 }
-.menuContainer>.closeMenu {
+.menuContainer>.closeMenu, .menuContainer>.closeContactDetails {
     top: auto;
     bottom: 20px;
     left: 50%;
@@ -281,7 +281,13 @@ margin-right: auto;}
     -webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 400ms linear forwards;animation: slidePanelInFromRight 400ms linear forwards;-moz-animation: slidePanelInFromRight 400ms linear forwards;
     background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
 }
-
+form#updateContactDetailsForm>input {
+    height: 40px;
+    margin-bottom: 6px;
+}
+form#updateContactDetailsForm {
+    margin-top: 20px;
+}
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */

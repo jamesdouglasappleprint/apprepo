@@ -141,6 +141,8 @@ Core.prototype.logOut = function(){
     $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
     $('.registerLoginContainer').removeClass('registerLoginReduce')
     $('.slideLogin').hide()
+    $('.menuMusic').get(0).play()
+    $('.gameMusic').get(0).pause()
 
     //Call unregister
     self.initPushwoosh(null, null, false, true)
@@ -268,7 +270,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('password', data.password)
 
           //TODO:: renable
-          self.initPushwoosh(data.emailaddress, null, false)
+          //self.initPushwoosh(data.emailaddress, null, false)
 
           if (localStorage.getItem("hasPet") != 'true'){
             console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
@@ -523,7 +525,8 @@ Core.prototype.loadPet = function(uid){
           $('.petStage6ArmLeft_insatsu').hide()
           $('.petStage6ArmRight_insatsu').hide()
         }
-
+        $('.menuMusic').get(0).pause()
+        $('.gameMusic').get(0).play()
         self.updateActionLevels(uid)
       }else{
         console.log('retreievePetData has been fired, but there\'s no pet data to recall')
@@ -722,6 +725,7 @@ Core.prototype.buildFunctionsDelete = function(){
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
+    $('.menuMusic').get(0).play()
   })
 
   $(document).on("click",".creationBypass",function(e){
@@ -752,7 +756,7 @@ Core.prototype.petMurder = function(){
     }
   }
 
-  navigator.notification.confirm('Are you REALLY sure you want to kill your pet? You can\'t undo this!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill'])
+  navigator.notification.confirm('Are you REALLY sure you want to kill your pet? You can\'t undo this!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
 
 
 }
