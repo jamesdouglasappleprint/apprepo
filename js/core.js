@@ -56,6 +56,7 @@ Core.prototype.loadPanelContent = function(){
   $('.menuPanel').load("menu.html")
   $('.levelupPanel').load("levelup.html")
   $('.contactDetailsPanel').load("contactdetails.html")
+  $('.leaderboardPanel').load("leaderboard.html")
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
@@ -91,6 +92,19 @@ Core.prototype.loadPanelContent = function(){
     self.petMurder()
   })
 
+  //Show Leaderboard
+  $(document).on("click",".leaderBoardButton",function(e){
+    e.preventDefault()
+    $('.leaderboardPanel').show()
+  })
+
+  //Click to close contact details menu
+  $(document).on("click",".closeleaderboard",function(e){
+    e.preventDefault()
+    $('.leaderboardPanel').hide()
+  })
+
+
   //Click to close contact details menu
   $(document).on("click",".closeContactDetails",function(e){
     e.preventDefault()
@@ -101,6 +115,43 @@ Core.prototype.loadPanelContent = function(){
   $(document).on("click",".closeLevelUp",function(e){
     e.preventDefault()
     $('.levelupPanel').hide()
+  })
+
+  //Click to close contact details menu
+  $(document).on("click",".toggleMusic",function(e){
+    e.preventDefault()
+    console.log('toggling')
+    $('.toggleMusic').toggleClass('disabledAudio')
+
+
+    if (localStorage.getItem('music') == '1'){
+      $('.menuMusic').get(0).pause()
+      $('.gameMusic').get(0).pause()
+       window.localStorage.setItem('music', '0')
+    }else if (localStorage.getItem('music') == '0'){
+       window.localStorage.setItem('music', '1')
+      $('.menuMusic').get(0).pause()
+      $('.gameMusic').get(0).play()
+    }else{
+      $('.menuMusic').get(0).pause()
+      $('.gameMusic').get(0).pause()
+    }
+
+  })
+
+  //Click to close contact details menu
+  $(document).on("click",".toggleSound",function(e){
+    e.preventDefault()
+    console.log('toggling')
+    $('.toggleSound').toggleClass('disabledAudio')
+
+    if (localStorage.getItem('sound') == '1'){
+       window.localStorage.setItem('sound', '0')
+    }else{
+       window.localStorage.setItem('sound', '1')
+    }
+
+
   })
 
 
@@ -131,6 +182,7 @@ Core.prototype.loadPanelContent = function(){
 //Log out and clear all local data
 Core.prototype.logOut = function(){
   var self = this
+  var save = localStorage.getItem('music')
   //Click to Entertain!
   $(document).on("click",".logOut",function(e){
     e.preventDefault()
@@ -141,8 +193,26 @@ Core.prototype.logOut = function(){
     $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
     $('.registerLoginContainer').removeClass('registerLoginReduce')
     $('.slideLogin').hide()
-    $('.menuMusic').get(0).play()
-    $('.gameMusic').get(0).pause()
+
+    //1 == play
+    //0  == stop
+    //if music is set to on, play
+    if (save == '1'){
+      $('.menuMusic').get(0).play()
+      $('.gameMusic').get(0).pause()
+      localStorage.setItem('music', "1")
+
+    //else if music is set to off, pause both
+    }else if (save == '0'){
+      $('.menuMusic').get(0).pause()
+      $('.gameMusic').get(0).pause()
+      $('.toggleMusic').addClass('disabledAudio')
+      localStorage.setItem('music', "0")
+    }else{
+      $('.menuMusic').get(0).pause()
+      $('.gameMusic').get(0).pause()
+    }
+
 
     //Call unregister
     self.initPushwoosh(null, null, false, true)
@@ -270,7 +340,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('password', data.password)
 
           //TODO:: renable
-          //self.initPushwoosh(data.emailaddress, null, false)
+          self.initPushwoosh(data.emailaddress, null, false)
 
           if (localStorage.getItem("hasPet") != 'true'){
             console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
@@ -511,6 +581,7 @@ Core.prototype.loadPet = function(uid){
           localStorage.setItem("petNamedType", "insatsu")
           self.petNamedType = 'insatsu'
         }
+
         $('.speechBubble').attr('src','img/'+self.petNamedType+'-speech.png')
         $('.petName').html(data[0].pn)
         $('.mainPanel').show().addClass(self.petNamedType+'Background')
@@ -525,8 +596,29 @@ Core.prototype.loadPet = function(uid){
           $('.petStage6ArmLeft_insatsu').hide()
           $('.petStage6ArmRight_insatsu').hide()
         }
-        $('.menuMusic').get(0).pause()
-        $('.gameMusic').get(0).play()
+
+        //1 == play
+        //0  == stop
+        if (localStorage.getItem('music') == '1'){
+          $('.menuMusic').get(0).pause()
+          $('.gameMusic').get(0).play()
+
+        }else if (localStorage.getItem('music') == '0'){
+          $('.menuMusic').get(0).pause()
+          $('.gameMusic').get(0).pause()
+          $('.toggleMusic').addClass('disabledAudio')
+        }else{
+          localStorage.setItem('music', "1")
+          $('.menuMusic').get(0).pause()
+          $('.gameMusic').get(0).play()
+        }
+
+        if (localStorage.getItem('sound') == '1'){
+          window.localStorage.setItem('sound', '0')
+        }else{
+          window.localStorage.setItem('sound', '1')
+        }
+
         self.updateActionLevels(uid)
       }else{
         console.log('retreievePetData has been fired, but there\'s no pet data to recall')
@@ -725,7 +817,16 @@ Core.prototype.buildFunctionsDelete = function(){
 
   $(document).on("click",".skipLoading",function(e){
     $('.registerLoginPanel').show()
-    $('.menuMusic').get(0).play()
+
+    if (localStorage.getItem('music') == '1'){
+      $('.menuMusic').get(0).play()
+    }else if (localStorage.getItem('music') == '0'){
+      $('.menuMusic').get(0).pause()
+    }else{
+      $('.menuMusic').get(0).pause()
+    }
+
+
   })
 
   $(document).on("click",".creationBypass",function(e){
