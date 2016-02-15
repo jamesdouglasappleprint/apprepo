@@ -857,7 +857,7 @@ Core.prototype.petMurder = function(){
     }
   }
 
-  navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind, I don\'t know what came over me!','Kill my pet'])
+  navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
 
 
 }
