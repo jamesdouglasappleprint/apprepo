@@ -146,7 +146,7 @@ animation: stage1_foodDrop 1.2s linear forwards;
 /* ------------------------------------------ */
 /* Stage 2 Food Drop ------------------------ */
 /* ------------------------------------------ */
-.stage2_foodDrop{
+.stage2_foodDrop,.stage3_foodDrop,.stage4_foodDrop,.stage5_foodDrop,.stage6_foodDrop{
 -webkit-transition: all 1s ease;
 -moz-transition: all 1s ease;
 -o-transition: all 1s ease;
@@ -157,16 +157,6 @@ animation: stage2_foodDrop 400ms linear forwards;
 -moz-animation: stage2_foodDrop 400ms linear forwards;
 }
 
-.stage3_foodDrop{
--webkit-transition: all 1s ease;
--moz-transition: all 1s ease;
--o-transition: all 1s ease;
-transition: all 1s ease;
-
--webkit-animation: stage2_foodDrop 400ms linear forwards;
-animation: stage2_foodDrop 400ms linear forwards;
--moz-animation: stage2_foodDrop 400ms linear forwards;
-}
 
 @-webkit-keyframes stage2_foodDrop {
   0% {
@@ -235,6 +225,64 @@ animation: stage2_foodDrop 400ms linear forwards;
     transform:rotate(360deg);-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);
   }
 }
+/* ------------------------------------------ */
+/* Entertainment - Streamers ---------------- */
+/* ------------------------------------------ */
+.petStage6ArmLeft_insatsu{
+  -webkit-animation: armFlapLeft 1s linear infinite;
+  animation: armFlapLeft 1s linear infinite;
+  -moz-animation: armFlapLeft 1s linear infinite;
+  -ms-transform-origin: 80% 50%;
+  -webkit-transform-origin: 80% 50%;
+  transform-origin: 80% 50%;
+}
+@-webkit-keyframes armFlapLeft {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50%{
+    -ms-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  100%{
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+/*@-moz-keyframes armFlapLeft {0% {opacity:0;}100%{opacity:1;top: -20px;}}
+@keyframes armFlapLeft {0% {opacity:0;}100%{opacity:1;top: -20px;}}*/
+
+.petStage6ArmRight_insatsu{
+  -webkit-animation: armFlapRight 1s linear infinite;
+  animation: armFlapRight 1s linear infinite;
+  -moz-animation: armFlapRight 1s linear infinite;
+  -ms-transform-origin: 20% 50%;
+  -webkit-transform-origin: 20% 50%;
+  transform-origin: 20% 50%;
+}
+@-webkit-keyframes armFlapRight {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50%{
+    -ms-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  100%{
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+/*@-moz-keyframes armFlapRight {0% {opacity:0;}100%{opacity:1;top: -20px;}}
+@keyframes armFlapRight {0% {opacity:0;}100%{opacity:1;top: -20px;}}*/
 
 /* ------------------------------------------ */
 /* Entertainment - Streamers ---------------- */
@@ -801,34 +849,112 @@ animation: stage2_foodDrop 400ms linear forwards;
   transform-origin: 50% 75%;
 }
 @-webkit-keyframes stage4_animation {
-  0%{
-    top:0;
-  }
-
-  10%{
-    top:-100px;
-  }
-
-  20%{
-    top:0;
-  }
-  25%{
-    top:-20px;
-  }
-  30%{
-    top:0;
-  }
-
-  100% {
-    top:0;
-  }
-
+  0%{top:0;}
+  5%{top:-100px;}
+  10%{top:0;}
+  15%{top:-20px;}
+  18%{top:0;}
+  100% {top:0;}
 }
 
-/*@-moz-keyframes stage4_animation {
-
+@-moz-keyframes stage4_animation {
+  0%{top:0;}
+  5%{top:-100px;}
+  10%{top:0;}
+  15%{top:-20px;}
+  18%{top:0;}
+  100% {top:0;}
 }
 
 @keyframes stage4_animation {
+  0%{top:0;}
+  5%{top:-100px;}
+  10%{top:0;}
+  15%{top:-20px;}
+  18%{top:0;}
+  100% {top:0;}
+}
 
-}*/
+/* ------------------------------------------ */
+/* Stage 3 Bounce --------------------------- */
+/* ------------------------------------------ */
+.stage5 {
+  -webkit-transition: all 1.5s linear;
+  -moz-transition: all 1.5s linear;
+  -o-transition: all 1.5s linear;
+  transition: all 1.5s linear;
+  -webkit-animation: stage5_animation 2s linear infinite;
+  animation: stage5_animation 2s linear infinite;
+  -moz-animation: stage5_animation 2s linear infinite;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 75%;
+}
+@-webkit-keyframes stage5_animation {
+  0%{
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  33%{
+    -ms-transform: rotate(2deg);
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+  66%{
+    -ms-transform: rotate(-2deg);
+    -webkit-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+  }
+  100% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+
+@-moz-keyframes stage5_animation {
+0%{
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+33%{
+  -ms-transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+66%{
+  -ms-transform: rotate(-2deg);
+  -webkit-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+100% {
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+}
+
+@keyframes stage5_animation {
+0%{
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+33%{
+  -ms-transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+66%{
+  -ms-transform: rotate(-2deg);
+  -webkit-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+100% {
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+}

@@ -3,7 +3,7 @@
 
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        id          = "com.applegotchi"
-       version     = "1.1.84">
+       version     = "1.1.85">
 
   <name>AppleGotchi</name>
 

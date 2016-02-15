@@ -85,6 +85,12 @@ Core.prototype.loadPanelContent = function(){
     $('.contactDetailsPanel').show()
   })
 
+  //Kill your pet
+  $(document).on("click",".petMurder",function(e){
+    e.preventDefault()
+    self.petMurder()
+  })
+
   //Click to close contact details menu
   $(document).on("click",".closeContactDetails",function(e){
     e.preventDefault()
@@ -207,7 +213,7 @@ Core.prototype.loginOrRegister = function(){
   		success: function(data){
         console.log('Success! User registered.')
         localStorage.setItem("userID", data.userID);
-        //navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
+        navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
 
         $('.registerLoginContainer').removeClass('registerLoginReduceMax')
         $('.slideRegister').hide()
@@ -506,8 +512,18 @@ Core.prototype.loadPet = function(uid){
         $('.speechBubble').attr('src','img/'+self.petNamedType+'-speech.png')
         $('.petName').html(data[0].pn)
         $('.mainPanel').show().addClass(self.petNamedType+'Background')
+        $('.petMain').removeClass('stage1').removeClass('stage2').removeClass('stage3').removeClass('stage4').removeClass('stage5').removeClass('stage6')
         $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
-        //$('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+2+'.png').addClass('stage'+2)
+
+        console.log(data[0].pl, self.petNamedType)
+        if (data[0].pl == 6 && self.petNamedType == 'insatsu'){
+          $('.petStage6ArmLeft_insatsu').show()
+          $('.petStage6ArmRight_insatsu').show()
+        }else{
+          $('.petStage6ArmLeft_insatsu').hide()
+          $('.petStage6ArmRight_insatsu').hide()
+        }
+
         self.updateActionLevels(uid)
       }else{
         console.log('retreievePetData has been fired, but there\'s no pet data to recall')
@@ -549,7 +565,7 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        //self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1){
           $('.levelupPanel').show()
@@ -712,6 +728,31 @@ Core.prototype.buildFunctionsDelete = function(){
     // self.creationStory();
     // $('.storyboardPanel').show()
   })
+
+
+}
+
+//omg kill yo pet
+Core.prototype.petMurder = function(){
+
+  function kill(buttonIndex) {
+    console.log('login failure loop'+buttonIndex)
+    if (buttonIndex == 2){
+      alert('this function will kill pet')
+      localStorage.clear();
+      $('.menuPanel').hide()
+      $('.mainPanel').hide()
+      $('.storyboardPanel').hide()
+      $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
+      $('.registerLoginContainer').removeClass('registerLoginReduce')
+      $('.slideLogin').hide()
+
+      //Call unregister
+      self.initPushwoosh(null, null, false, true)
+    }
+  }
+
+  navigator.notification.confirm('Are you REALLY sure you want to kill your pet? You can\'t undo this!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill'])
 
 
 }
