@@ -619,7 +619,7 @@ Core.prototype.loadPet = function(uid){
           window.localStorage.setItem('sound', '1')
         }
 
-        self.updateActionLevels(uid)
+        self.updateActionLevels(uid,'firstload')
       }else{
         console.log('retreievePetData has been fired, but there\'s no pet data to recall')
         localStorage.clear();
@@ -633,7 +633,7 @@ Core.prototype.loadPet = function(uid){
 };
 
 //Update current action levels of pet (and score)
-Core.prototype.updateActionLevels = function(uid){
+Core.prototype.updateActionLevels = function(uid,firstLoad){
   var self = this
 
   var prevPetLevel = localStorage.getItem("petLevel")
@@ -660,9 +660,9 @@ Core.prototype.updateActionLevels = function(uid){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        //self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
 
-        if (prevPetLevel != data[0].pl && data[0].pl > 1){
+        if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstload != 'firstload'){
           $('.levelupPanel').show()
         }
 
@@ -719,7 +719,7 @@ Core.prototype.actionFeed = function(stage){
   		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
   		success: function(data){
   			console.log(data);
-        self.updateActionLevels(localStorage.getItem('userID'))
+        self.updateActionLevels(localStorage.getItem('userID'),null)
   		},
   		error: function(){
         console.log('Error creating pet.')
@@ -764,7 +764,7 @@ Core.prototype.actionClean = function(stage){
   		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
   		success: function(data){
   			console.log(data);
-        self.updateActionLevels(localStorage.getItem('userID'))
+        self.updateActionLevels(localStorage.getItem('userID'),null)
   		},
   		error: function(){
         console.log('Error creating pet.')
@@ -796,7 +796,7 @@ Core.prototype.actionEntertain = function(stage){
   		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
   		success: function(data){
   			console.log(data);
-        self.updateActionLevels(localStorage.getItem('userID'))
+        self.updateActionLevels(localStorage.getItem('userID'),null)
   		},
   		error: function(){
         console.log('Error creating pet.')
