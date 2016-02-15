@@ -340,7 +340,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('password', data.password)
 
           //TODO:: renable
-          self.initPushwoosh(data.emailaddress, null, false)
+          //self.initPushwoosh(data.emailaddress, null, false)
 
           if (localStorage.getItem("hasPet") != 'true'){
             console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
@@ -660,9 +660,10 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        //self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        console.log(firstLoad)
 
-        if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstload != 'firstload'){
+        if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
           $('.levelupPanel').show()
         }
 
@@ -832,6 +833,13 @@ Core.prototype.buildFunctionsDelete = function(){
   $(document).on("click",".creationBypass",function(e){
     // self.creationStory();
     // $('.storyboardPanel').show()
+    navigator.screenshot.save(function(error,res){
+      if(error){
+        console.error(error);
+      }else{
+        console.log('ok',res.filePath);
+      }
+    },'jpg',50);
   })
 
 
