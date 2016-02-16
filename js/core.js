@@ -851,14 +851,14 @@ Core.prototype.buildFunctionsDelete = function(){
     // self.creationStory();
     // $('.storyboardPanel').show()
 
-    navigator.screenshot.save(function(error,res){
+    navigator.screenshot.URI(function(error,res){
       if(error){
         console.error(error);
       }else{
-        var imageLink = res.filePath
+        var imageLink = res.URI
         //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
         window.plugins.socialsharing.share('Message and image', null, imageLink, null)
-        console.log('ok',res.filePath);
+        console.log('ok',res.URI);
         console.log(res);
       }
     },'jpg',50, 'myPet');

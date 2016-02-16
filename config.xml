@@ -4,7 +4,7 @@
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        xmlns:android ="http://schemas.android.com/apk/res/android"
        id          = "com.applegotchi"
-       version     = "1.1.102">
+       version     = "1.1.103">
 
   <name>AppleGotchi</name>
 
@@ -16,7 +16,7 @@
 
   <access origin="*"/> <!-- allow all pages, use for development -->
   <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
-  <access origin="*.phonegap.com"/> <!-- allow pushwoosh service -->
+  <access origin="*.phonegap.com"/> <!-- allow phonegap service -->
 
   <platform name="ios" >
     <preference name="orientation" value="portrait" /><!--force portrait orientation-->
@@ -30,11 +30,11 @@
 
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" /><!--Internal notifications -->
   <gap:plugin name="cordova-plugin-network-information" source="pgb" /><!-- Celluar info (offline//online) -->
-  <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" source="pgb"/>
+  <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" source="pgb"/><!-- needed for Android Whitelisting -->
   <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" /><!-- hide status bar in app -->
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" /><!--Pushwoosh plugin-->
   <gap:plugin name="nl.x-services.plugins.socialsharing" /><!-- Social Sharing -->
-  <gap:plugin name="it.zerob.cordova.screenshot" spec="0.1.3" source="pgb" />
+  <gap:plugin name="it.zerob.cordova.screenshot" spec="0.1.3" source="pgb" /><!-- Saves screenshots -->
 
   <icon src="res/icon/icon-36-ldpi.png"         gap:platform="android"  gap:qualifier="ldpi"/>
   <icon src="res/icon/icon-48-mdpi.png"         gap:platform="android"  gap:qualifier="mdpi"/>
