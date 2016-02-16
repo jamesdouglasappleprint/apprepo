@@ -851,7 +851,14 @@ Core.prototype.buildFunctionsDelete = function(){
     // self.creationStory();
     // $('.storyboardPanel').show()
 
-
+    navigator.screenshot.save(function(error,res){
+      if(error){
+        console.error(error);
+      }else{
+        window.plugins.socialsharing.share('Message and image', null, res.filePath, null)
+        console.log('ok',res.filePath);
+      }
+    },'jpg',50);
 
   })
 
