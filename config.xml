@@ -21,9 +21,7 @@
   <platform name="android" >
     <preference name="orientation" value="portrait" /><!--force portrait orientation-->
   </platform>
-  <gap:config-file platform="android" parent="/manifest">
-     <application android:debuggable="true" />
-  </gap:config-file>
+  <application android:debuggable="true" />
 
   <preference name="android-build-tool" value="gradle" /><!--Android build gradle-->
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" /><!--Internal notifications -->
