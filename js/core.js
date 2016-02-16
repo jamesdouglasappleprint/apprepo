@@ -855,10 +855,10 @@ Core.prototype.buildFunctionsDelete = function(){
       if(error){
         console.error(error);
       }else{
-        window.plugins.socialsharing.share('Message and image', null, res.filePath, null)
+        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
         console.log('ok',res.filePath);
       }
-    },'jpg',50);
+    },'jpg',50, 'myPet');
 
   })
 
