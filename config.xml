@@ -7,8 +7,8 @@
        version     = "1.1.98">
 
   <name>AppleGotchi</name>
-  <!-- screenshot plugin currently doesn't support version 4> -->
-  <preference name="phonegap-version" value="4.0.0" />
+  <!-- screenshot plugin currently doesn't support version 4>
+  <preference name="phonegap-version" value="4.0.0" /> -->
   <description>AppleGotchi!</description>
 
   <author href="http://yoursite.com" email="you@youremail.com">Your Name</author>
