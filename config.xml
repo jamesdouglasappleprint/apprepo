@@ -7,7 +7,7 @@
        version     = "1.1.97">
 
   <name>AppleGotchi</name>
-  <preference name="phonegap-version" value="3.5.0" /> 
+  <preference name="phonegap-version" value="3.5.0" />
   <description>AppleGotchi!</description>
 
   <author href="http://yoursite.com" email="you@youremail.com">Your Name</author>
@@ -30,7 +30,7 @@
   <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" /><!-- hide status bar in app -->
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" /><!--Pushwoosh plugin-->
   <gap:plugin name="nl.x-services.plugins.socialsharing" /><!-- Social Sharing -->
-  <gap:plugin name="com.darktalker.cordova.screenshot" source="pgb" />
+  <gap:plugin name="com.darktalker.cordova.screenshot" source="npm" />
 
   <icon src="res/icon/icon-36-ldpi.png"         gap:platform="android"  gap:qualifier="ldpi"/>
   <icon src="res/icon/icon-48-mdpi.png"         gap:platform="android"  gap:qualifier="mdpi"/>
