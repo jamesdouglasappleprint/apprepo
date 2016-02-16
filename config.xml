@@ -4,9 +4,10 @@
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        xmlns:android ="http://schemas.android.com/apk/res/android"
        id          = "com.applegotchi"
-       version     = "1.1.97">
+       version     = "1.1.98">
 
   <name>AppleGotchi</name>
+  <!-- screenshot plugin currently doesn't support version 4> -->
   <preference name="phonegap-version" value="3.5.0" />
   <description>AppleGotchi!</description>
 
@@ -22,15 +23,16 @@
 
   <platform name="android" >
     <preference name="orientation" value="portrait" /><!--force portrait orientation-->
+    <preference name="android-build-tool" value="gradle" /><!--Android build gradle-->
   </platform>
 
-  <preference name="android-build-tool" value="gradle" /><!--Android build gradle-->
+
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" /><!--Internal notifications -->
   <gap:plugin name="cordova-plugin-network-information" source="pgb" /><!-- Celluar info (offline//online) -->
   <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" /><!-- hide status bar in app -->
   <gap:plugin name="pushwoosh-pgb-plugin" source="npm" /><!--Pushwoosh plugin-->
   <gap:plugin name="nl.x-services.plugins.socialsharing" /><!-- Social Sharing -->
-  <gap:plugin name="com.darktalker.cordova.screenshot" source="npm" />
+  <gap:plugin name="com.darktalker.cordova.screenshot" spec="0.1.0" source="pgb" />
 
   <icon src="res/icon/icon-36-ldpi.png"         gap:platform="android"  gap:qualifier="ldpi"/>
   <icon src="res/icon/icon-48-mdpi.png"         gap:platform="android"  gap:qualifier="mdpi"/>
