@@ -96,6 +96,23 @@ Core.prototype.loadPanelContent = function(){
   $(document).on("click",".leaderBoardButton",function(e){
     e.preventDefault()
     $('.leaderboardPanel').show()
+
+    $.ajax({
+      type: 'POST',
+      data: 't=10',
+      async: false,
+      dataType:'jsonp',
+      jsonp: 'callback',
+      url: 'http://applegotchi.co.uk/Ajax/ghLeaderboard.ashx',
+      success: function(data){
+        console.log(data);
+
+      },
+      error: function(){
+        console.log('Error registering user.')
+      }
+    });
+
   })
 
   //Click to close contact details menu
@@ -660,7 +677,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        ///self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         console.log(firstLoad)
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
