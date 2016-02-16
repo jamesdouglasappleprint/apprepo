@@ -859,6 +859,7 @@ Core.prototype.buildFunctionsDelete = function(){
         //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
         window.plugins.socialsharing.share('Message and image', null, imageLink, null)
         console.log('ok',res.filePath);
+        console.log(res);
       }
     },'jpg',50, 'myPet');
 
