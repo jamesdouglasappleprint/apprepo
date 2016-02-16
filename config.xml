@@ -13,6 +13,7 @@
 
   <access origin="*"/> <!-- allow all pages, use for development -->
   <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
+  <access origin="*.phonegap.com"/> <!-- allow pushwoosh service -->
 
   <platform name="ios" >
     <preference name="orientation" value="portrait" /><!--force portrait orientation-->
