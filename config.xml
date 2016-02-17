@@ -4,7 +4,7 @@
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        xmlns:android ="http://schemas.android.com/apk/res/android"
        id          = "com.applegotchi"
-       version     = "1.1.106">
+       version     = "1.1.107">
 
   <name>AppleGotchi</name>
 
@@ -15,6 +15,7 @@
   <author href="http://yoursite.com" email="you@youremail.com">Your Name</author>
 
   <access origin="*"/> <!-- allow all pages, use for development -->
+  <allow-navigation href="http://*/*" />
   <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
   <access origin="*.phonegap.com"/> <!-- allow phonegap service -->
 

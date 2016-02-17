@@ -860,7 +860,9 @@ Core.prototype.buildFunctionsDelete = function(){
         window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
         console.log(res.filePath);
       }
-    });
+    },'jpg',100,'myScreenShot');
+
+    //Users/username/Library/Application Support/iPhone/6.1/Applications/25A1E7CF-079F-438D-823B-55C6F8CD2DC0/Documents/.nl.x-services.appname/pics/img.jpg
 
 
   })
