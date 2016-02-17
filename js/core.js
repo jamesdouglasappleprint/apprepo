@@ -856,13 +856,10 @@ Core.prototype.buildFunctionsDelete = function(){
         console.error(error);
       }else{
         //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-        //window.plugins.socialsharing.share('Message and image', null, res.filePath, null)
-        console.log('ok',res.filePath);
+        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+        console.log(res.filePath);
       }
     },'jpg',50,'myPet');
-
-    window.plugins.socialsharing.share('Message and image', null, '/private/var/mobile/Containers/Data/Application/CD4DEBB9-D83D-4BE2-85E7-35910F96754C/tmp/myPet.jpg', null)
-    
 
   })
 
