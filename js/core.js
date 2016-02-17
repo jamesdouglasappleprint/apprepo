@@ -851,15 +851,24 @@ Core.prototype.buildFunctionsDelete = function(){
     // self.creationStory();
     // $('.storyboardPanel').show()
 
-    navigator.screenshot.save(function(error,res){
+    // navigator.screenshot.save(function(error,res){
+    //   if(error){
+    //     console.error(error);
+    //   }else{
+    //     //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
+    //     window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+    //     console.log(res.filePath);
+    //   }
+    // },'jpg',50,'myPet');
+
+    navigator.screenshot.URI(function(error,res){
       if(error){
         console.error(error);
       }else{
-        //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-        console.log(res.filePath);
+        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.URI, null)
+        console.log(res.URI);
       }
-    },'jpg',50,'myPet');
+    },50);
 
   })
 
