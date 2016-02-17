@@ -61,18 +61,31 @@ Core.prototype.loadPanelContent = function(){
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
 
-    navigator.screenshot.save(function(error,res){
-      if(error){
-        console.error(error);
-      }else{
-        //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-        console.log(res.filePath);
-        console.log(res.URI);
-      }
-    },'jpg',100,'myPet');
+    // navigator.screenshot.save(function(error,res){
+    //   if(error){
+    //     console.error(error);
+    //   }else{
+    //     //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
+    //     window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+    //     console.log(res.filePath);
+    //     console.log(res.URI);
+    //   }
+    // },'jpg',100,'myPet');
+
+    navigator.screenshot.save(ssComplete,'jpg',100,'myPet');
+
+    function ssComplete(error,res) {
+          if(error){
+            console.error(error);
+          }else{
+            //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
+            window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+            console.log(res.filePath);
+          }
+    }
 
   })
+
   //Click to feed!
   $(document).on("click",".buttonFeed",function(e){
     e.preventDefault()
