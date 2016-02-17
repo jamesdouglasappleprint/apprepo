@@ -841,38 +841,41 @@ animation: stage2_foodDrop 400ms linear forwards;
   -moz-transition: all 1.5s linear;
   -o-transition: all 1.5s linear;
   transition: all 1.5s linear;
-  -webkit-animation: stage4_animation 2s linear infinite;
-  animation: stage4_animation 2s linear infinite;
-  -moz-animation: stage4_animation 2s linear infinite;
+  -webkit-animation: stage4_animation 5s linear infinite;
+  animation: stage4_animation 5s linear infinite;
+  -moz-animation: stage4_animation 5s linear infinite;
   -ms-transform-origin: 50% 100%;
   -webkit-transform-origin: 50% 100%;
   transform-origin: 50% 75%;
 }
 @-webkit-keyframes stage4_animation {
   0%{top:0;}
-  5%{top:-100px;}
-  10%{top:0;}
-  15%{top:-20px;}
-  18%{top:0;}
+  4%{top:0;}
+  6%{top:-100px;}
+  8%{top:0;}
+  10%{top:-20px;}
+  12%{top:0;}
   100% {top:0;}
 }
 
 @-moz-keyframes stage4_animation {
-  0%{top:0;}
-  5%{top:-100px;}
-  10%{top:0;}
-  15%{top:-20px;}
-  18%{top:0;}
-  100% {top:0;}
+0%{top:0;}
+4%{top:0;}
+6%{top:-100px;}
+8%{top:0;}
+10%{top:-20px;}
+12%{top:0;}
+100% {top:0;}
 }
 
 @keyframes stage4_animation {
-  0%{top:0;}
-  5%{top:-100px;}
-  10%{top:0;}
-  15%{top:-20px;}
-  18%{top:0;}
-  100% {top:0;}
+0%{top:0;}
+4%{top:0;}
+6%{top:-100px;}
+8%{top:0;}
+10%{top:-20px;}
+12%{top:0;}
+100% {top:0;}
 }
 
 /* ------------------------------------------ */

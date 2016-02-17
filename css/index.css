@@ -229,22 +229,21 @@ margin-right: auto;}
     padding-bottom: 30px;
 }
 .menuTitle {
-    height: 44px;
-    display: block;
-    width: 250px;
-    border: none;
-    color: #fff;
-    font-size: inherit;
-    text-transform: uppercase;
-    border-radius: 4px;
-    font-size: 15px;
-    font-family: ralewayregular;
-    letter-spacing: 1px;
-    text-align: center;
-    line-height: 44px;
-    border-bottom: 1px solid #fff;
-    margin-bottom: 50px;
-    border-radius: 0;
+  height: 44px;
+  display: block;
+  width: 250px;
+  border: none;
+  color: #fff;
+  font-size: inherit;
+  border-radius: 4px;
+  font-size: 18px;
+  font-family: ralewayregular;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 44px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 50px;
+  border-radius: 0;
 }
 .menuContainer>a {
     width: 100%;
@@ -302,7 +301,7 @@ margin-right: auto;}
     font-family: ralewaythin;
 }
 .leaderboardContainer {
-    max-width: 250px;
+    max-width: 300px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -317,6 +316,52 @@ form#updateContactDetailsForm>input {
 form#updateContactDetailsForm {
     margin-top: 20px;
 }
+/* ------------------------------------------ */
+/* LEADERBOARD ------------------------------ */
+/* ------------------------------------------ */
+.leaderboardEntryContainer img {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.leaderboardContainer .menuTitle {
+    width: 300px;
+}
+
+.leaderboardScore {
+    display: inline-block;
+    vertical-align: top;
+    height: 50px;
+    text-align: right;
+    font-family: ralewaybold;
+    float: right;
+    font-size:20px;
+}
+
+.leaderboardBold {
+    font-family: ralewaybold;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.leaderboardEntryContainer {
+    margin-bottom: 15px;
+}
+
+.leaderboardData li {
+    list-style: none;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+}
+
+.leaderboardDetails {
+    display: inline-block;
+    height: 40px;
+    margin-left: 20px;
+    vertical-align: top;
+}
+
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */

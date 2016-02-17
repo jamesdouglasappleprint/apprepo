@@ -68,6 +68,7 @@ Core.prototype.loadPanelContent = function(){
         //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
         window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
         console.log(res.filePath);
+        console.log(res.URI);
       }
     },'jpg',100,'myPet');
 
@@ -94,6 +95,52 @@ Core.prototype.loadPanelContent = function(){
   $(document).on("click",".updateContactDeets",function(e){
     e.preventDefault()
     $('.contactDetailsPanel').show()
+    $('#updateContactDetailsForm #userID').val(localStorage.getItem('userID'))
+    $('#updateContactDetailsForm #forename').val(localStorage.getItem('firstName'))
+    $('#updateContactDetailsForm #surname').val(localStorage.getItem('lastName'))
+    $('#updateContactDetailsForm #email').val(localStorage.getItem('emailaddress'))
+    $('#updateContactDetailsForm #a1').val(localStorage.getItem('AddressLine1'))
+    $('#updateContactDetailsForm #a2').val(localStorage.getItem('AddressLine2'))
+    $('#updateContactDetailsForm #a3').val(localStorage.getItem('AddressLine3'))
+    $('#updateContactDetailsForm #t').val(localStorage.getItem('town'))
+    $('#updateContactDetailsForm #pc').val(localStorage.getItem('postcode'))
+    $('#updateContactDetailsForm #password').val(localStorage.getItem('password'))
+  })
+
+  //Update contact Details after filling in
+  $(document).on("click",".submitUpdate",function(e){
+    e.preventDefault()
+
+    console.log('Submit Update has been clicked')
+  	var postData = $('form#updateContactDetailsForm').serialize();
+    var fakeDetailsRemoved = postData.replace('&fakeusernameremembered=&fakepasswordremembered=','');
+  	$.ajax({
+  		type: 'POST',
+  		data: fakeDetailsRemoved,
+      dataType:'jsonp',
+      jsonp: 'callback',
+  		url: 'http://applegotchi.co.uk/Ajax/ghUpdateUser.ashx',
+  		success: function(data){
+        console.log('Success! User updated.')
+        console.log(data)
+        //navigator.notification.alert('Thanks for updating! Your details are now updated.', null, 'Details updated!', 'Continue')
+
+        localStorage.setItem('firstName',$('#updateContactDetailsForm #forename').val())
+        localStorage.setItem('lastName',$('#updateContactDetailsForm #surname').val())
+        localStorage.setItem('emailaddress',$('#updateContactDetailsForm #email').val())
+        localStorage.setItem('AddressLine1',$('#updateContactDetailsForm #a1').val())
+        localStorage.setItem('AddressLine2',$('#updateContactDetailsForm #a2').val())
+        localStorage.setItem('AddressLine3',$('#updateContactDetailsForm #a3').val())
+        localStorage.setItem('town',$('#updateContactDetailsForm #t').val())
+        localStorage.setItem('postcode',$('#updateContactDetailsForm #pc').val())
+        localStorage.setItem('password',$('#updateContactDetailsForm #password').val())
+  		},
+  		error: function(){
+        console.log('Error registering user.')
+        navigator.notification.alert('Oops! It looks like something went wrong...', null, 'Details not updated :(', 'ok')
+  		}
+    });
+
   })
 
   //Kill your pet
@@ -109,13 +156,34 @@ Core.prototype.loadPanelContent = function(){
 
     $.ajax({
       type: 'POST',
-      data: 't=10',
+      data: 't=5',
       async: false,
       dataType:'jsonp',
       jsonp: 'callback',
       url: 'http://applegotchi.co.uk/Ajax/ghLeaderboard.ashx',
       success: function(data){
         console.log(data);
+
+        $.each(data, function(e){
+          var petTypeName = ''
+
+          if (data[e].pt == 2){
+            petTypeName = 'ringo'
+          }else if (data[e].pt == 1){
+            petTypeName = 'insatsu'
+          }else{
+            petTypeName = 'noneSpecified'
+          }
+
+          $('.leaderboardData').append('<li><div class="leaderboardEntryContainer"><img src="img/Leaderboard/leaderboardPetIMG_'+petTypeName+'_'+data[e].pl+'.png"><div class="leaderboardDetails"><p class="leaderboardBold">'+data[e].pos+'.'+data[e].pname+'</p><p>Owner: '+data[e].name+'</p></div><div class="leaderboardScore">'+data[e].p+'</div></div></li>')
+
+          // console.log(data[e].name) //user
+          // console.log(data[e].p) //score
+          // console.log(data[e].pl) //Pet level
+          // console.log(data[e].pname) //Pet name
+          // console.log(data[e].pos) //leaderboard position
+          // console.log(data[e].pt) //pet type
+        })
 
       },
       error: function(){
@@ -367,7 +435,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('password', data.password)
 
           //TODO:: renable
-          self.initPushwoosh(data.emailaddress, null, false)
+          //self.initPushwoosh(data.emailaddress, null, false)
 
           if (localStorage.getItem("hasPet") != 'true'){
             console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
