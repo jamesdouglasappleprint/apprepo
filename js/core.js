@@ -852,26 +852,15 @@ Core.prototype.buildFunctionsDelete = function(){
     // $('.storyboardPanel').show()
     e.preventDefault()
 
-    // navigator.screenshot.save(function(error,res){
-    //   if(error){
-    //     console.error(error);
-    //   }else{
-    //     //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-    //     window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-    //     console.log(res.filePath);
-    //   }
-    // },'jpg',50,'myPet');
-
-    navigator.screenshot.URI(function(error,res){
+    navigator.screenshot.save(function(error,res){
       if(error){
         console.error(error);
       }else{
-        html = '<img style="width:50%;" src="'+res.URI+'">';
-    document.body.innerHTML = html;
-        // window.plugins.socialsharing.share('Message and image', null, 'file://'+res.URI, null)
-        // console.log(res.URI);
+        //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
+        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+        console.log(res.filePath);
       }
-    },50);
+    },'jpg',100,'myPet');
 
   })
 
