@@ -668,6 +668,7 @@ Core.prototype.loadPet = function(uid){
   var self = this
 
   console.log('Loading Pet')
+  window.plugin.notification.badge.clear(); //clear badge notifications
 
   $.ajax({
     type: 'POST',
@@ -1111,7 +1112,7 @@ var app = {
 document.addEventListener("deviceready", OnDeviceReady, false);
 function OnDeviceReady()    {
   console.log('device is ready')
-  window.plugin.notification.badge.clear();
+  window.plugin.notification.badge.clear();//clear notification badges
 }
 
 ////////FIRE ON DEVICE OFFLINE
