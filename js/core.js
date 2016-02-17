@@ -855,13 +855,14 @@ Core.prototype.buildFunctionsDelete = function(){
       if(error){
         console.error(error);
       }else{
-        var imageLink = res.filePath
         //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-        window.plugins.socialsharing.share('Message and image', imageLink, imageLink, null)
+        //window.plugins.socialsharing.share('Message and image', null, res.filePath, null)
         console.log('ok',res.filePath);
-        console.log(res);
       }
-    },'jpg',50, 'myPet');
+    },'jpg',50,'myPet');
+
+    window.plugins.socialsharing.share('Message and image', null, '/private/var/mobile/Containers/Data/Application/CD4DEBB9-D83D-4BE2-85E7-35910F96754C/tmp/myPet.jpg', null)
+    
 
   })
 
