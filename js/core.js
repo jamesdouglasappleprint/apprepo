@@ -138,7 +138,7 @@ Core.prototype.loadPanelContent = function(){
   		success: function(data){
         console.log('Success! User updated.')
         console.log(data)
-        //navigator.notification.alert('Thanks for updating! Your details are now updated.', null, 'Details updated!', 'Continue')
+        navigator.notification.alert('Thanks for updating! Your details are now updated.', null, 'Details updated!', 'Continue')
 
         localStorage.setItem('firstName',$('#updateContactDetailsForm #forename').val())
         localStorage.setItem('lastName',$('#updateContactDetailsForm #surname').val())
