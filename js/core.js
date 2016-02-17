@@ -850,6 +850,7 @@ Core.prototype.buildFunctionsDelete = function(){
   $(document).on("click",".creationBypass",function(e){
     // self.creationStory();
     // $('.storyboardPanel').show()
+    e.preventDefault()
 
     // navigator.screenshot.save(function(error,res){
     //   if(error){
@@ -865,8 +866,10 @@ Core.prototype.buildFunctionsDelete = function(){
       if(error){
         console.error(error);
       }else{
-        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.URI, null)
-        console.log(res.URI);
+        html = '<img style="width:50%;" src="'+res.URI+'">';
+    document.body.innerHTML = html;
+        // window.plugins.socialsharing.share('Message and image', null, 'file://'+res.URI, null)
+        // console.log(res.URI);
       }
     },50);
 
