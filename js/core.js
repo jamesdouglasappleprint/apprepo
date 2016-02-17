@@ -37,6 +37,7 @@ Core.prototype.init = function (x) {
   var self = this
 
   if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
+    console.alert('remain logged in is true')
     //get up to date pet data
     self.loadPet(localStorage.getItem("userID"))
   }else{
