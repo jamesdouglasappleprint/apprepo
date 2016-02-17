@@ -75,13 +75,12 @@ Core.prototype.loadPanelContent = function(){
     navigator.screenshot.save(ssComplete,'jpg',100,'myPet');
 
     function ssComplete(error,res) {
-          if(error){
-            console.error(error);
-          }else{
-            //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-            window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-            console.log(res.filePath);
-          }
+      if(error){
+        console.error(error);
+      }else{
+        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+        console.log(res.filePath);
+      }
     }
 
   })
@@ -768,7 +767,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        ///self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         console.log(firstLoad)
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
