@@ -852,15 +852,24 @@ Core.prototype.buildFunctionsDelete = function(){
     // $('.storyboardPanel').show()
     e.preventDefault()
 
-    navigator.screenshot.save(function(error,res){
-      if(error){
-        console.error(error);
-      }else{
-        //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-        console.log(res.filePath);
-      }
-    });
+    // navigator.screenshot.save(function(error,res){
+    //   if(error){
+    //     console.error(error);
+    //   }else{
+    //     //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
+    //     window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+    //     console.log(res.filePath);
+    //   }
+    // });
+
+    navigator.screenshot.URI(function(error,res){
+  if(error){
+    console.error(error);
+  }else{
+    html = '<img style="width:50%;" src="'+res.URI+'">';
+    document.body.innerHTML = html;
+  }
+},50);
 
   })
 
