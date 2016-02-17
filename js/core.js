@@ -60,7 +60,17 @@ Core.prototype.loadPanelContent = function(){
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
-    self.speechBubble('This is some test content')
+
+    navigator.screenshot.save(function(error,res){
+      if(error){
+        console.error(error);
+      }else{
+        //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
+        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+        console.log(res.filePath);
+      }
+    },'jpg',100,'myPet');
+
   })
   //Click to feed!
   $(document).on("click",".buttonFeed",function(e){
@@ -851,19 +861,6 @@ Core.prototype.buildFunctionsDelete = function(){
     // self.creationStory();
     // $('.storyboardPanel').show()
     e.preventDefault()
-
-    navigator.screenshot.save(function(error,res){
-      if(error){
-        console.error(error);
-      }else{
-        //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-        console.log(res.filePath);
-      }
-    },'jpg',100,'myScreenShot');
-
-    //Users/username/Library/Application Support/iPhone/6.1/Applications/25A1E7CF-079F-438D-823B-55C6F8CD2DC0/Documents/.nl.x-services.appname/pics/img.jpg
-
 
   })
 

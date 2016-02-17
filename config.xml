@@ -4,7 +4,7 @@
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        xmlns:android ="http://schemas.android.com/apk/res/android"
        id          = "com.applegotchi"
-       version     = "1.1.107">
+       version     = "1.1.108">
 
   <name>AppleGotchi</name>
 
@@ -27,7 +27,6 @@
     <preference name="orientation" value="portrait" /><!--force portrait orientation-->
     <preference name="android-build-tool" value="gradle" /><!--Android build gradle-->
   </platform>
-
 
   <gap:plugin name="cordova-plugin-dialogs" source="pgb" /><!--Internal notifications -->
   <gap:plugin name="cordova-plugin-network-information" source="pgb" /><!-- Celluar info (offline//online) -->
