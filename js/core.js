@@ -19,6 +19,7 @@ function Core(){
   console.log('Core Loaded');
   var self = this;
 
+
   self.currentMood = 'happy';
   self.petNamedType = ""; //current pet type as a name
   self.petLevel = 1; //current pet type as a name
@@ -30,6 +31,7 @@ function Core(){
   self.init();//Initial load checks
   self.logOut()
   self.initPushwoosh()
+  window.plugin.notification.badge.clear(); //clear badge notifications
 }
 
 //Initialiser
@@ -669,7 +671,6 @@ Core.prototype.loadPet = function(uid){
   var self = this
 
   console.log('Loading Pet')
-  window.plugin.notification.badge.clear(); //clear badge notifications
 
   $.ajax({
     type: 'POST',
