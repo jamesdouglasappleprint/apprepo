@@ -1111,6 +1111,7 @@ var app = {
 document.addEventListener("deviceready", OnDeviceReady, false);
 function OnDeviceReady()    {
   console.log('device is ready')
+  window.plugin.notification.badge.clear();
 }
 
 ////////FIRE ON DEVICE OFFLINE
