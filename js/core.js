@@ -860,7 +860,7 @@ Core.prototype.buildFunctionsDelete = function(){
         window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
         console.log(res.filePath);
       }
-    },'jpg',100,'myPet');
+    });
 
   })
 
