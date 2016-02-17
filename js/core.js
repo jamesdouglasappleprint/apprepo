@@ -450,7 +450,7 @@ Core.prototype.loginOrRegister = function(){
           localStorage.setItem('password', data.password)
 
           //TODO:: renable
-          //self.initPushwoosh(data.emailaddress, null, false)
+          self.initPushwoosh(data.emailaddress, null, false)
 
           if (localStorage.getItem("hasPet") != 'true'){
             console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
