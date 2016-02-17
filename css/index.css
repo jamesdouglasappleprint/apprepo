@@ -346,13 +346,13 @@ form#updateContactDetailsForm {
 }
 
 .leaderboardEntryContainer {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .leaderboardData li {
     list-style: none;
     border-bottom: 1px solid rgba(255,255,255,0.4);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .leaderboardDetails {
