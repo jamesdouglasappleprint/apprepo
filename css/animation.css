@@ -370,6 +370,34 @@ animation: stage2_foodDrop 400ms linear forwards;
     transform: rotate(0deg);
   }
 }
+/* ------------------------------------------ */
+/* Water ------------------------------------ */
+/* ------------------------------------------ */
+.water{
+  -webkit-animation: water 3s linear forwards;
+  animation: water 3s linear forwards;
+  -moz-animation: water 3s linear forwards
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+@-webkit-keyframes water {
+  0% {top:100%;}
+  50% {top:50%;left:-2%}
+  100% {top:50%;}
+}
+@-moz-keyframes dropStreamers1 {
+  0% {top:100%;}
+  50% {top:50%;left:-2%}
+  100% {top:50%;}
+}
+@keyframes dropStreamers1 {
+  0% {top:100%;}
+  50% {top:50%;left:-2%}
+  100% {top:50%;}
+}
 
 /* ------------------------------------------ */
 /* Entertainment - Streamers ---------------- */

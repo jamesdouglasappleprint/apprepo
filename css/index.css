@@ -87,7 +87,6 @@ margin:0px;
 padding:0px;
 width:100%;
 letter-spacing: 1px;
--webkit-overflow-scrolling: touch;
 overflow: hidden;
 }
 h1 {font-size: 20px;margin:10px 0px;}
@@ -502,30 +501,33 @@ button.submitUpdate {
 .petContainer {position: absolute;z-index: 4;bottom: 130px;left: 50%;width: 200px;height: 238px;display: block;margin-left: -100px;perspective:1000;}
 .petMain{width:100%;position: relative;left: 0;top: 0;z-index:5;}
 .petName {
-    color: #fff;
-    font-size: 18px;
-    position: absolute;
-    width: 40%;
-    display: block;
-    text-align: center;
-    top: 30px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #fff;
-    left: 30%;
+  color: #fff;
+  font-size: 18px;
+  position: absolute;
+  width: 40%;
+  display: block;
+  text-align: center;
+  top: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
+  left: 30%;
 }
 .petStage6ArmLeft_insatsu {
-    width: 70px;
-    position: absolute;
-    top: 120px;
-    left: 7px;
+  display:none;
+  width: 70px;
+  position: absolute;
+  top: 120px;
+  left: 7px;
 }
 .petStage6ArmRight_insatsu {
-    width: 70px;
-    position: absolute;
-    top: 120px;
-    left: 130px;
+  display:none;
+  width: 70px;
+  position: absolute;
+  top: 120px;
+  left: 130px;
 }
 .petStage6ArmLeft_ringo {
+  display:none;
   width: 40px;
   position: absolute;
   top: 120px;
@@ -533,11 +535,12 @@ button.submitUpdate {
   z-index: 5;
 }
 .petStage6ArmRight_ringo {
+  display:none;
   width: 40px;
-position: absolute;
-top: 110px;
-left: 145px;
-z-index: 3;
+  position: absolute;
+  top: 110px;
+  left: 145px;
+  z-index: 3;
 }
 /*.petContainer:after {content: "";width: 100%;height: 1px;background: yellow;display: block;position: absolute;top: 75%;left: 0;}
 .petContainer:before {content: "";height: 100%;width: 1px;background: green;display: block;position: absolute;top: 0;left: 50%;}*/
@@ -549,6 +552,18 @@ z-index: 3;
 .cleaningBubblesLayer3 {width: 84px;position: absolute;bottom: 150px;z-index: 4;left: 50%;margin-left: -46px;display: none;opacity: 0;-webkit-transition: all 1.5s ease-in-out;-moz-transition: all 1.5s ease-in-out;-o-transition: all 1.5s ease-in-out;transition: all 1.5s ease-in-out;}
 .cleaningBubblesLayer4 {width: 120%;position: absolute;bottom: 0;z-index: 4;left: -10%;display: none;opacity: 0;-webkit-transition: all 1.5s ease;-moz-transition: all 1.5s ease;-o-transition: all 1.5s ease;transition: all 1.5s ease;}
 .cleaningBubblesLayer5 {width: 120%;position: absolute;bottom: 0;z-index: 4;left: -10%;display: none;opacity: 0;-webkit-transition: all 1.5s ease;-moz-transition: all 1.5s ease;-o-transition: all 1.5s ease;transition: all 1.5s ease;}
+
+.water {
+    background: url('../img/water.png');
+    background-size: cover;
+    height: 100%;
+    width: 150%;
+    z-index: 10;
+    position: absolute;
+    opacity: 0.8;
+    left: -25%;
+    display: none;
+}
 /* ------------------------------------------ */
 /* PET ENTERTAIN ---------------------------- */
 /* ------------------------------------------ */

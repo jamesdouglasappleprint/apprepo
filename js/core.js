@@ -64,14 +64,17 @@ Core.prototype.loadPanelContent = function(){
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
 
-    navigator.screenshot.save(function(error,res){
-      if(error){
-        console.error(error);
-      }else{
-        window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-        console.log(res.filePath);
-      }
-    },'jpg',100,'myPet');
+    // navigator.screenshot.save(function(error,res){
+    //   if(error){
+    //     console.error(error);
+    //   }else{
+    //     window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
+    //     console.log(res.filePath);
+    //   }
+    // },'jpg',100,'myPet');
+
+    localStorage.setItem('isKill', 1)
+    self.currentMood = 'dead';
 
 
   })
@@ -683,6 +686,7 @@ Core.prototype.loadPet = function(uid){
           self.petNamedType = 'insatsu'
         }
 
+
         $('.speechBubble').attr('src','img/'+self.petNamedType+'-speech.png')
         $('.petName').html(data[0].pn)
 
@@ -704,11 +708,13 @@ Core.prototype.loadPet = function(uid){
           $('.petStage6ArmLeft_ringo').hide()
           $('.petStage6ArmRight_ringo').hide()
 
-        }else{
+        }else if (data[0].pl == 6 && self.petNamedType == 'ringo'){
           $('.petStage6ArmLeft_insatsu').hide()
           $('.petStage6ArmRight_insatsu').hide()
           $('.petStage6ArmLeft_ringo').show()
           $('.petStage6ArmRight_ringo').show()
+        }else{
+
         }
 
         //1 == play
@@ -781,7 +787,13 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
           $('.levelupPanel').show()
         }
 
-        if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
+        if(localStorage.getItem('isKill') == 1){
+          self.currentMood = 'dead';
+          $('.petStage6ArmLeft_insatsu').hide()
+          $('.petStage6ArmRight_insatsu').hide()
+          $('.petStage6ArmLeft_ringo').hide()
+          $('.petStage6ArmRight_ringo').hide()
+        }else if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
           self.currentMood = 'happy';
         }else if ((data[0].cs + data[0].fs + data[0].ps) > 100 && (data[0].cs + data[0].fs + data[0].ps) < 200 ){
           self.currentMood = 'meh';
@@ -820,6 +832,18 @@ Core.prototype.actionFeed = function(stage){
   $('.buttonContainer a').addClass('killLink')
   $('.petFood').show()
   $('.petFood').addClass('stage'+petStage+'_foodDrop')
+
+  //1 == play
+  //0  == stop
+  if (localStorage.getItem('sound') == '1'){
+    var audio = new Audio('audio/eat.mp3');
+    audio.play();
+  }else if (localStorage.getItem('sound') == '0'){
+
+  }else{
+    localStorage.setItem('sound', "1")
+  }
+
   setTimeout(function(){
     $('.petFood').hide()
     //$('.petFood').removeClass('stage'+petStage+'_foodDrop')
@@ -850,7 +874,20 @@ Core.prototype.actionFeed = function(stage){
 Core.prototype.actionClean = function(stage){
   var self =  this
   var petStage = stage
+
+  //1 == play
+  //0  == stop
+  if (localStorage.getItem('sound') == '1'){
+    var audio = new Audio('audio/bubbles.mp3');
+    audio.play();
+  }else if (localStorage.getItem('sound') == '0'){
+
+  }else{
+    localStorage.setItem('sound', "1")
+  }
+
   $('.buttonContainer a').addClass('killLink')
+  $('.water').show()
   $('.cleaningBubblesLayer1').fadeIn()
   $('.cleaningBubblesLayer1').addClass('animateBubbles1')
   setTimeout(function(){
@@ -880,6 +917,7 @@ Core.prototype.actionClean = function(stage){
   		success: function(data){
   			console.log(data);
         self.updateActionLevels(localStorage.getItem('userID'),null)
+        $('.water').hide()
   		},
   		error: function(){
         console.log('Error creating pet.')
@@ -901,6 +939,21 @@ Core.prototype.actionEntertain = function(stage){
   var petStage = stage
   $('.entertainStreamers img').show()
   $('.buttonContainer a').addClass('killLink')
+
+  //1 == play
+  //0  == stop
+  if (localStorage.getItem('sound') == '1' && self.currentMood == 'happy' || localStorage.getItem('sound') == '1' && self.currentMood == 'meh'){
+    var audio = new Audio('audio/happy.mp3');
+    audio.play();
+  }else if (localStorage.getItem('sound') == '1' && self.currentMood == 'sad'){
+    var audio = new Audio('audio/sad.mp3');
+    audio.play();
+  }else if (localStorage.getItem('sound') == '0'){
+
+  }else{
+    localStorage.setItem('sound', "1")
+  }
+
   setTimeout(function(){
     $.ajax({
   		type: 'POST',
