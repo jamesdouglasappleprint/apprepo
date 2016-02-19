@@ -694,10 +694,14 @@ Core.prototype.loadPet = function(uid){
         console.log(data[0].pl, self.petNamedType)
         if (data[0].pl == 6 && self.petNamedType == 'insatsu'){
           $('.petStage6ArmLeft_insatsu').show()
+          $('.petStage6ArmLeft_ringo').show()
           $('.petStage6ArmRight_insatsu').show()
+          $('.petStage6ArmRight_ringo').show()
         }else{
           $('.petStage6ArmLeft_insatsu').hide()
+          $('.petStage6ArmLeft_ringo').hide()
           $('.petStage6ArmRight_insatsu').hide()
+          $('.petStage6ArmRight_ringo').hide()
         }
 
         //1 == play
