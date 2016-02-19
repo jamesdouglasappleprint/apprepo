@@ -155,6 +155,7 @@ Core.prototype.loadPanelContent = function(){
   //Show Leaderboard
   $(document).on("click",".leaderBoardButton",function(e){
     e.preventDefault()
+    $('.menuPanel').hide()
     $('.leaderboardPanel').show()
     $('.leaderboardData').html('')
 
@@ -201,6 +202,7 @@ Core.prototype.loadPanelContent = function(){
   $(document).on("click",".closeleaderboard",function(e){
     e.preventDefault()
     $('.leaderboardPanel').hide()
+    $('.menuPanel').show()
   })
 
 
