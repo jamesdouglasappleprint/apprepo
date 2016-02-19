@@ -156,6 +156,7 @@ Core.prototype.loadPanelContent = function(){
   $(document).on("click",".leaderBoardButton",function(e){
     e.preventDefault()
     $('.leaderboardPanel').show()
+    $('.leaderboardData').html('')
 
     $.ajax({
       type: 'POST',
@@ -682,9 +683,12 @@ Core.prototype.loadPet = function(uid){
 
         $('.speechBubble').attr('src','img/'+self.petNamedType+'-speech.png')
         $('.petName').html(data[0].pn)
-        $('.mainPanel').show().addClass(self.petNamedType+'Background')
+
+        $('.mainPanel').show().removeClass('insatsuBackground').removeClass('ringoBackground').addClass(self.petNamedType+'Background')
+
         $('.petMain').removeClass('stage1').removeClass('stage2').removeClass('stage3').removeClass('stage4').removeClass('stage5').removeClass('stage6')
         $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+
         $('.petStage6ArmLeft').attr('src','img/'+self.petNamedType+'/'+self.petNamedType+'-leftarm.png')
         $('.petStage6ArmLeft').removeClass('petStage6ArmLeft_insatsu').removeClass('petStage6ArmLeft_ringo').addClass('petStage6ArmLeft_'+self.petNamedType)
 
@@ -694,14 +698,15 @@ Core.prototype.loadPet = function(uid){
         console.log(data[0].pl, self.petNamedType)
         if (data[0].pl == 6 && self.petNamedType == 'insatsu'){
           $('.petStage6ArmLeft_insatsu').show()
-          $('.petStage6ArmLeft_ringo').show()
           $('.petStage6ArmRight_insatsu').show()
-          $('.petStage6ArmRight_ringo').show()
+          $('.petStage6ArmLeft_ringo').hide()
+          $('.petStage6ArmRight_ringo').hide()
+
         }else{
           $('.petStage6ArmLeft_insatsu').hide()
-          $('.petStage6ArmLeft_ringo').hide()
           $('.petStage6ArmRight_insatsu').hide()
-          $('.petStage6ArmRight_ringo').hide()
+          $('.petStage6ArmLeft_ringo').show()
+          $('.petStage6ArmRight_ringo').show()
         }
 
         //1 == play
