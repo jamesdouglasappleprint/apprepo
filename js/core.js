@@ -64,27 +64,15 @@ Core.prototype.loadPanelContent = function(){
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
 
-    // navigator.screenshot.save(function(error,res){
-    //   if(error){
-    //     console.error(error);
-    //   }else{
-    //     //window.plugins.socialsharing.share('Message and image', null, 'file://'+imageLink, null)
-    //     window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
-    //     console.log(res.filePath);
-    //     console.log(res.URI);
-    //   }
-    // },'jpg',100,'myPet');
-
-    navigator.screenshot.save(ssComplete,'jpg',100,'myPet');
-
-    function ssComplete(error,res) {
+    navigator.screenshot.save(function(error,res){
       if(error){
         console.error(error);
       }else{
         window.plugins.socialsharing.share('Message and image', null, 'file://'+res.filePath, null)
         console.log(res.filePath);
       }
-    }
+    },'jpg',100,'myPet');
+
 
   })
 
@@ -697,6 +685,11 @@ Core.prototype.loadPet = function(uid){
         $('.mainPanel').show().addClass(self.petNamedType+'Background')
         $('.petMain').removeClass('stage1').removeClass('stage2').removeClass('stage3').removeClass('stage4').removeClass('stage5').removeClass('stage6')
         $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        $('.petStage6ArmLeft').attr('src','img/'+self.petNamedType+'/'+self.petNamedType+'-leftarm.png')
+        $('.petStage6ArmLeft').removeClass('petStage6ArmLeft_insatsu').removeClass('petStage6ArmLeft_ringo').addClass('petStage6ArmLeft_'+self.petNamedType)
+
+        $('.petStage6ArmRight').attr('src','img/'+self.petNamedType+'/'+self.petNamedType+'-rightarm.png')
+        $('.petStage6ArmRight').removeClass('petStage6ArmRight_insatsu').removeClass('petStage6ArmRight_ringo').addClass('petStage6ArmRight_'+self.petNamedType)
 
         console.log(data[0].pl, self.petNamedType)
         if (data[0].pl == 6 && self.petNamedType == 'insatsu'){

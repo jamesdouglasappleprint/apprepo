@@ -236,6 +236,16 @@ animation: stage2_foodDrop 400ms linear forwards;
   -webkit-transform-origin: 80% 50%;
   transform-origin: 80% 50%;
 }
+
+.petStage6ArmLeft_ringo {
+  -webkit-animation: armFlapLeft 1s linear infinite;
+  animation: armFlapLeft 1s linear infinite;
+  -moz-animation: armFlapLeft 1s linear infinite;
+  -ms-transform-origin: 80% 50%;
+  -webkit-transform-origin: 80% 50%;
+  transform-origin: 90% 20%;
+}
+
 @-webkit-keyframes armFlapLeft {
   0% {
     -ms-transform: rotate(0deg);
@@ -253,8 +263,42 @@ animation: stage2_foodDrop 400ms linear forwards;
     transform: rotate(0deg);
   }
 }
-/*@-moz-keyframes armFlapLeft {0% {opacity:0;}100%{opacity:1;top: -20px;}}
-@keyframes armFlapLeft {0% {opacity:0;}100%{opacity:1;top: -20px;}}*/
+
+@-moz-keyframes armFlapLeft {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50%{
+    -ms-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  100%{
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes armFlapLeft {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50%{
+    -ms-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  100%{
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
 
 .petStage6ArmRight_insatsu{
   -webkit-animation: armFlapRight 1s linear infinite;
@@ -264,6 +308,17 @@ animation: stage2_foodDrop 400ms linear forwards;
   -webkit-transform-origin: 20% 50%;
   transform-origin: 20% 50%;
 }
+
+.petStage6ArmRight_ringo {
+    -webkit-animation: armFlapRight 1s linear infinite;
+    animation: armFlapRight 1s linear infinite;
+    -moz-animation: armFlapRight 1s linear infinite;
+    -ms-transform-origin: 20% 50%;
+    -webkit-transform-origin: 20% 50%;
+    transform-origin: 0% 20%;
+}
+
+
 @-webkit-keyframes armFlapRight {
   0% {
     -ms-transform: rotate(0deg);
@@ -281,8 +336,40 @@ animation: stage2_foodDrop 400ms linear forwards;
     transform: rotate(0deg);
   }
 }
-/*@-moz-keyframes armFlapRight {0% {opacity:0;}100%{opacity:1;top: -20px;}}
-@keyframes armFlapRight {0% {opacity:0;}100%{opacity:1;top: -20px;}}*/
+@-moz-keyframes armFlapRight {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50%{
+    -ms-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  100%{
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+@keyframes armFlapRight {
+  0% {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50%{
+    -ms-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  100%{
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
 
 /* ------------------------------------------ */
 /* Entertainment - Streamers ---------------- */

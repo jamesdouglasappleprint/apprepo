@@ -319,54 +319,29 @@ form#updateContactDetailsForm {
 /* ------------------------------------------ */
 /* LEADERBOARD ------------------------------ */
 /* ------------------------------------------ */
-.leaderboardEntryContainer img {
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-}
-
-.leaderboardContainer .menuTitle {
-    width: 300px;
-}
-
-.leaderboardScore {
-    display: inline-block;
-    vertical-align: top;
-    height: 50px;
-    text-align: right;
-    font-family: ralewaybold;
-    float: right;
-    font-size:20px;
-}
-
-.leaderboardBold {
-    font-family: ralewaybold;
-    font-size: 16px;
-    margin-bottom: 4px;
-}
-
-.leaderboardEntryContainer {
-    margin-bottom: 10px;
-}
-
-.leaderboardData li {
-    list-style: none;
-    border-bottom: 1px solid rgba(255,255,255,0.4);
-    margin-bottom: 15px;
-}
-
-.leaderboardDetails {
-    display: inline-block;
-    height: 40px;
-    margin-left: 20px;
-    vertical-align: top;
-}
+.leaderboardEntryContainer img {width: 50px;height: 50px;display: inline-block;}
+.leaderboardContainer .menuTitle {width: 300px;}
+.leaderboardScore {display: inline-block;vertical-align: top;height: 50px;text-align: right;font-family: ralewaybold;float: right;font-size:20px;}
+.leaderboardBold {font-family: ralewaybold;font-size: 16px;margin-bottom: 4px;}
+.leaderboardEntryContainer {margin-bottom: 10px;}
+.leaderboardData li {list-style: none;border-bottom: 1px solid rgba(255,255,255,0.4);margin-bottom: 15px;}
+.leaderboardDetails {display: inline-block;height: 40px;margin-left: 20px;vertical-align: top;}
 
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */
-.fullHeightPanel.mainPanel.ringoBackground {background: #701551;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);overflow: hidden;}
-.fullHeightPanel.mainPanel.insatsuBackground {background: #98d3c2;background: -moz-linear-gradient(top,  #98d3c2 0%, #6bdfbf 100%);background: -webkit-linear-gradient(top,  #98d3c2 0%,#6bdfbf 100%);background: linear-gradient(to bottom,  #98d3c2 0%,#6bdfbf 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98d3c2', endColorstr='#6bdfbf',GradientType=0 );overflow: hidden;}
+.fullHeightPanel.mainPanel.ringoBackground {background: #701551;
+  background: -moz-linear-gradient(top, #451451 0%, #701551 100%);
+  background: -webkit-linear-gradient(top, #451451 0%,#701551 100%);
+  background: linear-gradient(to bottom, #451451 0%,#701551 100%);
+  overflow: hidden;
+}
+.fullHeightPanel.mainPanel.insatsuBackground {background: #98d3c2;
+  background: -moz-linear-gradient(top,  #6bdfbf 0%, #98d3c2 100%);
+  background: -webkit-linear-gradient(top,  #6bdfbf 0%,#98d3c2 100%);
+  background: linear-gradient(to bottom,  #6bdfbf 0%,#98d3c2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98d3c2', endColorstr='#6bdfbf',GradientType=0 );
+  overflow: hidden;}
 .storyboardContainer {display: block;background: url('../img/storyboard/storyboardBackground.png');background-size: cover;height: 200%;width: 300%;left: -100%;top:0;position: relative;-webkit-transition: all 1s ease;-moz-transition: all 1s ease;-o-transition: all 1s ease;transition: all 1s ease;}
 .menuContainer {max-width: 250px;display: block;margin-left: auto;margin-right: auto;color: #fff;margin-top: 10px;z-index: 20;}
 .storyboardQuestion_1 {left: 33.33333%;}
@@ -548,6 +523,20 @@ button.submitUpdate {
     position: absolute;
     top: 120px;
     left: 130px;
+}
+.petStage6ArmLeft_ringo {
+  width: 40px;
+  position: absolute;
+  top: 120px;
+  left: 70px;
+  z-index: 5;
+}
+.petStage6ArmRight_ringo {
+  width: 40px;
+position: absolute;
+top: 110px;
+left: 145px;
+z-index: 3;
 }
 /*.petContainer:after {content: "";width: 100%;height: 1px;background: yellow;display: block;position: absolute;top: 75%;left: 0;}
 .petContainer:before {content: "";height: 100%;width: 1px;background: green;display: block;position: absolute;top: 0;left: 50%;}*/
