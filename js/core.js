@@ -29,6 +29,8 @@ function Core(){
   core.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
   core.init();//Initial load checks
   core.logOut()
+
+  $('.menuMusic').get(0).play()
   //core.initPushwoosh()
   //window.plugin.notification.badge.clear(); //clear badge notifications
 }
@@ -62,6 +64,7 @@ Core.prototype.loadPanelContent = function(){
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
+
 
     // navigator.screenshot.save(function(error,res){
     //   if(error){
@@ -521,7 +524,7 @@ Core.prototype.loginOrRegister = function(){
     		success: function(data){
           console.log('Success! User registered.')
           localStorage.setItem("userID", data.userID);
-          navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
+          navigator.notification.alert('Thanks for registering! Now it\'s time to choose your pet!', null, 'Registration Success!', 'Continue')
 
           $('.registerLoginContainer').removeClass('registerLoginReduceMax')
           $('.slideRegister').hide()
@@ -1050,17 +1053,28 @@ Core.prototype.petMurder = function(){
   function kill(buttonIndex) {
     console.log('login failure loop'+buttonIndex)
     if (buttonIndex == 2){
-      alert('this function will kill pet')
-      localStorage.clear();
-      $('.menuPanel').hide()
-      $('.mainPanel').hide()
-      $('.storyboardPanel').hide()
-      $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
-      $('.registerLoginContainer').removeClass('registerLoginReduce')
-      $('.slideLogin').hide()
-
-      //Call unregister
-      core.initPushwoosh(null, null, false, true)
+      $.ajax({
+        type: 'POST',
+        data: localStorage.getItem('petID'),
+        async: false,
+        dataType:'jsonp',
+        jsonp: 'callback',
+        url: 'http://applegotchi.co.uk/Ajax/ghKillPet.ashx',
+        success: function(data){
+          console.log(data)
+          localStorage.clear();
+          $('.menuPanel').hide()
+          $('.mainPanel').hide()
+          $('.storyboardPanel').hide()
+          $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
+          $('.registerLoginContainer').removeClass('registerLoginReduce')
+          $('.slideLogin').hide()
+          $('.logOut').trigger('click')
+        },
+        error: function(){
+          console.log('Error registering user.')
+        }
+      });
     }
   }
 
@@ -1180,14 +1194,6 @@ var app = {
 
         setTimeout(function(){
           $('.registerLoginPanel').show()
-
-          if (localStorage.getItem('music') == '1'){
-            $('.menuMusic').get(0).play()
-          }else if (localStorage.getItem('music') == '0'){
-            $('.menuMusic').get(0).pause()
-          }else{
-            $('.menuMusic').get(0).pause()
-          }
         },2000)
 
     },
