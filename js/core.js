@@ -1054,15 +1054,17 @@ Core.prototype.petMurder = function(){
     console.log('Attempting to kill pet'+buttonIndex)
     if (buttonIndex == 2){
       console.log('button 2')
+      var petID = localStorage.getItem('petID')
       $.ajax({
         type: 'POST',
-        data: localStorage.getItem('petID'),
+        data: petID,
         async: false,
         dataType:'jsonp',
         jsonp: 'callback',
         url: 'http://applegotchi.co.uk/Ajax/ghKillPet.ashx',
         success: function(data){
           console.log(data)
+          console.log('success')
 
           localStorage.clear();
           $('.menuPanel').hide()
