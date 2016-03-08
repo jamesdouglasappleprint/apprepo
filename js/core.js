@@ -1062,6 +1062,7 @@ Core.prototype.petMurder = function(){
         url: 'http://applegotchi.co.uk/Ajax/ghKillPet.ashx',
         success: function(data){
           console.log(data)
+
           localStorage.clear();
           $('.menuPanel').hide()
           $('.mainPanel').hide()
@@ -1069,7 +1070,30 @@ Core.prototype.petMurder = function(){
           $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
           $('.registerLoginContainer').removeClass('registerLoginReduce')
           $('.slideLogin').hide()
-          $('.logOut').trigger('click')
+          //Hide the floating arms so everythings not broken in creation
+          $('.petStage6ArmLeft_insatsu').hide()
+          $('.petStage6ArmRight_insatsu').hide()
+          $('.petStage6ArmLeft_ringo').hide()
+          $('.petStage6ArmRight_ringo').hide()
+
+          //1 == play
+          //0  == stop
+          //if music is set to on, play
+          if (save == '1'){
+            $('.menuMusic').get(0).play()
+            $('.gameMusic').get(0).pause()
+            localStorage.setItem('music', "1")
+
+          //else if music is set to off, pause both
+          }else if (save == '0'){
+            $('.menuMusic').get(0).pause()
+            $('.gameMusic').get(0).pause()
+            $('.toggleMusic').addClass('disabledAudio')
+            localStorage.setItem('music', "0")
+          }else{
+            $('.menuMusic').get(0).pause()
+            $('.gameMusic').get(0).pause()
+          }
         },
         error: function(){
           console.log('Error registering user.')
