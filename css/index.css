@@ -179,6 +179,9 @@ form#registerForm input {margin-bottom: 5px;}
 ::-moz-placeholder {color:    #fff;opacity:  1;}
 :-ms-input-placeholder {color:    #fff;}
 :placeholder-shown {color:    #fff;}
+.missingField {
+    border: 1px solid #E3097E;
+}
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {background-color: rgb(250, 255, 189, 0);background-image: none;color: rgb(0, 0, 0);}
 form {display: flex;display: -webkit-flex;-webkit-box-pack: start;flex-direction: row;-webkit-flex-direction: row;flex-wrap: wrap;-webkit-flex-wrap: wrap;align-content: center;-webkit-align-content: center;justify-content: center;-webkit-justify-content: center;align-items: center;-webkit-align-items: center;max-width: 250px;
 margin-left: auto;
@@ -186,7 +189,13 @@ margin-right: auto;}
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */
-.fullHeightPanel.loadingPanel{text-align: center;color: #fff;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );}
+.fullHeightPanel.loadingPanel {
+    text-align: center;
+    color: #fff;
+    background: url("../img/splash.png");
+    background-size: cover;
+    background-position: center;
+}
 
 .fullHeightPanel.storyboardPanel {display: none;background: #701551;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );-webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 400ms linear forwards;animation: slidePanelInFromRight 400ms linear forwards;-moz-animation: slidePanelInFromRight 400ms linear forwards;color:#fff;}
 
@@ -482,7 +491,20 @@ button.submitUpdate {
     align-items: center;
     -webkit-align-items: center;
 }
-
+.closeSpeechBubble {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2000;
+    font-size: 23px;
+    width: 40px;
+    text-align: center;
+    margin-left: -20px;
+    line-height: 40px;
+    height: 40px;
+    margin-top: -80px;
+    display: none;
+}
 .showSpeechText{
   display: flex;
   display: -webkit-flex;

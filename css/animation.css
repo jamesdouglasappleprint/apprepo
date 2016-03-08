@@ -385,18 +385,18 @@ animation: stage2_foodDrop 400ms linear forwards;
 
 @-webkit-keyframes water {
   0% {top:100%;}
-  50% {top:50%;left:-2%}
-  100% {top:50%;}
+  50% {top:60%;left:-2%}
+  100% {top:60%;}
 }
 @-moz-keyframes dropStreamers1 {
   0% {top:100%;}
-  50% {top:50%;left:-2%}
-  100% {top:50%;}
+  50% {top:60%;left:-2%}
+  100% {top:60%;}
 }
 @keyframes dropStreamers1 {
   0% {top:100%;}
-  50% {top:50%;left:-2%}
-  100% {top:50%;}
+  50% {top:60%;left:-2%}
+  100% {top:60%;}
 }
 
 /* ------------------------------------------ */

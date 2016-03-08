@@ -17,31 +17,30 @@
 
 function Core(){
   console.log('Core Loaded');
-  var self = this;
+  var core = this;
 
+  core.currentMood = 'happy';
+  core.petNamedType = ""; //current pet type as a name
+  core.petLevel = 1; //current pet type as a name
+  core.userID = 0; //Pet Name
 
-  self.currentMood = 'happy';
-  self.petNamedType = ""; //current pet type as a name
-  self.petLevel = 1; //current pet type as a name
-  self.userID = 0; //Pet Name
-
-  self.loadPanelContent();//Load panels with content
-  self.loginOrRegister(); //Load form options
-  self.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
-  self.init();//Initial load checks
-  self.logOut()
-  self.initPushwoosh()
-  window.plugin.notification.badge.clear(); //clear badge notifications
+  core.loadPanelContent();//Load panels with content
+  core.loginOrRegister(); //Load form options
+  core.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
+  core.init();//Initial load checks
+  core.logOut()
+  //core.initPushwoosh()
+  //window.plugin.notification.badge.clear(); //clear badge notifications
 }
 
 //Initialiser
 Core.prototype.init = function (x) {
-  var self = this
+  var core = this
 
   if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
     console.log('remain logged in is true')
     //get up to date pet data
-    self.loadPet(localStorage.getItem("userID"))
+    core.loadPet(localStorage.getItem("userID"))
   }else{
 
   }
@@ -50,7 +49,7 @@ Core.prototype.init = function (x) {
 
 //Load HTML into panels
 Core.prototype.loadPanelContent = function(){
-  var self = this
+  var core = this
   console.log('Loading Panel Content')
 
   $('.registerLoginPanel').load("registerlogin.html")
@@ -74,7 +73,7 @@ Core.prototype.loadPanelContent = function(){
     // },'jpg',100,'myPet');
 
     localStorage.setItem('isKill', 1)
-    self.currentMood = 'dead';
+    core.currentMood = 'dead';
 
 
   })
@@ -82,19 +81,19 @@ Core.prototype.loadPanelContent = function(){
   //Click to feed!
   $(document).on("click",".buttonFeed",function(e){
     e.preventDefault()
-    self.actionFeed(localStorage.getItem('petLevel'))
+    core.actionFeed(localStorage.getItem('petLevel'))
   })
 
   //Click to feed!
   $(document).on("click",".buttonClean",function(e){
     e.preventDefault()
-    self.actionClean(localStorage.getItem('petLevel'))
+    core.actionClean(localStorage.getItem('petLevel'))
   })
 
   //Click to Entertain!
   $(document).on("click",".buttonEntertain",function(e){
     e.preventDefault()
-    self.actionEntertain(localStorage.getItem('petLevel'))
+    core.actionEntertain(localStorage.getItem('petLevel'))
   })
 
   //Click to open contact details menu
@@ -152,7 +151,7 @@ Core.prototype.loadPanelContent = function(){
   //Kill your pet
   $(document).on("click",".petMurder",function(e){
     e.preventDefault()
-    self.petMurder()
+    core.petMurder()
   })
 
   //Show Leaderboard
@@ -251,8 +250,10 @@ Core.prototype.loadPanelContent = function(){
 
     if (localStorage.getItem('sound') == '1'){
        window.localStorage.setItem('sound', '0')
-    }else{
+    }else if (localStorage.getItem('sound') == '0'){
        window.localStorage.setItem('sound', '1')
+    }else{
+
     }
 
 
@@ -285,7 +286,7 @@ Core.prototype.loadPanelContent = function(){
 
 //Log out and clear all local data
 Core.prototype.logOut = function(){
-  var self = this
+  var core = this
   var save = localStorage.getItem('music')
   //Click to Entertain!
   $(document).on("click",".logOut",function(e){
@@ -297,6 +298,11 @@ Core.prototype.logOut = function(){
     $('.registerLoginPanel').removeClass('displaceBackgroundLogin')
     $('.registerLoginContainer').removeClass('registerLoginReduce')
     $('.slideLogin').hide()
+    //Hide the floating arms so everythings not broken in creation
+    $('.petStage6ArmLeft_insatsu').hide()
+    $('.petStage6ArmRight_insatsu').hide()
+    $('.petStage6ArmLeft_ringo').hide()
+    $('.petStage6ArmRight_ringo').hide()
 
     //1 == play
     //0  == stop
@@ -319,13 +325,96 @@ Core.prototype.logOut = function(){
 
 
     //Call unregister
-    self.initPushwoosh(null, null, false, true)
+    core.initPushwoosh(null, null, false, true)
   })
+}
+
+//Script for logging in
+Core.prototype.fireLoginScript = function(deets){
+  var core = this
+  $.ajax({
+    type: 'POST',
+    data: deets,
+    dataType:'jsonp',
+    jsonp: 'callback',
+    url: 'http://applegotchi.co.uk/Ajax/ghLogon.ashx',
+    success: function(data){
+      console.log(data);
+
+      function loginFailure(buttonIndex) {
+        console.log('login failure loop'+buttonIndex)
+        if (buttonIndex == 1){
+          $('.submitLogin').trigger('click')
+        }
+      }
+
+      if (data.error == "user not found"){
+        console.log('user not found')
+        navigator.notification.confirm('User not found. Please check your login details and try again!', loginFailure, 'Login failure', ['Retry','Cancel'])
+      }else{
+        console.log('user found')
+        core.userID = data.uid
+
+        localStorage.setItem('userID', data.uid)
+        localStorage.setItem('firstName', data.firstname)
+        localStorage.setItem('lastName', data.lastname)
+        localStorage.setItem('postcode', data.postcode)
+        localStorage.setItem('AddressLine1', data.add1)
+        localStorage.setItem('AddressLine2', data.add2)
+        localStorage.setItem('AddressLine3', data.add3)
+        localStorage.setItem('emailaddress', data.emailaddress)
+        localStorage.setItem('town', data.town)
+        localStorage.setItem('password', data.password)
+
+        //TODO:: renable
+        //core.initPushwoosh(data.emailaddress, null, false)
+
+        if (localStorage.getItem("hasPet") != 'true'){
+          console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
+
+          //Check to see if user already has login, but has cleared localstorage
+          $.ajax({
+            type: 'POST',
+            data: 'uid='+data.uid,
+            dataType:'jsonp',
+            jsonp: 'callback',
+            url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
+            success: function(data){
+              console.log(data);
+
+              //If pet data exists
+              if (data.length == 1){
+                console.log('No localstorage was present, but the user has a pet. Loading Pet...')
+                core.loadPet(core.userID)
+              }else{
+                //Start creation story
+                core.creationStory();
+                $('.storyboardPanel').show()
+              }
+
+
+
+            },
+            error: function(){
+              console.log('Error registering user.')
+            }
+          });
+        }else{
+          console.log('You have signed in and already have a pet!')
+          //skip to creature
+          core.loadPet(core.userID)
+        }
+      }
+    },
+    error: function(){
+      console.log('Error registering user.')
+    }
+  });
 }
 
 //Login and Register Functions
 Core.prototype.loginOrRegister = function(){
-  var self = this
+  var core = this
   console.log('Loading Panel Content')
 
   //If remmber me button clicked
@@ -378,28 +467,76 @@ Core.prototype.loginOrRegister = function(){
   	e.preventDefault()
     localStorage.clear();
   	console.log('Submit Register has been clicked')
-  	var postData = $('form#registerForm').serialize();
-    var fakeDetailsRemoved = postData.replace('&fakeusernameremembered=&fakepasswordremembered=','');
-  	$.ajax({
-  		type: 'POST',
-  		data: fakeDetailsRemoved,
-      dataType:'jsonp',
-      jsonp: 'callback',
-  		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
-  		success: function(data){
-        console.log('Success! User registered.')
-        localStorage.setItem("userID", data.userID);
-        navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
 
-        $('.registerLoginContainer').removeClass('registerLoginReduceMax')
-        $('.slideRegister').hide()
-        $('.registerLoginPanel').removeClass('displaceBackgroundRegister')
-  		},
-  		error: function(){
-        console.log('Error registering user.')
-        navigator.notification.alert('Oops! It looks like something went wrong...', null, 'Registration Failure :(', 'ok')
-  		}
-    });
+    function isValidEmailAddress(emailAddress) {
+      var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+      return pattern.test(emailAddress);
+    };
+
+    function validationCheck(){
+
+      var fields = true
+      var email = false
+
+      var emailaddress = $("#registerForm #email").val()
+
+      $("#registerForm input").each(function(){
+        if ($(this).val() == '' && !$(this).hasClass('ignoreField')){
+          $(this).addClass('missingField')
+          fields = false
+        }else if (!$(this).val() == '' && !$(this).hasClass('ignoreField')){
+          $(this).removeClass('missingField')
+        }
+
+      })
+
+      if( !isValidEmailAddress( emailaddress )) {
+        email = false
+        $("#registerForm #email").addClass('missingField')
+      }else{
+        $("#registerForm #email").removeClass('missingField')
+        email = true
+      }
+
+      if (fields == true && email == true){
+        return true
+      }else{
+        return false
+      }
+
+
+    }
+
+
+    if (validationCheck() == true){
+      console.log('validation true')
+      var postData = $('form#registerForm').serialize();
+      var fakeDetailsRemoved = postData.replace('&fakeusernameremembered=&fakepasswordremembered=','');
+    	$.ajax({
+    		type: 'POST',
+    		data: fakeDetailsRemoved,
+        dataType:'jsonp',
+        jsonp: 'callback',
+    		url: 'http://applegotchi.co.uk/Ajax/ghRegister.ashx',
+    		success: function(data){
+          console.log('Success! User registered.')
+          localStorage.setItem("userID", data.userID);
+          navigator.notification.alert('Thanks for registering! You can now log in using your email and password', null, 'Registration Success!', 'Continue')
+
+          $('.registerLoginContainer').removeClass('registerLoginReduceMax')
+          $('.slideRegister').hide()
+          $('.registerLoginPanel').removeClass('displaceBackgroundRegister')
+          core.fireLoginScript(fakeDetailsRemoved)
+    		},
+    		error: function(){
+          console.log('Error registering user.')
+          navigator.notification.alert('Oops! It looks like something went wrong...', null, 'Registration Failure :(', 'ok')
+    		}
+      });
+    }else{
+      navigator.notification.alert('Please check you have filled out all fields correctly!', null, 'Registration Error!', 'Ok')
+    }
+
 
   });
 
@@ -409,99 +546,21 @@ Core.prototype.loginOrRegister = function(){
   	console.log('Submit Login has been clicked')
   	var postData = $('form#loginForm').serialize();
     var fakeDetailsRemoved = decodeURIComponent(postData.replace('fakeusernameremembered=&fakepasswordremembered=&',''));
-  	$.ajax({
-  		type: 'POST',
-  		data: fakeDetailsRemoved,
-      dataType:'jsonp',
-      jsonp: 'callback',
-  		url: 'http://applegotchi.co.uk/Ajax/ghLogon.ashx',
-  		success: function(data){
-  			console.log(data);
-
-        function loginFailure(buttonIndex) {
-          console.log('login failure loop'+buttonIndex)
-          if (buttonIndex == 1){
-            $('.submitLogin').trigger('click')
-          }
-        }
-
-        if (data.error == "user not found"){
-          console.log('user not found')
-          navigator.notification.confirm('User not found. Please check your login details and try again!', loginFailure, 'Login failure', ['Retry','Cancel'])
-        }else{
-          console.log('user found')
-          self.userID = data.uid
-
-          localStorage.setItem('userID', data.uid)
-          localStorage.setItem('firstName', data.firstname)
-          localStorage.setItem('lastName', data.lastname)
-          localStorage.setItem('postcode', data.postcode)
-          localStorage.setItem('AddressLine1', data.add1)
-          localStorage.setItem('AddressLine2', data.add2)
-          localStorage.setItem('AddressLine3', data.add3)
-          localStorage.setItem('emailaddress', data.emailaddress)
-          localStorage.setItem('town', data.town)
-          localStorage.setItem('password', data.password)
-
-          //TODO:: renable
-          self.initPushwoosh(data.emailaddress, null, false)
-
-          if (localStorage.getItem("hasPet") != 'true'){
-            console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
-
-            //Check to see if user already has login, but has cleared localstorage
-            $.ajax({
-              type: 'POST',
-              data: 'uid='+data.uid,
-              dataType:'jsonp',
-              jsonp: 'callback',
-              url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
-              success: function(data){
-                console.log(data);
-
-                //If pet data exists
-                if (data.length == 1){
-                  console.log('No localstorage was present, but the user has a pet. Loading Pet...')
-                  self.loadPet(self.userID)
-                }else{
-                  //Start creation story
-                  self.creationStory();
-                  $('.storyboardPanel').show()
-                }
-
-
-
-              },
-              error: function(){
-                console.log('Error registering user.')
-              }
-            });
-          }else{
-            console.log('You have signed in and already have a pet!')
-            //skip to creature
-            self.loadPet(self.userID)
-          }
-        }
-  		},
-  		error: function(){
-        console.log('Error registering user.')
-  		}
-    });
-
+    core.fireLoginScript(fakeDetailsRemoved)
   });
 }//END
 
 //Assigns global mood to whatever you feed it
 Core.prototype.assignMood = function(mood){
-  var self = this;
+  var core = this;
   var thisMood = mood;
-  self.currentMood = thisMood;
+  core.currentMood = thisMood;
 }
 
 //All code for creation story, including assigning which pet you've picked
 Core.prototype.creationStory = function(){
   //this code is probably temporary...
-  var self = this
+  var core = this
   var flag1 = ''; //first stage check
   var flag2 = ''; //second stage check
   var flag3 = ''; //third stage check
@@ -618,7 +677,7 @@ Core.prototype.creationStory = function(){
         localStorage.setItem("petName", nameofpet);
         localStorage.setItem("petType", petType);
         localStorage.setItem("hasPet", true);
-        self.loadPet(localStorage.getItem("userID"))
+        core.loadPet(localStorage.getItem("userID"))
   		},
   		error: function(){
         console.log('Error creating pet.')
@@ -662,7 +721,7 @@ Core.prototype.creationStory = function(){
 
 //Load pet data
 Core.prototype.loadPet = function(uid){
-  var self = this
+  var core = this
 
   console.log('Loading Pet')
 
@@ -678,37 +737,37 @@ Core.prototype.loadPet = function(uid){
       if (data.length == 1){
         if (data[0].pt == 2){
           //Ringo
-          self.petNamedType = 'ringo'
+          core.petNamedType = 'ringo'
           localStorage.setItem("petNamedType", "ringo")
         }else{
           //Insatsu
           localStorage.setItem("petNamedType", "insatsu")
-          self.petNamedType = 'insatsu'
+          core.petNamedType = 'insatsu'
         }
 
 
-        $('.speechBubble').attr('src','img/'+self.petNamedType+'-speech.png')
+        $('.speechBubble').attr('src','img/'+core.petNamedType+'-speech.png')
         $('.petName').html(data[0].pn)
 
-        $('.mainPanel').show().removeClass('insatsuBackground').removeClass('ringoBackground').addClass(self.petNamedType+'Background')
+        $('.mainPanel').show().removeClass('insatsuBackground').removeClass('ringoBackground').addClass(core.petNamedType+'Background')
 
         $('.petMain').removeClass('stage1').removeClass('stage2').removeClass('stage3').removeClass('stage4').removeClass('stage5').removeClass('stage6')
-        $('.petMain').attr('src', 'img/'+self.petNamedType+'/'+self.petNamedType+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        $('.petMain').attr('src', 'img/'+core.petNamedType+'/'+core.petNamedType+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
 
-        $('.petStage6ArmLeft').attr('src','img/'+self.petNamedType+'/'+self.petNamedType+'-leftarm.png')
-        $('.petStage6ArmLeft').removeClass('petStage6ArmLeft_insatsu').removeClass('petStage6ArmLeft_ringo').addClass('petStage6ArmLeft_'+self.petNamedType)
+        $('.petStage6ArmLeft').attr('src','img/'+core.petNamedType+'/'+core.petNamedType+'-leftarm.png')
+        $('.petStage6ArmLeft').removeClass('petStage6ArmLeft_insatsu').removeClass('petStage6ArmLeft_ringo').addClass('petStage6ArmLeft_'+core.petNamedType)
 
-        $('.petStage6ArmRight').attr('src','img/'+self.petNamedType+'/'+self.petNamedType+'-rightarm.png')
-        $('.petStage6ArmRight').removeClass('petStage6ArmRight_insatsu').removeClass('petStage6ArmRight_ringo').addClass('petStage6ArmRight_'+self.petNamedType)
+        $('.petStage6ArmRight').attr('src','img/'+core.petNamedType+'/'+core.petNamedType+'-rightarm.png')
+        $('.petStage6ArmRight').removeClass('petStage6ArmRight_insatsu').removeClass('petStage6ArmRight_ringo').addClass('petStage6ArmRight_'+core.petNamedType)
 
-        console.log(data[0].pl, self.petNamedType)
-        if (data[0].pl == 6 && self.petNamedType == 'insatsu'){
+        console.log(data[0].pl, core.petNamedType)
+        if (data[0].pl == 6 && core.petNamedType == 'insatsu'){
           $('.petStage6ArmLeft_insatsu').show()
           $('.petStage6ArmRight_insatsu').show()
           $('.petStage6ArmLeft_ringo').hide()
           $('.petStage6ArmRight_ringo').hide()
 
-        }else if (data[0].pl == 6 && self.petNamedType == 'ringo'){
+        }else if (data[0].pl == 6 && core.petNamedType == 'ringo'){
           $('.petStage6ArmLeft_insatsu').hide()
           $('.petStage6ArmRight_insatsu').hide()
           $('.petStage6ArmLeft_ringo').show()
@@ -734,12 +793,11 @@ Core.prototype.loadPet = function(uid){
         }
 
         if (localStorage.getItem('sound') == '1'){
-          window.localStorage.setItem('sound', '0')
         }else{
           window.localStorage.setItem('sound', '1')
         }
 
-        self.updateActionLevels(uid,'firstload')
+        core.updateActionLevels(uid,'firstload')
       }else{
         console.log('retreievePetData has been fired, but there\'s no pet data to recall')
         localStorage.clear();
@@ -754,7 +812,7 @@ Core.prototype.loadPet = function(uid){
 
 //Update current action levels of pet (and score)
 Core.prototype.updateActionLevels = function(uid,firstLoad){
-  var self = this
+  var core = this
 
   var prevPetLevel = localStorage.getItem("petLevel")
 
@@ -780,7 +838,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        self.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        //core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         //console.log(firstLoad)
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
@@ -788,20 +846,20 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         }
 
         if(localStorage.getItem('isKill') == 1){
-          self.currentMood = 'dead';
+          core.currentMood = 'dead';
           $('.petStage6ArmLeft_insatsu').hide()
           $('.petStage6ArmRight_insatsu').hide()
           $('.petStage6ArmLeft_ringo').hide()
           $('.petStage6ArmRight_ringo').hide()
         }else if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
-          self.currentMood = 'happy';
+          core.currentMood = 'happy';
         }else if ((data[0].cs + data[0].fs + data[0].ps) > 100 && (data[0].cs + data[0].fs + data[0].ps) < 200 ){
-          self.currentMood = 'meh';
+          core.currentMood = 'meh';
         }else{
-          self.currentMood = 'sad';
+          core.currentMood = 'sad';
         }
 
-        $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+self.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
         $('.petMain').removeClass('stage'+(data[0].pl-1))
         $('.petMain').removeClass('stage'+(data[0].pl-2))
         $('.petMain').removeClass('stage'+(data[0].pl-3))
@@ -827,7 +885,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
 
 //Pet Action: Feeding
 Core.prototype.actionFeed = function(stage){
-  var self =  this
+  var core =  this
   var petStage = stage
   $('.buttonContainer a').addClass('killLink')
   $('.petFood').show()
@@ -858,7 +916,7 @@ Core.prototype.actionFeed = function(stage){
   		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
   		success: function(data){
   			console.log(data);
-        self.updateActionLevels(localStorage.getItem('userID'),null)
+        core.updateActionLevels(localStorage.getItem('userID'),null)
   		},
   		error: function(){
         console.log('Error creating pet.')
@@ -872,7 +930,7 @@ Core.prototype.actionFeed = function(stage){
 
 //Pet Action: Cleaning
 Core.prototype.actionClean = function(stage){
-  var self =  this
+  var core =  this
   var petStage = stage
 
   //1 == play
@@ -916,7 +974,7 @@ Core.prototype.actionClean = function(stage){
   		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
   		success: function(data){
   			console.log(data);
-        self.updateActionLevels(localStorage.getItem('userID'),null)
+        core.updateActionLevels(localStorage.getItem('userID'),null)
         $('.water').hide()
   		},
   		error: function(){
@@ -935,17 +993,17 @@ Core.prototype.actionClean = function(stage){
 
 //Pet Action: Entertain
 Core.prototype.actionEntertain = function(stage){
-  var self =  this
+  var core =  this
   var petStage = stage
   $('.entertainStreamers img').show()
   $('.buttonContainer a').addClass('killLink')
 
   //1 == play
   //0  == stop
-  if (localStorage.getItem('sound') == '1' && self.currentMood == 'happy' || localStorage.getItem('sound') == '1' && self.currentMood == 'meh'){
+  if (localStorage.getItem('sound') == '1' && core.currentMood == 'happy' || localStorage.getItem('sound') == '1' && core.currentMood == 'meh'){
     var audio = new Audio('audio/happy.mp3');
     audio.play();
-  }else if (localStorage.getItem('sound') == '1' && self.currentMood == 'sad'){
+  }else if (localStorage.getItem('sound') == '1' && core.currentMood == 'sad'){
     var audio = new Audio('audio/sad.mp3');
     audio.play();
   }else if (localStorage.getItem('sound') == '0'){
@@ -964,7 +1022,7 @@ Core.prototype.actionEntertain = function(stage){
   		url: 'http://applegotchi.co.uk/Ajax/ghAction.ashx',
   		success: function(data){
   			console.log(data);
-        self.updateActionLevels(localStorage.getItem('userID'),null)
+        core.updateActionLevels(localStorage.getItem('userID'),null)
   		},
   		error: function(){
         console.log('Error creating pet.')
@@ -980,29 +1038,8 @@ Core.prototype.actionEntertain = function(stage){
 
 //TEMP SHIT DELETE THIS WHEN YO DONE
 Core.prototype.buildFunctionsDelete = function(){
-  var self = this
+  var core = this
   // +++ DELETE THIS FOR PRODUCTION +++
-
-  $(document).on("click",".skipLoading",function(e){
-    $('.registerLoginPanel').show()
-
-    if (localStorage.getItem('music') == '1'){
-      $('.menuMusic').get(0).play()
-    }else if (localStorage.getItem('music') == '0'){
-      $('.menuMusic').get(0).pause()
-    }else{
-      $('.menuMusic').get(0).pause()
-    }
-
-
-  })
-
-  $(document).on("click",".creationBypass",function(e){
-    // self.creationStory();
-    // $('.storyboardPanel').show()
-    e.preventDefault()
-
-  })
 
 
 }
@@ -1023,7 +1060,7 @@ Core.prototype.petMurder = function(){
       $('.slideLogin').hide()
 
       //Call unregister
-      self.initPushwoosh(null, null, false, true)
+      core.initPushwoosh(null, null, false, true)
     }
   }
 
@@ -1033,14 +1070,16 @@ Core.prototype.petMurder = function(){
 }
 
 Core.prototype.speechBubble = function(message){
-  var self = this
+  var core = this
   $('.speechBubble').show()
+  $('.closeSpeechBubble').show()
   $('.speechBubbleText').addClass('showSpeechText').html(message)
 
   $(document).on("click",".speechBubbleContainer",function(e){
     $('.speechBubble').addClass('shrinkBubble')
     setTimeout(function(){
       $('.speechBubble').hide()
+      $('.closeSpeechBubble').hide()
       $('.speechBubble').removeClass('shrinkBubble')
     },1000)
     $('.speechBubbleText').removeClass('showSpeechText')
@@ -1049,7 +1088,7 @@ Core.prototype.speechBubble = function(message){
 }
 
 Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
-  var self = this
+  var core = this
 
   //FYI ///////////////////////////////////////////////////////////////
   //Email = users email, petLevel = pets level and setTags = true/false
@@ -1098,7 +1137,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
   //else assume we're registering
   }else if(unRegister === true){
     console.log('Attempting unregister...')
-    PushNotification.unregisterDevice (
+    pushNotification.unregisterDevice (
       function(token){
           console.log("unregistered success!" + token);
       },
@@ -1111,7 +1150,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
       var notification = event.notification;
       console.log('push message recieved');
       pushNotification.setApplicationIconBadgeNumber(0);
-      self.speechBubble(notification.aps.alert)
+      core.speechBubble(notification.aps.alert)
       //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
     });
 
@@ -1138,6 +1177,19 @@ var app = {
     initialize: function() {
         this.bindEvents();
         console.log('device initialise')
+
+        setTimeout(function(){
+          $('.registerLoginPanel').show()
+
+          if (localStorage.getItem('music') == '1'){
+            $('.menuMusic').get(0).play()
+          }else if (localStorage.getItem('music') == '0'){
+            $('.menuMusic').get(0).pause()
+          }else{
+            $('.menuMusic').get(0).pause()
+          }
+        },2000)
+
     },
     // Bind Event Listeners
     //
@@ -1171,6 +1223,7 @@ var app = {
 document.addEventListener("deviceready", OnDeviceReady, false);
 function OnDeviceReady()    {
   console.log('device is ready')
+
   window.plugin.notification.badge.clear();//clear notification badges
 }
 
