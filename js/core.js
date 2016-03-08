@@ -568,6 +568,9 @@ Core.prototype.creationStory = function(){
   var flag2 = ''; //second stage check
   var flag3 = ''; //third stage check
 
+  $('.storyboardContainer').css({left:'100%', top:'0'})
+
+
   $(document).on("click",".option_a",function(e){
     e.preventDefault()
     console.log('option A')
