@@ -1053,6 +1053,7 @@ Core.prototype.petMurder = function(){
   function kill(buttonIndex) {
     console.log('Attempting to kill pet'+buttonIndex)
     if (buttonIndex == 2){
+      console.log('button 2')
       $.ajax({
         type: 'POST',
         data: localStorage.getItem('petID'),
