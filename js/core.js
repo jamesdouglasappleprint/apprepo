@@ -1057,7 +1057,7 @@ Core.prototype.petMurder = function(){
       var petID = localStorage.getItem('petID')
       $.ajax({
         type: 'POST',
-        data: petID,
+        data: 'pid='+petID,
         async: false,
         dataType:'jsonp',
         jsonp: 'callback',
@@ -1105,7 +1105,8 @@ Core.prototype.petMurder = function(){
     }
   }
 
-  navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
+  kill(2)
+  //navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
 
 
 }
