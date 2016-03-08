@@ -1051,7 +1051,7 @@ Core.prototype.buildFunctionsDelete = function(){
 Core.prototype.petMurder = function(){
 
   function kill(buttonIndex) {
-    console.log('login failure loop'+buttonIndex)
+    console.log('Attempting to kill pet'+buttonIndex)
     if (buttonIndex == 2){
       $.ajax({
         type: 'POST',
@@ -1095,8 +1095,8 @@ Core.prototype.petMurder = function(){
             $('.gameMusic').get(0).pause()
           }
         },
-        error: function(){
-          console.log('Error registering user.')
+        error: function(data){
+          console.log('Pet immortal - murder failure '+data)
         }
       });
     }
