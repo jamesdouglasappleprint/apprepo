@@ -421,6 +421,10 @@ form#scoreboostIncrement {
     top: calc(50% - 52px);
     height: 104px;
 }
+.scoreboostContainer .questionTitle {
+    position: absolute;
+    top: 25%;
+}
 /* ------------------------------------------ */
 /* Main Panel ------------------------------- */
 /* ------------------------------------------ */
