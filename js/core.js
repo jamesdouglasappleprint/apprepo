@@ -628,6 +628,7 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option g')
     flag3 = 'insatsu'
+    $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
 
@@ -636,6 +637,7 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option h')
     flag3 = 'ringo'
+    $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
 
@@ -644,6 +646,7 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option i')
     flag3 = 'insatsu'
+    $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
 
@@ -652,6 +655,7 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option j')
     flag3 = 'ringo'
+    $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
 
