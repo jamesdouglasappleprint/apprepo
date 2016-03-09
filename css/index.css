@@ -412,6 +412,9 @@ form#updateContactDetailsForm {
     height: 100%;
     position: relative;
     color: #fff;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 form#scoreboostIncrement {
     position: relative;
