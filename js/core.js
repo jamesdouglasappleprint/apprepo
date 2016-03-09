@@ -118,6 +118,13 @@ Core.prototype.loadPanelContent = function(){
     core.actionClean(localStorage.getItem('petLevel'))
   })
 
+  //Click to feed!
+  $(document).on("click",".externalLink",function(e){
+    e.preventDefault()
+    var link = $(this).attr('href')
+    window.open(link, '_system')
+  })
+
   //Click to Entertain!
   $(document).on("click",".buttonEntertain",function(e){
     e.preventDefault()
