@@ -251,7 +251,7 @@ margin-right: auto;}
   text-align: center;
   line-height: 44px;
   border-bottom: 1px solid #fff;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   border-radius: 0;
 }
 .menuContainer>a {
@@ -303,7 +303,25 @@ margin-right: auto;}
     -webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 400ms linear forwards;animation: slidePanelInFromRight 400ms linear forwards;-moz-animation: slidePanelInFromRight 400ms linear forwards;
     background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
 }
-.closeleaderboard {
+.fullHeightPanel.creditsPanel {
+    display: none;
+    z-index: 21;
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+    -ms-transform: translate(100%,0);
+    -webkit-transform: translate(100%,0);
+    transform: translate(100%,0);
+    -webkit-animation: slidePanelInFromRight 400ms linear forwards;
+    animation: slidePanelInFromRight 400ms linear forwards;
+    -moz-animation: slidePanelInFromRight 400ms linear forwards;
+    background: -moz-linear-gradient(top, #701551 0%, #451451 100%);
+    background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);
+    background: linear-gradient(to bottom, #701551 0%,#451451 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
+}
+.closeleaderboard, .closeCredits {
     top: auto;
     bottom: 20px;
     left: 50%;
@@ -333,6 +351,10 @@ form#updateContactDetailsForm>input {
 form#updateContactDetailsForm {
     margin-top: 20px;
 }
+.menuContainer>.credits {
+    font-size: 14px;
+    padding: 0;
+}
 /* ------------------------------------------ */
 /* LEADERBOARD ------------------------------ */
 /* ------------------------------------------ */
@@ -343,7 +365,22 @@ form#updateContactDetailsForm {
 .leaderboardEntryContainer {margin-bottom: 10px;}
 .leaderboardData li {list-style: none;border-bottom: 1px solid rgba(255,255,255,0.4);margin-bottom: 15px;}
 .leaderboardDetails {display: inline-block;height: 40px;margin-left: 20px;vertical-align: top;}
-
+/* ------------------------------------------ */
+/* credits ---------------------------------- */
+/* ------------------------------------------ */
+.creditsContainer {
+    color: #fff;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.creditsContainer p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.creditsContainer>p>a {
+    color: #E3097E;
+}
 /* ------------------------------------------ */
 /* STORYBOARD ------------------------------- */
 /* ------------------------------------------ */

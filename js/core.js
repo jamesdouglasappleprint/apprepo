@@ -62,6 +62,7 @@ Core.prototype.loadPanelContent = function(){
   $('.contactDetailsPanel').load("contactdetails.html")
   $('.leaderboardPanel').load("leaderboard.html")
   $('.scoreboostPanel').load("scoreboost.html")
+  $('.creditsPanel').load("credits.html")
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
@@ -97,7 +98,18 @@ Core.prototype.loadPanelContent = function(){
     e.preventDefault()
     var toSend = $('#scoreboost').val()
     console.log(toSend)
+  })
 
+  //Click to open credits
+  $(document).on("click",".credits",function(e){
+    e.preventDefault()
+    $('.creditsPanel').show()
+  })
+
+  //Click to close credits
+  $(document).on("click",".closeCredits",function(e){
+    e.preventDefault()
+    $('.creditsPanel').hide()
   })
 
   //Click to feed!
