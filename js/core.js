@@ -61,10 +61,14 @@ Core.prototype.loadPanelContent = function(){
   $('.levelupPanel').load("levelup.html")
   $('.contactDetailsPanel').load("contactdetails.html")
   $('.leaderboardPanel').load("leaderboard.html")
+  $('.scoreboostPanel').load("scoreboost.html")
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
 
+    //NOTE: this code was used to save a screenshot and then share it to social media
+    //NOTE: but it looks like iOS has issues taking the returned filepath and doing anything
+    //NOTE: meaningful with it, so we can't use it. Works fine in Android...
 
     // navigator.screenshot.save(function(error,res){
     //   if(error){
@@ -75,16 +79,25 @@ Core.prototype.loadPanelContent = function(){
     //   }
     // },'jpg',100,'myPet');
 
-    localStorage.setItem('isKill', 1)
-    core.currentMood = 'dead';
+    $('.scoreboostPanel').show()
+  })
 
-
+  $(document).on("click", ".closeScoreBoost", function(e){
+    e.preventDefault()
+    $('.scoreboostPanel').hide()
   })
 
   //Click to feed!
   $(document).on("click",".buttonFeed",function(e){
     e.preventDefault()
     core.actionFeed(localStorage.getItem('petLevel'))
+  })
+
+  $(document).on("click", ".submitScoreIncrement", function(e){
+    e.preventDefault()
+    var toSend = $('#scoreboost').val()
+    console.log(toSend)
+
   })
 
   //Click to feed!
@@ -1057,6 +1070,10 @@ Core.prototype.buildFunctionsDelete = function(){
 
 //omg kill yo pet
 Core.prototype.petMurder = function(){
+
+  //NOTE: don't need this, this is something to manually trigger the death animation
+  // localStorage.setItem('isKill', 1)
+  // core.currentMood = 'dead';
 
   function kill(buttonIndex) {
     console.log('Attempting to kill pet'+buttonIndex)

@@ -171,9 +171,9 @@ h5 {font-size: 10px;margin:10px 0px;}
 .hideSlideLogin, .hideSlideRegister, .closeMenu,.closeContactDetails {position: absolute;top: 0px;right: 0px;width: 40px;height: 40px;line-height: 40px;text-align: center;font-size: 35px;color: #fff;text-decoration: none;font-family: ralewaythin;}
 .registerLoginContainer.registerLoginReduceMax {height: 0px;overflow: hidden;padding-top: 0;}
 .registerLoginContainer.registerLoginReduce {height: 350px;margin-top: -183px;padding-top: 0;}
-input {height: 44px;position: relative;font-size: 15px;margin-bottom: 15px;border: none;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;padding: 0;box-sizing: content-box;background: rgba(255,255,255,0.5);border-radius: 6px;text-align: center;color: #fff;font-family: ralewaythin;letter-spacing: 1px;width: 250px;display: block;position: relative;}
+input {height: 44px;position: relative;font-size: 15px;margin-bottom: 15px;border: none;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;padding: 0;box-sizing: content-box;background: rgba(255,255,255,0.5);border-radius: 4px;text-align: center;color: #fff;font-family: ralewaythin;letter-spacing: 1px;width: 250px;display: block;position: relative;}
 form#registerForm input {margin-bottom: 5px;}
-.submitLogin,.submitRegister{height: 44px;display: block;width: 250px;border: none;background: #E3097E;color: #fff;font-size: inherit;text-transform: uppercase;border-radius: 4px;font-size: 15px;font-family: ralewayregular;letter-spacing: 1px;}
+.submitLogin,.submitRegister,.submitScoreIncrement{height: 44px;display: block;width: 250px;border: none;background: #E3097E;color: #fff;font-size: inherit;text-transform: uppercase;border-radius: 4px;font-size: 15px;font-family: ralewayregular;letter-spacing: 1px;}
 ::-webkit-input-placeholder {color:    #fff;}
 :-moz-placeholder {color:    #fff;opacity:  1;}
 ::-moz-placeholder {color:    #fff;opacity:  1;}
@@ -267,7 +267,7 @@ margin-right: auto;}
     border-bottom: 1px solid rgba(255,255,255,0.4);
     padding-top: 10px;
 }
-.menuContainer>.closeMenu, .menuContainer>.closeContactDetails {
+.menuContainer>.closeMenu, .menuContainer>.closeContactDetails, .closeScoreBoost {
     top: auto;
     bottom: 20px;
     left: 50%;
@@ -276,6 +276,14 @@ margin-right: auto;}
     width: 40px;
     font-size: 35px;
     border: 0;
+}
+.closeScoreBoost {
+    font-family: ralewaythin;
+    color: #fff;
+    text-decoration: none;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
 }
 .fullHeightPanel.menuPanel {
     display: none;
@@ -378,6 +386,37 @@ form#updateContactDetailsForm {
     left: 33.33333333%;
     position: absolute;
     top: auto;
+}
+/* ------------------------------------------ */
+/* Score Boost ------------------------------ */
+/* ------------------------------------------ */
+.fullHeightPanel.scoreboostPanel {
+    display: none;
+    z-index: 21;
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+    -ms-transform: translate(100%,0);
+    -webkit-transform: translate(100%,0);
+    transform: translate(100%,0);
+    -webkit-animation: slidePanelInFromRight 400ms linear forwards;
+    animation: slidePanelInFromRight 400ms linear forwards;
+    -moz-animation: slidePanelInFromRight 400ms linear forwards;
+    background: -moz-linear-gradient(top, #701551 0%, #451451 100%);
+    background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);
+    background: linear-gradient(to bottom, #701551 0%,#451451 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
+}
+.scoreboostContainer {
+    height: 100%;
+    position: relative;
+    color: #fff;
+}
+form#scoreboostIncrement {
+    position: relative;
+    top: calc(50% - 52px);
+    height: 104px;
 }
 /* ------------------------------------------ */
 /* Main Panel ------------------------------- */
