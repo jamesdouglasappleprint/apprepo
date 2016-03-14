@@ -26,13 +26,12 @@ function Core(){
 
   core.loadPanelContent();//Load panels with content
   core.loginOrRegister(); //Load form options
-  core.buildFunctionsDelete(); //Load temp files +++ DELETE THIS +++
   core.init();//Initial load checks
   core.logOut()
 
   $('.menuMusic').get(0).play()
-  core.initPushwoosh()
-  window.plugin.notification.badge.clear(); //clear badge notifications
+  //core.initPushwoosh()
+  //window.plugin.notification.badge.clear(); //clear badge notifications
 }
 
 //Initialiser
@@ -98,6 +97,23 @@ Core.prototype.loadPanelContent = function(){
     e.preventDefault()
     var toSend = $('#scoreboost').val()
     console.log(toSend)
+    $.ajax({
+      type: 'POST',
+      data: 'uid='+localStorage.getItem('userID')+'&c='+toSend,
+      async: false,
+      dataType:'jsonp',
+      jsonp: 'callback',
+      url: 'http://applegotchi.co.uk/Ajax/ghApplyCode.ashx',
+      success: function(data){
+        console.log(data)
+        core.updateActionLevels(localStorage.getItem('userID'),null)
+        navigator.notification.alert('We\'ve boosted your points to say thank you for playing!', null, 'Code accepted!', 'Continue')
+      },
+      error: function(){
+        navigator.notification.alert('Code already redeemed / code in-correct', null, 'Code failed!', 'Continue')
+        console.log('Error registering user.')
+      }
+    });
   })
 
   //Click to open credits
@@ -294,8 +310,6 @@ Core.prototype.loadPanelContent = function(){
 
   })
 
-
-
   //Click to Entertain!
   $(document).on("click",".menuTrigger",function(e){
     e.preventDefault()
@@ -367,6 +381,7 @@ Core.prototype.logOut = function(){
 //Script for logging in
 Core.prototype.fireLoginScript = function(deets){
   var core = this
+  console.log(deets)
   $.ajax({
     type: 'POST',
     data: deets,
@@ -407,7 +422,8 @@ Core.prototype.fireLoginScript = function(deets){
         if (localStorage.getItem("hasPet") != 'true'){
           console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
 
-          //Check to see if user already has login, but has cleared localstorage
+          //Check to see if user already has login, but has cleared localstorag
+          console.log(data.uid)
           $.ajax({
             type: 'POST',
             data: 'uid='+data.uid,
@@ -765,7 +781,8 @@ Core.prototype.creationStory = function(){
 Core.prototype.loadPet = function(uid){
   var core = this
 
-  console.log('Loading Pet')
+
+  console.log('Loading Pet'+uid)
 
   $.ajax({
     type: 'POST',
@@ -1074,7 +1091,7 @@ Core.prototype.actionEntertain = function(stage){
 
     $('.entertainStreamers img').hide()
     $('.buttonContainer a').removeClass('killLink')
-  },4000)
+  },3000)
 
 
 }
@@ -1101,7 +1118,7 @@ Core.prototype.petMurder = function(){
       var petID = localStorage.getItem('petID')
       $.ajax({
         type: 'POST',
-        data: 'pid='+petID,
+        data: 'pid='+petID+'&uid='+localStorage.getItem('userID'),
         async: false,
         dataType:'jsonp',
         jsonp: 'callback',
@@ -1149,8 +1166,8 @@ Core.prototype.petMurder = function(){
     }
   }
 
-  //kill(2)
-  navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
+  kill(2)
+  //navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
 
 
 }

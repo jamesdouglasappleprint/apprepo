@@ -410,14 +410,14 @@ animation: stage2_foodDrop 400ms linear forwards;
 @keyframes dropStreamers1 {0% {opacity:0;}100%{opacity:1;top: -20px;}}
 
 .dropSmallStreamers1{
-  -webkit-animation: dropSmallStreamers1 3s linear forwards;animation: dropSmallStreamers1 3s linear forwards;-moz-animation: dropSmallStreamers1 3s linear forwards
+  -webkit-animation: dropSmallStreamers1 2s linear forwards;animation: dropSmallStreamers1 2s linear forwards;-moz-animation: dropSmallStreamers1 2s linear forwards
 }
 @-webkit-keyframes dropSmallStreamers1 {0% {opacity:0;}100%{opacity:1;top: 0px;}}
 @-moz-keyframes dropSmallStreamers1 {0% {opacity:0;}100%{opacity:1;top: 0px;}}
 @keyframes dropSmallStreamers1 {0% {opacity:0;}100%{opacity:1;top: 0px;}}
 
 .dropSmallStreamers2{
-  -webkit-animation: dropSmallStreamers2 4s linear forwards;animation: dropSmallStreamers2 4s linear forwards;-moz-animation: dropSmallStreamers2 4s linear forwards
+  -webkit-animation: dropSmallStreamers2 3s linear forwards;animation: dropSmallStreamers2 3s linear forwards;-moz-animation: dropSmallStreamers2 3s linear forwards
 }
 @-webkit-keyframes dropSmallStreamers2 {0% {opacity:0;}100%{opacity:1;top: 0px;}}
 @-moz-keyframes dropSmallStreamers2 {0% {opacity:0;}100%{opacity:1;top: 0px;}}
