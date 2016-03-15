@@ -30,8 +30,8 @@ function Core(){
   core.logOut()
 
   $('.menuMusic').get(0).play()
-  //core.initPushwoosh()
-  //window.plugin.notification.badge.clear(); //clear badge notifications
+  core.initPushwoosh()
+  window.plugin.notification.badge.clear(); //clear badge notifications
 }
 
 //Initialiser
@@ -417,7 +417,7 @@ Core.prototype.fireLoginScript = function(deets){
         localStorage.setItem('password', data.password)
 
         //TODO:: renable
-        //core.initPushwoosh(data.emailaddress, null, false)
+        core.initPushwoosh(data.emailaddress, null, false)
 
         if (localStorage.getItem("hasPet") != 'true'){
           console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
@@ -1166,8 +1166,8 @@ Core.prototype.petMurder = function(){
     }
   }
 
-  kill(2)
-  //navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
+  //kill(2)
+  navigator.notification.confirm('Please don\'t kill your pet. Just feed them, entertain them and keep them clean and they will be happy!', kill, 'Commit peticide', ['I\'ve changed my mind!','Kill my pet'])
 
 
 }
