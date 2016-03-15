@@ -1202,7 +1202,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
   //navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
   console.log('line711: '+email+'_'+petLevel+'_'+setTags+'_'+unRegister)
 
-  var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+  var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
   pushNotification.onDeviceReady({
     projectid: "364045976404", // GOOGLE_PROJECT_ID
