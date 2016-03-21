@@ -1,0 +1,227 @@
+<script>
+
+console.log('code loaded')
+
+$(function () {
+	$('.softwareDefinedCogs>a').click(function(e){
+		e.preventDefault()
+		console.log('WORKING')
+		var target = $(this).data('section')
+
+		$('html, body').animate({
+	        scrollTop: $("#"+target).offset().top
+	    }, 1000);
+
+	})
+});
+
+</script>
+<style>
+
+.subPageContainer {background: url('../media/911516/backgroundnocogsnocontact.png');display: block;height: 557px;width: 1000px;position: relative;}
+
+
+/* - - - - - - - - Large Cogs - - - - - - - - */
+.largeGreen:hover:after {content:"";background: url('../media/900099/largegreen1.png');width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.largeGreen:after {content:"";background: url('../media/900099/largegreen1.png');width:100%;height:100%;display: block;}
+
+.largeRed:hover:after {background: url('../media/900106/largered1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.largeRed:after {background: url('../media/900103/largegreyred1.png'); content:"";width:100%;height:100%;display: block;}
+
+.largeBlue:hover:after {background: url('../media/900098/largeblue1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.largeBlue:after {background: url('../media/900100/largegreyblue1.png'); content:"";width:100%;height:100%;display: block;}
+
+.largeWhite:hover:after {background: url('../media/900107/largewhite1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.largeWhite:after {background: url('../media/900104/largegreywhite1.png'); content:"";width:100%;height:100%;display: block;}
+
+.largePurple:hover:after {background: url('../media/900105/largepurple1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.largePurple:after {background: url('../media/900102/largegreypurple1.png'); content:"";width:100%;height:100%;display: block;}
+
+.textGreen {position: absolute;top: 310px;left: 176px;font-size: 20px;text-align: center;pointer-events: none;}
+.textRed {position: absolute;top: 200px;left: 300px;font-size: 20px;text-align: center;pointer-events:none;opacity:0.2;}
+.textBlue {position: absolute;top: 327px;left: 478px;font-size: 20px;text-align: center;pointer-events:none;opacity:0.2;}
+.textWhite {position: absolute;top: 197px;right: 319px;font-size: 20px;text-align: center;pointer-events:none;}
+.textPurple {position: absolute;top: 317px;right: 175px;font-size: 20px;text-align: center;pointer-events:none;opacity:0.2;}
+
+.hiddenArrow{opacity:0;}
+.largeGreen:hover + .textGreen {opacity: 1;}
+.largeRed:hover + .textRed {opacity: 1;}
+.largeBlue:hover + .textBlue {opacity: 1;}
+/*.largeWhite:hover + .textWhite {opacity: 0;}*/
+.largeWhite:hover + .hiddenArrow {opacity: 1;}
+.largePurple:hover + .textPurple {opacity: 1;}
+
+/* Determines hover speed of cogs */
+.softwareDefinedCogs a:hover:after{
+	-webkit-animation-play-state: running;-moz-animation-play-state: running;animation-play-state: running;
+}
+
+.largeGreen:hover,.largeRed:hover,.largeWhite:hover,.largePurple:hover,.largeBlue:hover{-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.largeGreen:hover::after,.largeRed:hover::after,.largeWhite:hover::after,.largePurple:hover::after,.largeBlue:hover::after{-webkit-animation-play-state: running;-moz-animation-play-state: running;animation-play-state: running;}
+
+.largeGreen {height: 200px;width: 200px;position: absolute;display: block;top: 260px;left: 125px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 30s linear infinite;-moz-animation: rotating 30s linear infinite;-ms-animation: rotating 30s linear infinite;-o-animation: rotating 30s linear infinite;animation: rotating 30s linear infinite;}
+.largeRed {height: 200px;width: 200px;position: absolute;display: block;top: 112px;left: 250px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 30s linear infinite;-moz-animation: rotating 30s linear infinite;-ms-animation: rotating 30s linear infinite;-o-animation: rotating 30s linear infinite;animation: rotating 30s linear infinite;}
+.largeBlue {height: 200px;width: 200px;position: absolute;display: block;top: 260px;left: 405px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 30s linear infinite;-moz-animation: rotating 30s linear infinite;-ms-animation: rotating 30s linear infinite;-o-animation: rotating 30s linear infinite;animation: rotating 10s linear infinite;}
+.largeWhite {height: 200px;width: 200px;position: absolute;display: block;top: 110px;right: 263px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 10s linear infinite;-moz-animation: rotating 10s linear infinite;-ms-animation: rotating 10s linear infinite;-o-animation: rotating 10s linear infinite;animation: rotating 30s linear infinite;}
+.largePurple {height: 200px;width: 200px;position: absolute;display: block;top: 260px;right: 125px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 30s linear infinite;-moz-animation: rotating 30s linear infinite;-ms-animation: rotating 30s linear infinite;-o-animation: rotating 30s linear infinite;animation: rotating 30s linear infinite;}
+
+/* - - - - - - - - Blue COGS - - - - - - - - */
+.smallBlueCog1{height: 100px;width: 100px;position: absolute;display: block;top: 384px;left: 321px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallBlueCog1:after {background: url('../media/900119/smallgrey4.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallBlueText1 {position: absolute;top: 407px;left: 355px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallBlueCog2 {height: 100px;width: 100px;position: absolute;display: block;top: 447px;left: 399px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallBlueCog2:after {background: url('../media/900118/smallgrey3.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallBlueText2 {position: absolute;top: 477px;left: 426px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallBlueCog3 {height: 100px;width: 100px;position: absolute;display: block;top: 447px;left: 496px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallBlueCog3:after {background: url('../media/900117/smallgrey2.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallBlueText3 {position: absolute;top: 478px;left: 528px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallBlueCog4 {height: 100px;width: 100px;position: absolute;display: block;top: 385px;right: 325px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallBlueCog4:after {background: url('../media/900116/smallgrey1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallBlueText4 {position: absolute;top: 417px;right: 338px;font-size: 12px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+/* - - - - - - - - Green COGS - - - - - - - - */
+.smallGreenCog1 {height: 100px;width: 100px;position: absolute;display: block;top: 284px;left: 37px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 3s linear infinite;-moz-animation: rotating 3s linear infinite;-ms-animation: rotating 3s linear infinite;-o-animation: rotating 3s linear infinite;animation: rotating 3s linear infinite;}
+.smallGreenCog1:after {background: url('../media/900114/smallgreen3.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallGreenText1 {position: absolute;top: 309px;left: 70px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;}
+
+.smallGreenCog2 {height: 100px;width: 100px;position: absolute;display: block;top: 377px;left: 50px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 3s linear infinite;-moz-animation: rotating 3s linear infinite;-ms-animation: rotating 3s linear infinite;-o-animation: rotating 3s linear infinite;animation: rotating 3s linear infinite;}
+.smallGreenCog2:after {background: url('../media/900113/smallgreen2.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallGreenText2 {position: absolute;top: 407px;left: 77px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;}
+
+.smallGreenCog3 {height: 100px;width: 100px;position: absolute;display: block;top: 437px;left: 133px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 3s linear infinite;-moz-animation: rotating 3s linear infinite;-ms-animation: rotating 3s linear infinite;-o-animation: rotating 3s linear infinite;animation: rotating 3s linear infinite;}
+.smallGreenCog3:after {background: url('../media/900112/smallgreen1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallGreenText3 {position: absolute;top: 470px;left: 147px;font-size: 12px;text-align: center;line-height: 13px;pointer-events: none;}
+
+.smallGreenCog4 {height: 100px;width: 100px;position: absolute;display: block;top: 441px;left: 236px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallGreenCog4:after {background: url('../media/900119/smallgrey4.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallGreenText4 {position: absolute;top: 473px;left: 250px;font-size: 12px;text-align: center;line-height: 13px;opacity: 0;pointer-events: none;}
+/* - - - - - - - - Red COGS - - - - - - - - */
+
+.smallRedCog1 {height: 100px;width: 100px;position: absolute;display: block;top: 144px;left: 161px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallRedCog1:after {background: url('../media/900116/smallgrey1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallRedText1 {position: absolute;top: 154px;left: 185px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallRedCog2 {height: 100px;width: 100px;position: absolute;display: block;top: 61px;left: 200px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallRedCog2:after {background: url('../media/900118/smallgrey3.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallRedText2 {position: absolute;top: 80px;left: 225px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallRedCog3 {height: 100px;width: 100px;position: absolute;display: block;top: 24px;left: 291px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallRedCog3:after {background: url('../media/900119/smallgrey4.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallRedText3 {position: absolute;top: 49px;left: 314px;font-size: 12px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallRedCog4 {height: 100px;width: 100px;position: absolute;display: block;top: 55px;left: 381px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallRedCog4:after {background: url('../media/900116/smallgrey1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallRedText4 {position: absolute;top: 73px;left: 399px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+
+
+/* - - - - - - - - White COGS - - - - - - - - */
+.smallWhiteCog1 {height: 100px;width: 100px;position: absolute;display: block;top: 135px;right: 455px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallWhiteCog1:after {background: url('../media/900119/smallgrey4.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallWhiteText1 {position: absolute;top: 167px;right: 468px;font-size: 12px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallWhiteCog2 {height: 100px;width: 100px;position: absolute;display: block;top: 53px;right: 394px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallWhiteCog2:after {background: url('../media/900118/smallgrey3.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallWhiteText2 {position: absolute;top: 84px;right: 427px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallWhiteCog3 {height: 100px;width: 100px;position: absolute;display: block;top: 24px;right: 293px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallWhiteCog3:after {background: url('../media/900117/smallgrey2.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallWhiteText3 {position: absolute;top: 56px;right: 322px;font-size: 12px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallWhiteCog4 {height: 100px;width: 100px;position: absolute;display: block;top: 60px;right: 207px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallWhiteCog4:after {background: url('../media/900116/smallgrey1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallWhiteText4 {position: absolute;top: 84px;right: 240px;font-size: 13px;text-align: center;line-height: 13px;opacity: 0;pointer-events: none;}
+
+
+
+
+/* - - - - - - - - Purple COGS - - - - - - - - */
+.smallPurpleCog1 {height: 100px;width: 100px;position: absolute;display: block;top: 448px;right: 241px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallPurpleCog1:after {background: url('../media/900117/smallgrey2.png'); content:"";width:100%;height:100%;display: block;animation: rotating 20s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallPurpleText1 {position: absolute;top: 480px;right: 270px;font-size: 12px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallPurpleCog2 {height: 100px;width: 100px;position: absolute;display: block;top: 445px;right: 138px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallPurpleCog2:after {background: url('../media/900116/smallgrey1.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallPurpleText2 {position: absolute;top: 469px;right: 171px;font-size: 13px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallPurpleCog3 {height: 100px;width: 100px;position: absolute;display: block;top: 378px;right: 50px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallPurpleCog3:after {background: url('../media/900119/smallgrey4.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallPurpleText3 {position: absolute;top: 411px;right: 63px;font-size: 12px;text-align: center;line-height: 13px;pointer-events: none;opacity: 0;}
+
+.smallPurpleCog4 {height: 100px;width: 100px;position: absolute;display: block;top: 286px;right: 31px;text-align: center;color: #fff;text-decoration: none;font-size: 20px;overflow: hidden;-webkit-animation: rotating 20s linear infinite;-moz-animation: rotating 20s linear infinite;-ms-animation: rotating 20s linear infinite;-o-animation: rotating 20s linear infinite;animation: rotating 20s linear infinite;}
+.smallPurpleCog4:after {background: url('../media/900118/smallgrey3.png'); content:"";width:100%;height:100%;display: block;animation: rotating 3s linear infinite;-webkit-animation-play-state: paused;-moz-animation-play-state: paused;animation-play-state: paused;}
+.smallPurpleText4 {position: absolute;top: 84px;right: 240px;font-size: 13px;text-align: center;line-height: 13px;opacity: 0;pointer-events: none;}
+
+
+.largeRed:hover + img {
+    opacity: 1;
+}
+
+@-webkit-keyframes rotating {from {-ms-transform: rotate(0deg);-moz-transform: rotate(0deg);-webkit-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);}to {-ms-transform: rotate(360deg);-moz-transform: rotate(360deg);-webkit-transform: rotate(360deg);-o-transform: rotate(360deg);transform: rotate(360deg);}}
+@keyframes rotating {from {-ms-transform: rotate(0deg);-moz-transform: rotate(0deg);-webkit-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);}to {-ms-transform: rotate(360deg);-moz-transform: rotate(360deg);-webkit-transform: rotate(360deg);-o-transform: rotate(360deg);transform: rotate(360deg);}}
+
+.largePurple:hover + .textPurple::before {
+    content: "Coming Soon";
+    position: absolute;
+    top: -61px;
+    left: -36px;
+    color: #fff;
+    z-index: 2000000;
+    display: block;
+    opacity: 1;
+    background: #000;
+    height: 185px;
+    opacity: 0.7;
+    border-radius: 120px;
+    width: 185px;
+    line-height: 185px;
+}
+.largePurple:hover + .textPurple::before {
+    top: -71px;
+    left: -47px;
+}
+.comingSoonRed {
+    position: absolute;
+    top: 177px;
+    left: 296px;
+    font-size: 20px;
+    text-align: center;
+	pointer-events: none;
+}
+.comingSoonRed:before,.comingSoonWhite:before{
+    content: "";
+    position: absolute;
+}
+.comingSoonWhite {
+    position: absolute;
+    top: 178px;
+    right: 419px;
+    font-size: 20px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.datacentre h3 {
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: #B4CF2B;
+    border-bottom: 3px #B4CF2B solid;
+    font-weight: normal;
+    font-size: 20px;
+    padding-bottom: 15px;
+    margin: 20px 0px 0px 0px;
+}
+
+.datacentre .CatItem h5 {height: 60px;}
+.datacentre .CatItem p {min-height: 120px;}
+
+.datacentre .CatItem a {
+    background-color: #B4CF2B;
+    color: #fff;
+}
+
+</style>

@@ -388,16 +388,33 @@ animation: stage2_foodDrop 400ms linear forwards;
   50% {top:60%;left:-2%}
   100% {top:60%;}
 }
-@-moz-keyframes dropStreamers1 {
+@-moz-keyframes water {
   0% {top:100%;}
   50% {top:60%;left:-2%}
   100% {top:60%;}
 }
-@keyframes dropStreamers1 {
+@keyframes water {
   0% {top:100%;}
   50% {top:60%;left:-2%}
   100% {top:60%;}
 }
+
+/* ------------------------------------------ */
+/* First time bounce -- */
+/* ------------------------------------------ */
+.firsttimebounce{
+  -webkit-animation: firsttimebounce 1s ease-in-out infinite;
+  animation: firsttimebounce 1s ease-in-out infinite;
+  -moz-animation: firsttimebounce 1s ease-in-out infinite
+}
+@-webkit-keyframes firsttimebounce {
+  0% {bottom:40px;left:45px;}
+  50% {bottom:60px;left:55px;}
+  100%{bottom:40px;left:45px;}
+}
+/*@-moz-keyframes firsttimebounce {0% {opacity:0;}100%{opacity:1;top: -20px;}}
+@keyframes firsttimebounce {0% {opacity:0;}100%{opacity:1;top: -20px;}}*/
+
 
 /* ------------------------------------------ */
 /* Entertainment - Streamers ---------------- */

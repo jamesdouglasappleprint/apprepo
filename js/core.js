@@ -38,6 +38,8 @@ function Core(){
 Core.prototype.init = function (x) {
   var core = this
 
+  $('.deadCover').hide()
+
   if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
     console.log('remain logged in is true')
     //get up to date pet data
@@ -62,6 +64,8 @@ Core.prototype.loadPanelContent = function(){
   $('.leaderboardPanel').load("leaderboard.html")
   $('.scoreboostPanel').load("scoreboost.html")
   $('.creditsPanel').load("credits.html")
+  $('.aboutPanel').load("about.html")
+  $('.ressPanel').load("isded.html")
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
@@ -87,6 +91,21 @@ Core.prototype.loadPanelContent = function(){
     $('.scoreboostPanel').hide()
   })
 
+  $(document).on("click", ".resPet", function(e){
+    e.preventDefault()
+    core.zombiefy()
+  })
+
+  $(document).on("click", ".about", function(e){
+    e.preventDefault()
+    $('.aboutPanel').show()
+  })
+
+  $(document).on("click", ".closeAbout", function(e){
+    e.preventDefault()
+    $('.aboutPanel').hide()
+  })
+
   //Click to feed!
   $(document).on("click",".buttonFeed",function(e){
     e.preventDefault()
@@ -106,11 +125,20 @@ Core.prototype.loadPanelContent = function(){
       url: 'http://applegotchi.co.uk/Ajax/ghApplyCode.ashx',
       success: function(data){
         console.log(data)
-        core.updateActionLevels(localStorage.getItem('userID'),null)
-        navigator.notification.alert('We\'ve boosted your points to say thank you for playing!', null, 'Code accepted!', 'Continue')
+        //Test codes
+        //zxcv -- vcxz -- abcd -- 1234 -- 5656
+
+        if (data.StatusCode == 2){
+          navigator.notification.alert('Code already redeemed!', null, 'Code failed', 'Continue')
+        }else if (data.StatusCode == 3){
+          console.log('code error')
+          navigator.notification.alert('Code in-correct', null, 'Code failed', 'Continue')
+        }else{
+          core.updateActionLevels(localStorage.getItem('userID'),null)
+          navigator.notification.alert('We\'ve boosted your points to say thank you for playing!', null, 'Code accepted!', 'Continue')
+        }
       },
       error: function(){
-        navigator.notification.alert('Code already redeemed / code in-correct', null, 'Code failed!', 'Continue')
         console.log('Error registering user.')
       }
     });
@@ -391,6 +419,25 @@ Core.prototype.fireLoginScript = function(deets){
     success: function(data){
       console.log(data);
 
+      //Initialiser
+      function firstRun(){
+        console.log('running...')
+        $('.firstTimeFeed').show()
+
+        core.speechBubble('I\'m hungry')
+
+      }
+
+      if(localStorage.getItem("firstTimeFeed") == 'true'){
+        //console.log('true')
+      }else if(localStorage.getItem("firstTimeFeed") == null){
+        //console.log('null')
+        localStorage.setItem("firstTimeFeed", 'true')
+        firstRun()
+      }else{
+
+      }
+
       function loginFailure(buttonIndex) {
         console.log('login failure loop'+buttonIndex)
         if (buttonIndex == 1){
@@ -417,7 +464,7 @@ Core.prototype.fireLoginScript = function(deets){
         localStorage.setItem('password', data.password)
 
         //TODO:: renable
-        core.initPushwoosh(data.emailaddress, null, false)
+        //core.initPushwoosh(data.emailaddress, null, false)
 
         if (localStorage.getItem("hasPet") != 'true'){
           console.log('No local storage hasPet, either user hasn\t got a pet or they\'e got one but had deleted the app')
@@ -627,6 +674,10 @@ Core.prototype.creationStory = function(){
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
 
+  $(document).on('click', '.firstOption', function(){
+    $('.storyboardStart').hide()
+  })
+
   $(document).on("click",".option_b",function(e){
     e.preventDefault()
     console.log('option B')
@@ -676,6 +727,25 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option g')
     flag3 = 'insatsu'
+    if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else{
+      console.log('error, you\'ve somehow chosen an option I didn\'t think of.')
+    }
     $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
@@ -685,6 +755,25 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option h')
     flag3 = 'ringo'
+    if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else{
+      console.log('error, you\'ve somehow chosen an option I didn\'t think of.')
+    }
     $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
@@ -694,6 +783,25 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option i')
     flag3 = 'insatsu'
+    if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else{
+      console.log('error, you\'ve somehow chosen an option I didn\'t think of.')
+    }
     $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
@@ -703,6 +811,25 @@ Core.prototype.creationStory = function(){
     e.preventDefault()
     console.log('option j')
     flag3 = 'ringo'
+    if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'insatsu' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'ringo'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'insatsu' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-84.png">')
+    }else if (flag1 == 'ringo' && flag2 == 'ringo' && flag3 == 'insatsu'){
+      $('.selectedEgg').html('<img src="img/storyboard/Choosen_Egg-85.png">')
+    }else{
+      console.log('error, you\'ve somehow chosen an option I didn\'t think of.')
+    }
     $('.storyboardContainer').css({left:'-100%', top:'-100%'})
     console.log('Flag1: '+flag1+' Flag2: '+flag2+' Flag3: '+flag3)
   })
@@ -778,9 +905,56 @@ Core.prototype.creationStory = function(){
 }
 
 //Load pet data
-Core.prototype.loadPet = function(uid){
+Core.prototype.deadPet = function(){
+  var core = this
+  console.log('Pet is Dead !! :(')
+  core.currentMood = 'dead'
+  localStorage.setItem('hasded', "isdied")
+  $('.petStage6ArmLeft_insatsu').hide()
+  $('.petStage6ArmRight_insatsu').hide()
+  $('.petStage6ArmLeft_ringo').hide()
+  $('.petStage6ArmRight_ringo').hide()
+
+  $('.deadCover').show()
+  $('.buttonContainer').hide()
+
+  core.speechBubble('...eughghg')
+
+
+}
+
+//Load pet data
+Core.prototype.zombiefy = function(){
   var core = this
 
+  $.ajax({
+    type: 'POST',
+    data: 'pid='+localStorage.getItem('petID')+'&uid='+localStorage.getItem('userID'),
+    dataType:'jsonp',
+    jsonp: 'callback',
+    async: false,
+    url: 'http://applegotchi.co.uk/Ajax/ghAnimatePet.ashx',
+    success: function(data){
+      console.log(data);
+      console.log('Pet is alive again!')
+      core.currentMood = 'meh'
+      localStorage.removeItem('hasded')
+      $('.deadCover').hide()
+      $('.buttonContainer').show()
+      $('.ressPanel').hide()
+
+      core.loadPet(localStorage.getItem('userID'))
+    },
+    error: function(){
+      console.log('Error creating pet.')
+    }
+  });
+}
+
+
+//Load pet data
+Core.prototype.loadPet = function(uid){
+  var core = this
 
   console.log('Loading Pet'+uid)
 
@@ -793,6 +967,8 @@ Core.prototype.loadPet = function(uid){
     url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
     success: function(data){
       console.log(data);
+
+
       if (data.length == 1){
         if (data[0].pt == 2){
           //Ringo
@@ -811,7 +987,12 @@ Core.prototype.loadPet = function(uid){
         $('.mainPanel').show().removeClass('insatsuBackground').removeClass('ringoBackground').addClass(core.petNamedType+'Background')
 
         $('.petMain').removeClass('stage1').removeClass('stage2').removeClass('stage3').removeClass('stage4').removeClass('stage5').removeClass('stage6')
-        $('.petMain').attr('src', 'img/'+core.petNamedType+'/'+core.petNamedType+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        if(data[0].pa == 0){
+          $('.petMain').attr('src', 'img/'+core.petNamedType+'/'+core.petNamedType+'-'+core.currentMood+'-stage'+data[0].pl+'.png')
+        }else{
+          $('.petMain').attr('src', 'img/'+core.petNamedType+'/'+core.petNamedType+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        }
+
 
         $('.petStage6ArmLeft').attr('src','img/'+core.petNamedType+'/'+core.petNamedType+'-leftarm.png')
         $('.petStage6ArmLeft').removeClass('petStage6ArmLeft_insatsu').removeClass('petStage6ArmLeft_ringo').addClass('petStage6ArmLeft_'+core.petNamedType)
@@ -905,12 +1086,8 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
           $('.levelupPanel').show()
         }
 
-        if(localStorage.getItem('isKill') == 1){
-          core.currentMood = 'dead';
-          $('.petStage6ArmLeft_insatsu').hide()
-          $('.petStage6ArmRight_insatsu').hide()
-          $('.petStage6ArmLeft_ringo').hide()
-          $('.petStage6ArmRight_ringo').hide()
+        if(data[0].pa == 0){
+          core.deadPet()
         }else if ((data[0].cs + data[0].fs + data[0].ps) >= 200){
           core.currentMood = 'happy';
         }else if ((data[0].cs + data[0].fs + data[0].ps) > 100 && (data[0].cs + data[0].fs + data[0].ps) < 200 ){
@@ -919,7 +1096,12 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
           core.currentMood = 'sad';
         }
 
-        $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        if(data[0].pa == 0){
+          $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+core.currentMood+'-stage'+data[0].pl+'.png')
+        }else{
+          $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
+        }
+
         $('.petMain').removeClass('stage'+(data[0].pl-1))
         $('.petMain').removeClass('stage'+(data[0].pl-2))
         $('.petMain').removeClass('stage'+(data[0].pl-3))
@@ -951,6 +1133,34 @@ Core.prototype.actionFeed = function(stage){
   $('.petFood').show()
   $('.petFood').addClass('stage'+petStage+'_foodDrop')
 
+  //Initialiser
+  function firstRun(){
+    console.log('running...')
+    $('.firstTimePlay').show()
+    $('.firstTimeFeed').hide()
+
+
+    $('.closeSpeechBubble').hide()
+    $('.speechBubbleText').removeClass('showSpeechText')
+    $('.speechBubble').addClass('shrinkBubble')
+    setTimeout(function(){
+      $('.speechBubble').hide()
+      $('.speechBubble').removeClass('shrinkBubble')
+      core.speechBubble('I\'m bored')
+    },1000)
+
+  }
+
+  if(localStorage.getItem("firstTimePlay") == 'true'){
+    //console.log('true')
+  }else if(localStorage.getItem("firstTimePlay") == null){
+    //console.log('null')
+    localStorage.setItem("firstTimePlay", 'true')
+    firstRun()
+  }else{
+
+  }
+
   //1 == play
   //0  == stop
   if (localStorage.getItem('sound') == '1'){
@@ -977,6 +1187,7 @@ Core.prototype.actionFeed = function(stage){
   		success: function(data){
   			console.log(data);
         core.updateActionLevels(localStorage.getItem('userID'),null)
+
   		},
   		error: function(){
         console.log('Error creating pet.')
@@ -992,6 +1203,15 @@ Core.prototype.actionFeed = function(stage){
 Core.prototype.actionClean = function(stage){
   var core =  this
   var petStage = stage
+
+  $('.firstTimeWash').hide()
+  $('.closeSpeechBubble').hide()
+  $('.speechBubbleText').removeClass('showSpeechText')
+  $('.speechBubble').addClass('shrinkBubble')
+  setTimeout(function(){
+    $('.speechBubble').hide()
+    $('.speechBubble').removeClass('shrinkBubble')
+  },1000)
 
   //1 == play
   //0  == stop
@@ -1058,6 +1278,34 @@ Core.prototype.actionEntertain = function(stage){
   $('.entertainStreamers img').show()
   $('.buttonContainer a').addClass('killLink')
 
+  //Initialiser
+  function firstRun(){
+    console.log('running...')
+    $('.firstTimeWash').show()
+    $('.firstTimePlay').hide()
+
+
+    $('.closeSpeechBubble').hide()
+    $('.speechBubbleText').removeClass('showSpeechText')
+    $('.speechBubble').addClass('shrinkBubble')
+    setTimeout(function(){
+      $('.speechBubble').hide()
+      $('.speechBubble').removeClass('shrinkBubble')
+      core.speechBubble('I\'m dirty')
+    },1000)
+
+  }
+
+  if(localStorage.getItem("firstTimeWash") == 'true'){
+    //console.log('true')
+  }else if(localStorage.getItem("firstTimeWash") == null){
+    //console.log('null')
+    localStorage.setItem("firstTimeWash", 'true')
+    firstRun()
+  }else{
+
+  }
+
   //1 == play
   //0  == stop
   if (localStorage.getItem('sound') == '1' && core.currentMood == 'happy' || localStorage.getItem('sound') == '1' && core.currentMood == 'meh'){
@@ -1092,14 +1340,6 @@ Core.prototype.actionEntertain = function(stage){
     $('.entertainStreamers img').hide()
     $('.buttonContainer a').removeClass('killLink')
   },3000)
-
-
-}
-
-//TEMP SHIT DELETE THIS WHEN YO DONE
-Core.prototype.buildFunctionsDelete = function(){
-  var core = this
-  // +++ DELETE THIS FOR PRODUCTION +++
 
 
 }
@@ -1172,13 +1412,21 @@ Core.prototype.petMurder = function(){
 
 }
 
-Core.prototype.speechBubble = function(message){
+Core.prototype.speechBubble = function(message,action){
   var core = this
   $('.speechBubble').show()
   $('.closeSpeechBubble').show()
   $('.speechBubbleText').addClass('showSpeechText').html(message)
 
+
   $(document).on("click",".speechBubbleContainer",function(e){
+
+    if (localStorage.getItem('hasded') == "isdied"){
+      $('.ressPanel').show()
+    }else{
+
+    }
+
     $('.speechBubble').addClass('shrinkBubble')
     setTimeout(function(){
       $('.speechBubble').hide()
@@ -1187,6 +1435,7 @@ Core.prototype.speechBubble = function(message){
     },1000)
     $('.speechBubbleText').removeClass('showSpeechText')
   })
+
 
 }
 
@@ -1318,7 +1567,6 @@ var app = {
 document.addEventListener("deviceready", OnDeviceReady, false);
 function OnDeviceReady()    {
   console.log('device is ready')
-
   window.plugin.notification.badge.clear();//clear notification badges
 }
 
