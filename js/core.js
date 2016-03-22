@@ -1457,15 +1457,6 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
   });
 
-  //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
-  document.addEventListener('push-notification', function(event) {
-    var notification = event.notification;
-    console.log('push message recieved');
-    pushNotification.setApplicationIconBadgeNumber(0);
-    core.speechBubble(notification.aps.alert)
-    //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
-  });
-
   function setTagsFunc(email,petLevel){
     console.log(email+' : '+petLevel)
     pushNotification.setTags(
@@ -1519,6 +1510,16 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
         alert(JSON.stringify(['failed to register ', status]));
       }
     );
+
+    //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
+    document.addEventListener('push-notification', function(event) {
+      var notification = event.notification;
+      console.log('push message recieved');
+      pushNotification.setApplicationIconBadgeNumber(0);
+      core.speechBubble(notification.aps.alert)
+      //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
+    });
+
   }
 
 }
