@@ -398,6 +398,7 @@ margin-right: auto;}
     background: linear-gradient(to bottom, #701551 0%,#451451 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
 }
+
 .closeleaderboard, .closeCredits,.closeAbout {
     top: auto;
     bottom: 20px;
@@ -412,6 +413,7 @@ margin-right: auto;}
     text-decoration: none;
     font-family: ralewaythin;
 }
+
 .deadCover {
     position: absolute;
     top: 0;
