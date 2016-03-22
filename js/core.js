@@ -1458,7 +1458,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     console.log('push message recieved');
     //pushNotification.setApplicationIconBadgeNumber(0);
     core.speechBubble(notification.aps.alert)
-    navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
+    //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
   });
 
   pushNotification.onDeviceReady({
