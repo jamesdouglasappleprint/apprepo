@@ -407,13 +407,44 @@ animation: stage2_foodDrop 400ms linear forwards;
   animation: firsttimebounce 1s ease-in-out infinite;
   -moz-animation: firsttimebounce 1s ease-in-out infinite
 }
+
 @-webkit-keyframes firsttimebounce {
   0% {bottom:40px;left:45px;}
   50% {bottom:60px;left:55px;}
   100%{bottom:40px;left:45px;}
 }
-/*@-moz-keyframes firsttimebounce {0% {opacity:0;}100%{opacity:1;top: -20px;}}
-@keyframes firsttimebounce {0% {opacity:0;}100%{opacity:1;top: -20px;}}*/
+@-moz-keyframes firsttimebounce {
+0% {bottom:40px;left:45px;}
+50% {bottom:60px;left:55px;}
+100%{bottom:40px;left:45px;}
+}
+
+@keyframes firsttimebounce {
+0% {bottom:40px;left:45px;}
+50% {bottom:60px;left:55px;}
+100%{bottom:40px;left:45px;}
+}
+
+.firsttimelevel{
+  -webkit-animation: firsttimelevel 1s ease-in-out infinite;
+  animation: firsttimelevel 1s ease-in-out infinite;
+  -moz-animation: firsttimelevel 1s ease-in-out infinite
+}
+@-webkit-keyframes firsttimelevel {
+  0% {right:12px;}
+  50% {right:30px;}
+  100%{right:12px;}
+}
+@-moz-keyframes firsttimelevel {
+0% {right:12px;}
+50% {right:30px;}
+100%{right:12px;}
+}
+@keyframes firsttimelevel {
+0% {right:12px;}
+50% {right:30px;}
+100%{right:12px;}
+}
 
 
 /* ------------------------------------------ */

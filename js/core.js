@@ -30,7 +30,7 @@ function Core(){
   core.logOut()
 
   $('.menuMusic').get(0).play()
-  core.initPushwoosh()
+  //core.initPushwoosh()
   window.plugin.notification.badge.clear(); //clear badge notifications
 }
 
@@ -52,7 +52,7 @@ Core.prototype.init = function (x) {
   document.addEventListener("resume", onResume, false);
   function onResume() {
     core.updateActionLevels(localStorage.getItem('userID'),null)
-    navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
+    //navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
   }
 
 };
@@ -73,6 +73,7 @@ Core.prototype.loadPanelContent = function(){
   $('.creditsPanel').load("credits.html")
   $('.aboutPanel').load("about.html")
   $('.ressPanel').load("isded.html")
+  $('.gumphPanel').load("gumph.html")
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
@@ -106,6 +107,11 @@ Core.prototype.loadPanelContent = function(){
   $(document).on("click", ".about", function(e){
     e.preventDefault()
     $('.aboutPanel').show()
+  })
+
+  $(document).on("click", ".closeGumph", function(e){
+    e.preventDefault()
+    $('.gumphPanel').hide()
   })
 
   $(document).on("click", ".closeAbout", function(e){
@@ -1078,6 +1084,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("funStatus", data[0].ps)
         localStorage.setItem("petLevel", data[0].pl)
         localStorage.setItem("petPoints", data[0].pp)
+        localStorage.setItem("userPoints", data[0].up)
         localStorage.setItem("petType", data[0].pt)
         localStorage.setItem("petName", data[0].pn)
         localStorage.setItem("petID", data[0].pid)
@@ -1085,7 +1092,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        //core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         //console.log(firstLoad)
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
@@ -1132,7 +1139,8 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
         $('.statusEntertain>.statusLevel').css({height:data[0].ps+'%'})
         $('.statusClean>.statusLevel').css({height:data[0].cs+'%'})
-        $('.currentScore').html(data[0].pp)
+        $('.currentScore').html(data[0].up)
+        $('.levelUpStatus').css({height:data[0].pcil+'%'})
 
 
       }else{
@@ -1225,14 +1233,29 @@ Core.prototype.actionClean = function(stage){
   var core =  this
   var petStage = stage
 
-  $('.firstTimeWash').hide()
-  $('.closeSpeechBubble').hide()
-  $('.speechBubbleText').removeClass('showSpeechText')
-  $('.speechBubble').addClass('shrinkBubble')
-  setTimeout(function(){
-    $('.speechBubble').hide()
-    $('.speechBubble').removeClass('shrinkBubble')
-  },1000)
+  function firstRun(){
+    console.log('wash running...')
+    $('.firstTimeWash').hide()
+    $('.closeSpeechBubble').hide()
+    $('.speechBubbleText').removeClass('showSpeechText')
+    $('.speechBubble').addClass('shrinkBubble')
+    setTimeout(function(){
+      $('.speechBubble').hide()
+      $('.speechBubble').removeClass('shrinkBubble')
+      $('.gumphPanel').show()
+    },1000)
+
+  }
+
+  if(localStorage.getItem("firstTimeWash") == 'true'){
+    //console.log('true')
+  }else if(localStorage.getItem("firstTimeWash") == null){
+    //console.log('null')
+    localStorage.setItem("firstTimeWash", 'true')
+    firstRun()
+  }else{
+
+  }
 
   //1 == play
   //0 == stop
@@ -1317,11 +1340,11 @@ Core.prototype.actionEntertain = function(stage){
 
   }
 
-  if(localStorage.getItem("firstTimeWash") == 'true'){
+  if(localStorage.getItem("firstTimeFun") == 'true'){
     //console.log('true')
-  }else if(localStorage.getItem("firstTimeWash") == null){
+  }else if(localStorage.getItem("firstTimeFun") == null){
     //console.log('null')
-    localStorage.setItem("firstTimeWash", 'true')
+    localStorage.setItem("firstTimeFun", 'true')
     firstRun()
   }else{
 
