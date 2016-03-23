@@ -51,7 +51,7 @@ Core.prototype.init = function (x) {
 
   document.addEventListener("resume", onResume, false);
   function onResume() {
-    core.updateActionLevels()
+    core.updateActionLevels(localStorage.getItem('userID'),null)
     navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
   }
 
