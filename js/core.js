@@ -48,6 +48,13 @@ Core.prototype.init = function (x) {
 
   }
 
+  document.addEventListener("resume", onResume, false);
+  function onResume() {
+    core.updateActionLevels()
+    //navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
+  }
+
+
 };
 
 //Load HTML into panels
@@ -1591,12 +1598,6 @@ function OnDeviceReady()    {
 document.addEventListener("offline", onOffline, false);
 function onOffline() {
   navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet!', null, 'Connectivity error', 'Continue')
-}
-
-
-document.addEventListener("resume", onResume, false);
-function onResume() {
-  navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
 }
 
 ////////BOOT CORE
