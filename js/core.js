@@ -48,12 +48,12 @@ Core.prototype.init = function (x) {
 
   }
 
+
   document.addEventListener("resume", onResume, false);
   function onResume() {
     core.updateActionLevels()
-    //navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
+    navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
   }
-
 
 };
 
