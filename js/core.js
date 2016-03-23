@@ -1083,6 +1083,21 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
           $('.levelupPanel').show()
+
+          if (data[0].pl == 6 && core.petNamedType == 'insatsu'){
+            $('.petStage6ArmLeft_insatsu').show()
+            $('.petStage6ArmRight_insatsu').show()
+            $('.petStage6ArmLeft_ringo').hide()
+            $('.petStage6ArmRight_ringo').hide()
+
+          }else if (data[0].pl == 6 && core.petNamedType == 'ringo'){
+            $('.petStage6ArmLeft_insatsu').hide()
+            $('.petStage6ArmRight_insatsu').hide()
+            $('.petStage6ArmLeft_ringo').show()
+            $('.petStage6ArmRight_ringo').show()
+          }else{
+
+          }
         }
 
         if(data[0].pa == 0){
@@ -1576,6 +1591,12 @@ function OnDeviceReady()    {
 document.addEventListener("offline", onOffline, false);
 function onOffline() {
   navigator.notification.alert('Uhoh, it looks like you\'re offline! Please re-connect to the internet!', null, 'Connectivity error', 'Continue')
+}
+
+
+document.addEventListener("resume", onResume, false);
+function onResume() {
+  navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
 }
 
 ////////BOOT CORE
