@@ -403,6 +403,7 @@ Core.prototype.logOut = function(){
     $('.petStage6ArmLeft_ringo').hide()
     $('.petStage6ArmRight_ringo').hide()
 
+      localStorage.removeItem('isLoggedIn')
     //1 == play
     //0  == stop
     //if music is set to on, play
@@ -440,6 +441,8 @@ Core.prototype.fireLoginScript = function(deets){
     url: 'http://applegotchi.co.uk/Ajax/ghLogon.ashx',
     success: function(data){
       console.log(data);
+
+      localStorage.setItem('isLoggedIn',1)
 
       //Initialiser
       function firstRun(){
@@ -1037,7 +1040,8 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
 
   var prevPetLevel = localStorage.getItem("petLevel")
 
-  if (localStorage.getItem('firstTime') == null){
+  //TODO: ONLY LET THIS EVENT HAPPEN IF YOU'RE LOGGED IN
+  if (localStorage.getItem('firstTime') == null && localStorage.getItem('isLoggedIn') == 1){
     localStorage.setItem('firstTime', true)
     core.firstLoad()
   }else{
