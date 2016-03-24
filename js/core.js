@@ -1067,7 +1067,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        //core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         //console.log(firstLoad)
 
         if (data[0].pt == 2){
