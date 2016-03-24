@@ -1379,7 +1379,7 @@ Core.prototype.speechBubble = function(message,action){
       $('.closeSpeechBubble').hide()
       $('.speechBubble').removeClass('shrinkBubble')
     },1000)
-  },10000)
+  },5000)
 
 
   $(document).on("click",".speechBubbleContainer",function(e){
