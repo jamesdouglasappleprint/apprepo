@@ -978,97 +978,8 @@ Core.prototype.loadPet = function(uid){
   var core = this
 
   console.log('Loading Pet'+uid)
+  core.updateActionLevels(uid,'firstload')
 
-  $.ajax({
-    type: 'POST',
-    data: 'uid='+uid,
-    async: false,
-    dataType:'jsonp',
-    jsonp: 'callback',
-    url: 'http://applegotchi.co.uk/Ajax/ghPets.ashx',
-    success: function(data){
-      console.log(data);
-
-
-      if (data.length == 1){
-        if (data[0].pt == 2){
-          //Ringo
-          core.petNamedType = 'ringo'
-          localStorage.setItem("petNamedType", "ringo")
-        }else{
-          //Insatsu
-          localStorage.setItem("petNamedType", "insatsu")
-          core.petNamedType = 'insatsu'
-        }
-
-
-        $('.speechBubble').attr('src','img/'+core.petNamedType+'-speech.png')
-        $('.petName').html(data[0].pn)
-
-        $('.mainPanel').show().removeClass('insatsuBackground').removeClass('ringoBackground').addClass(core.petNamedType+'Background')
-
-        $('.petMain').removeClass('stage1').removeClass('stage2').removeClass('stage3').removeClass('stage4').removeClass('stage5').removeClass('stage6')
-        if(data[0].pa == 0){
-          $('.petMain').attr('src', 'img/'+core.petNamedType+'/'+core.petNamedType+'-'+core.currentMood+'-stage'+data[0].pl+'.png')
-        }else{
-          $('.petMain').attr('src', 'img/'+core.petNamedType+'/'+core.petNamedType+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
-        }
-
-
-        $('.petStage6ArmLeft').attr('src','img/'+core.petNamedType+'/'+core.petNamedType+'-leftarm.png')
-        $('.petStage6ArmLeft').removeClass('petStage6ArmLeft_insatsu').removeClass('petStage6ArmLeft_ringo').addClass('petStage6ArmLeft_'+core.petNamedType)
-
-        $('.petStage6ArmRight').attr('src','img/'+core.petNamedType+'/'+core.petNamedType+'-rightarm.png')
-        $('.petStage6ArmRight').removeClass('petStage6ArmRight_insatsu').removeClass('petStage6ArmRight_ringo').addClass('petStage6ArmRight_'+core.petNamedType)
-
-        console.log(data[0].pl, core.petNamedType)
-        if (data[0].pl == 6 && core.petNamedType == 'insatsu'){
-          $('.petStage6ArmLeft_insatsu').show()
-          $('.petStage6ArmRight_insatsu').show()
-          $('.petStage6ArmLeft_ringo').hide()
-          $('.petStage6ArmRight_ringo').hide()
-
-        }else if (data[0].pl == 6 && core.petNamedType == 'ringo'){
-          $('.petStage6ArmLeft_insatsu').hide()
-          $('.petStage6ArmRight_insatsu').hide()
-          $('.petStage6ArmLeft_ringo').show()
-          $('.petStage6ArmRight_ringo').show()
-        }else{
-
-        }
-
-        //1 == play
-        //0  == stop
-        if (localStorage.getItem('music') == '1'){
-          $('.menuMusic').get(0).pause()
-          $('.gameMusic').get(0).play()
-
-        }else if (localStorage.getItem('music') == '0'){
-          $('.menuMusic').get(0).pause()
-          $('.gameMusic').get(0).pause()
-          $('.toggleMusic').addClass('disabledAudio')
-        }else{
-          localStorage.setItem('music', "1")
-          $('.menuMusic').get(0).pause()
-          $('.gameMusic').get(0).play()
-        }
-
-        if (localStorage.getItem('sound') == '1'){
-        }else{
-          window.localStorage.setItem('sound', '1')
-        }
-
-        core.updateActionLevels(uid,'firstload')
-      }else{
-        console.log('retreievePetData has been fired, but there\'s no pet data to recall')
-        localStorage.clear();
-      }
-
-    },
-    error: function(){
-      console.log('Error registering user.')
-    }
-  });
 };
 
 Core.prototype.firstLoad = function(){
@@ -1156,8 +1067,23 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        //core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         //console.log(firstLoad)
+
+        if (data[0].pt == 2){
+          //Ringo
+          core.petNamedType = 'ringo'
+          localStorage.setItem("petNamedType", "ringo")
+        }else{
+          //Insatsu
+          localStorage.setItem("petNamedType", "insatsu")
+          core.petNamedType = 'insatsu'
+        }
+
+        $('.speechBubble').attr('src','img/'+core.petNamedType+'-speech.png')
+        $('.petName').html(data[0].pn)
+
+        $('.mainPanel').show().removeClass('insatsuBackground').removeClass('ringoBackground').addClass(core.petNamedType+'Background')
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
           $('.levelupPanel').show()
