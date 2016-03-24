@@ -71,6 +71,8 @@ Core.prototype.loadLeaderboard = function(){
     success: function(data){
       console.log(data);
 
+      $('.leaderboardData').empty()
+
       $.each(data, function(e){
         var petTypeName = ''
 
@@ -1476,6 +1478,10 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
 
   //navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
   console.log('line711: '+email+'_'+petLevel+'_'+setTags+'_'+unRegister)
+
+  //Cancel first load highlighting if the user closed the app during the tutorial and signed out
+  $('.dropFocus').removeClass('dropFocus')
+  $('.bringToFront').removeClass('bringToFront')
 
   var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
