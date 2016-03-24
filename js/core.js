@@ -30,7 +30,7 @@ function Core(){
   core.logOut()
 
   $('.menuMusic').get(0).play()
-  //core.initPushwoosh()
+  core.initPushwoosh()
   window.plugin.notification.badge.clear(); //clear badge notifications
 }
 
@@ -52,10 +52,52 @@ Core.prototype.init = function (x) {
   document.addEventListener("resume", onResume, false);
   function onResume() {
     core.updateActionLevels(localStorage.getItem('userID'),null)
+    core.loadLeaderboard()
+    window.plugin.notification.badge.clear(); //clear badge notifications
     //navigator.notification.alert('Totes some goats!', null, 'Resumed', 'Continue')
   }
 
 };
+
+//Leaderboard
+Core.prototype.loadLeaderboard = function(){
+  $.ajax({
+    type: 'POST',
+    data: 't=5',
+    async: false,
+    dataType:'jsonp',
+    jsonp: 'callback',
+    url: 'http://applegotchi.co.uk/Ajax/ghLeaderboard.ashx',
+    success: function(data){
+      console.log(data);
+
+      $.each(data, function(e){
+        var petTypeName = ''
+
+        if (data[e].pt == 2){
+          petTypeName = 'ringo'
+        }else if (data[e].pt == 1){
+          petTypeName = 'insatsu'
+        }else{
+          petTypeName = 'noneSpecified'
+        }
+
+        $('.leaderboardData').append('<li><div class="leaderboardEntryContainer"><img src="img/Leaderboard/leaderboardPetIMG_'+petTypeName+'_'+data[e].pl+'.png"><div class="leaderboardDetails"><p class="leaderboardBold">'+data[e].pos+'.'+data[e].pname+'</p><p>Owner: '+data[e].name+'</p></div><div class="leaderboardScore">'+data[e].p+'</div></div></li>')
+
+        // console.log(data[e].name) //user
+        // console.log(data[e].p) //score
+        // console.log(data[e].pl) //Pet level
+        // console.log(data[e].pname) //Pet name
+        // console.log(data[e].pos) //leaderboard position
+        // console.log(data[e].pt) //pet type
+      })
+
+    },
+    error: function(){
+      console.log('Error registering user.')
+    }
+  });
+}
 
 //Load HTML into panels
 Core.prototype.loadPanelContent = function(){
@@ -252,44 +294,7 @@ Core.prototype.loadPanelContent = function(){
     $('.menuPanel').hide()
     $('.leaderboardPanel').show()
     $('.leaderboardData').html('')
-
-    $.ajax({
-      type: 'POST',
-      data: 't=5',
-      async: false,
-      dataType:'jsonp',
-      jsonp: 'callback',
-      url: 'http://applegotchi.co.uk/Ajax/ghLeaderboard.ashx',
-      success: function(data){
-        console.log(data);
-
-        $.each(data, function(e){
-          var petTypeName = ''
-
-          if (data[e].pt == 2){
-            petTypeName = 'ringo'
-          }else if (data[e].pt == 1){
-            petTypeName = 'insatsu'
-          }else{
-            petTypeName = 'noneSpecified'
-          }
-
-          $('.leaderboardData').append('<li><div class="leaderboardEntryContainer"><img src="img/Leaderboard/leaderboardPetIMG_'+petTypeName+'_'+data[e].pl+'.png"><div class="leaderboardDetails"><p class="leaderboardBold">'+data[e].pos+'.'+data[e].pname+'</p><p>Owner: '+data[e].name+'</p></div><div class="leaderboardScore">'+data[e].p+'</div></div></li>')
-
-          // console.log(data[e].name) //user
-          // console.log(data[e].p) //score
-          // console.log(data[e].pl) //Pet level
-          // console.log(data[e].pname) //Pet name
-          // console.log(data[e].pos) //leaderboard position
-          // console.log(data[e].pt) //pet type
-        })
-
-      },
-      error: function(){
-        console.log('Error registering user.')
-      }
-    });
-
+    core.loadLeaderboard()
   })
 
   //Click to close contact details menu
@@ -365,6 +370,8 @@ Core.prototype.loadPanelContent = function(){
     $('.accountDeetsEmailAddress>span').html(localStorage.getItem('emailaddress'))
 
     $('.menuPanel').show()
+    $('.dropFocus').removeClass('dropFocus')
+    $('.bringToFront').removeClass('bringToFront')
   })
 
   //Click to close contact details menu
@@ -1062,12 +1069,67 @@ Core.prototype.loadPet = function(uid){
   });
 };
 
+Core.prototype.firstLoad = function(){
+  var core = this
+
+  $('.gumphPanel').show()
+  //Step 1
+  $('.buttonContainer').addClass('bringToFront')
+  $('.buttonEntertain').addClass('dropFocus')
+  $('.buttonClean').addClass('dropFocus')
+  $('.buttonPhoto').addClass('dropFocus')
+  $('.step1 .bouncyHand').show()
+
+  $('.advanceStep').click(function(){
+    var step = $(this).attr('data-step')
+    $('.dropFocus').removeClass('dropFocus')
+    $('.bringToFront').removeClass('bringToFront')
+    $('.gumphStep').hide()
+    $('.'+step).show()
+
+    if (step == 'step2'){
+      $('.buttonContainer').addClass('bringToFront')
+      $('.buttonFeed').addClass('dropFocus')
+      $('.buttonEntertain').addClass('bringToFront')
+      $('.buttonClean').addClass('dropFocus')
+      $('.buttonPhoto').addClass('dropFocus')
+      $('.step2 .bouncyHand').show()
+    }else if (step == 'step3'){
+      $('.buttonContainer').addClass('bringToFront')
+      $('.buttonFeed').addClass('dropFocus')
+      $('.buttonEntertain').addClass('dropFocus')
+      $('.buttonClean').addClass('bringToFront')
+      $('.buttonPhoto').addClass('dropFocus')
+      $('.step3 .bouncyHand').show()
+    }else if (step == 'step4'){
+      $('.statusContainer').addClass('bringToFront')
+      $('.step4 .bouncyHand').show()
+    }else if (step == 'step5'){
+      $('.levelUpBar').addClass('bringToFront')
+      $('.step5 .bouncyHand').show()
+    }else if (step == 'step6'){
+      $('.menuButtonContainer').addClass('bringToFront')
+      $('.step6 .bouncyHand').show()
+    }else if (step == 'step7'){
+      $('.gumphPanel').remove()
+    }
+  })
+
+}
+
 //Update current action levels of pet (and score)
 Core.prototype.updateActionLevels = function(uid,firstLoad){
   var core = this
   console.log('update action levels firing')
 
   var prevPetLevel = localStorage.getItem("petLevel")
+
+  if (localStorage.getItem('firstTime') == null){
+    localStorage.setItem('firstTime', true)
+    core.firstLoad()
+  }else{
+    //$('.gumphPanel').remove()
+  }
 
   $.ajax({
     type: 'POST',
@@ -1092,7 +1154,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        //core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         //console.log(firstLoad)
 
         if (prevPetLevel != data[0].pl && data[0].pl > 1 && firstLoad != 'firstload'){
@@ -1162,34 +1224,6 @@ Core.prototype.actionFeed = function(stage){
   $('.petFood').show()
   $('.petFood').addClass('stage'+petStage+'_foodDrop')
 
-  //Initialiser
-  function firstRun(){
-    console.log('running...')
-    $('.firstTimePlay').show()
-    $('.firstTimeFeed').hide()
-
-
-    $('.closeSpeechBubble').hide()
-    $('.speechBubbleText').removeClass('showSpeechText')
-    $('.speechBubble').addClass('shrinkBubble')
-    setTimeout(function(){
-      $('.speechBubble').hide()
-      $('.speechBubble').removeClass('shrinkBubble')
-      core.speechBubble('I\'m bored')
-    },1000)
-
-  }
-
-  if(localStorage.getItem("firstTimePlay") == 'true'){
-    //console.log('true')
-  }else if(localStorage.getItem("firstTimePlay") == null){
-    //console.log('null')
-    localStorage.setItem("firstTimePlay", 'true')
-    firstRun()
-  }else{
-
-  }
-
   //1 == play
   //0  == stop
   if (localStorage.getItem('sound') == '1'){
@@ -1232,30 +1266,6 @@ Core.prototype.actionFeed = function(stage){
 Core.prototype.actionClean = function(stage){
   var core =  this
   var petStage = stage
-
-  function firstRun(){
-    console.log('wash running...')
-    $('.firstTimeWash').hide()
-    $('.closeSpeechBubble').hide()
-    $('.speechBubbleText').removeClass('showSpeechText')
-    $('.speechBubble').addClass('shrinkBubble')
-    setTimeout(function(){
-      $('.speechBubble').hide()
-      $('.speechBubble').removeClass('shrinkBubble')
-      $('.gumphPanel').show()
-    },1000)
-
-  }
-
-  if(localStorage.getItem("firstTimeWash") == 'true'){
-    //console.log('true')
-  }else if(localStorage.getItem("firstTimeWash") == null){
-    //console.log('null')
-    localStorage.setItem("firstTimeWash", 'true')
-    firstRun()
-  }else{
-
-  }
 
   //1 == play
   //0 == stop
@@ -1321,34 +1331,6 @@ Core.prototype.actionEntertain = function(stage){
   var petStage = stage
   $('.entertainStreamers img').show()
   $('.buttonContainer a').addClass('killLink')
-
-  //Initialiser
-  function firstRun(){
-    console.log('running...')
-    $('.firstTimeWash').show()
-    $('.firstTimePlay').hide()
-
-
-    $('.closeSpeechBubble').hide()
-    $('.speechBubbleText').removeClass('showSpeechText')
-    $('.speechBubble').addClass('shrinkBubble')
-    setTimeout(function(){
-      $('.speechBubble').hide()
-      $('.speechBubble').removeClass('shrinkBubble')
-      core.speechBubble('I\'m dirty')
-    },1000)
-
-  }
-
-  if(localStorage.getItem("firstTimeFun") == 'true'){
-    //console.log('true')
-  }else if(localStorage.getItem("firstTimeFun") == null){
-    //console.log('null')
-    localStorage.setItem("firstTimeFun", 'true')
-    firstRun()
-  }else{
-
-  }
 
   //1 == play
   //0  == stop

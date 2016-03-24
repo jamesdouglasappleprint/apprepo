@@ -199,7 +199,7 @@ margin-right: auto;}
 
 .fullHeightPanel.storyboardPanel {display: none;background: #701551;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );-webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 400ms linear forwards;animation: slidePanelInFromRight 400ms linear forwards;-moz-animation: slidePanelInFromRight 400ms linear forwards;color:#fff;}
 
-.fullHeightPanel.gumphPanel{display: none;background: #701551;background: -moz-linear-gradient(top, #701551 0%, #451451 100%);background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);background: linear-gradient(to bottom, #701551 0%,#451451 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );-webkit-transition: all 400ms ease;-moz-transition: all 400ms ease;-o-transition: all 400ms ease;transition: all 400ms ease;-ms-transform: translate(100%,0);-webkit-transform: translate(100%,0);transform: translate(100%,0);-webkit-animation: slidePanelInFromRight 400ms linear forwards;animation: slidePanelInFromRight 400ms linear forwards;-moz-animation: slidePanelInFromRight 400ms linear forwards;color:#fff;z-index:10;}
+
 
 .skipStoryboard {position: absolute;bottom: 21px;right: 0;font-size: 40px;width: 60px;height: 40px;line-height: 40px;text-align: center;}
 .returnStoryboard {position: absolute;bottom: 21px;left: 0;font-size: 40px;width: 60px;height: 40px;line-height: 40px;text-align: center;}
@@ -208,6 +208,22 @@ margin-right: auto;}
 /* ------------------------------------------ */
 /* GUMPH ------------------------------------ */
 /* ------------------------------------------ */
+.fullHeightPanel.gumphPanel {
+  display: none;
+  background: rgba(0, 0, 0, 0.40);
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+  transition: all 400ms ease;
+  -ms-transform: translate(100%,0);
+  -webkit-transform: translate(100%,0);
+  transform: translate(100%,0);
+  -webkit-animation: slidePanelInFromRight 400ms linear forwards;
+  animation: slidePanelInFromRight 400ms linear forwards;
+  -moz-animation: slidePanelInFromRight 400ms linear forwards;
+  color: #fff;
+  z-index: 10;
+}
 .closeGumph{
   position: absolute;
     top: 0px;
@@ -220,12 +236,63 @@ margin-right: auto;}
     color: #fff;
     text-decoration: none;
     font-family: ralewaythin;
+    z-index: 40;
+}
+.step1 .itemFocusLocator {
+    width: 24%;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.advanceStep {
+  height: 44px;
+  display: block;
+  width: 250px;
+  border: none;
+  background: #E3097E;
+  color: #fff;
+  font-size: inherit;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: ralewayregular;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 44px;
+  text-decoration: none;
+}
+.bringToFront{
+  z-index:30 !important;
+}
+.gumphContainer {
+    height: 100%;
+}
+.dropFocus{
+  opacity:0.2 !important;
+}
+.gumphStep{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: start;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-content: center;
+    -webkit-align-content: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    height: 100%;
 }
 .gumphImg {
     width: 60%;
     position: relative;
     left: 50%;
     margin-left: -30%;
+    margin-bottom: 25px;
 }
 .gumphContainer p {
     margin-bottom: 20px;
@@ -501,7 +568,7 @@ form#updateContactDetailsForm {
 /* ------------------------------------------ */
 /* FIRST TRY -------------------------------- */
 /* ------------------------------------------ */
-.firstTimeFeed,.firstTimePlay,.firstTimeWash  {
+.bouncyHand  {
     position: absolute;
     bottom: 40px;
     color: #fff;
@@ -515,7 +582,18 @@ form#updateContactDetailsForm {
     -ms-transform-origin: 0% 50%;
     -webkit-transform-origin: 0% 50%;
     transform-origin: 0% 50%;
-    display:none;
+    display: none;
+}
+.closeGumph {
+    right: 30px;
+    left: auto;
+    margin-left: 0;
+    font-size: 25px;
+    bottom: 10px;
+      z-index: 40;
+}
+.step2 .bouncyHand  {
+    left: 144px;
 }
 
 .firstTimeFeed i {
@@ -549,7 +627,33 @@ form#updateContactDetailsForm {
     transform-origin: 0% 50%;
      display: none;
 }
-
+.step4 .bouncyHand {
+    bottom: auto;
+    top: 25px;
+    right: 90px;
+    left: auto;
+    transform: inherit;
+    -webkit-transform: inherit;
+    -moz-transform: inherit;
+    -ms-transform: inherit;
+}
+.step5 .bouncyHand {
+    bottom: 15%;
+    right: 40px;
+    left: auto;
+    transform: inherit;
+    -webkit-transform: inherit;
+    -moz-transform: inherit;
+    -ms-transform: inherit;
+}
+.step6 .bouncyHand {
+    bottom: auto;
+    top: 40px;
+    transform: rotate(-53deg);
+    -ms-transform: rotate(-53deg);
+    -moz-transform: rotate(-53deg);
+    -webkit-transform: rotate(55deg);
+}
 /* ------------------------------------------ */
 /* LEADERBOARD ------------------------------ */
 /* ------------------------------------------ */
@@ -676,13 +780,13 @@ form#scoreboostIncrement {
 .buttonContainer img {height: 80%;}
 .scoreContainer {
     position: absolute;
-    right: 18px;
+    right: 7px;
     top: 104px;
     color: #fff;
     font-family: ralewayregular;
     font-size: 12px;
     text-shadow: 0px 2px 6px rgba(0,0,0,0.2);
-    width: 58px;
+    width: 80px;
     text-align: center;
     z-index: 4;
     padding: 2px 0px;

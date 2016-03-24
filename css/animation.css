@@ -402,27 +402,139 @@ animation: stage2_foodDrop 400ms linear forwards;
 /* ------------------------------------------ */
 /* First time bounce -- */
 /* ------------------------------------------ */
-.firsttimebounce{
-  -webkit-animation: firsttimebounce 1s ease-in-out infinite;
-  animation: firsttimebounce 1s ease-in-out infinite;
-  -moz-animation: firsttimebounce 1s ease-in-out infinite
+.step1 .bouncyHand{
+  -webkit-animation: firsttimebounce1 1s ease-in-out infinite;
+  animation: firsttimebounce1 1s ease-in-out infinite;
+  -moz-animation: firsttimebounce1 1s ease-in-out infinite
 }
 
-@-webkit-keyframes firsttimebounce {
+@-webkit-keyframes firsttimebounce1 {
   0% {bottom:40px;left:45px;}
   50% {bottom:60px;left:55px;}
   100%{bottom:40px;left:45px;}
 }
-@-moz-keyframes firsttimebounce {
+@-moz-keyframes firsttimebounce1 {
 0% {bottom:40px;left:45px;}
 50% {bottom:60px;left:55px;}
 100%{bottom:40px;left:45px;}
 }
 
-@keyframes firsttimebounce {
+@keyframes firsttimebounce1 {
 0% {bottom:40px;left:45px;}
 50% {bottom:60px;left:55px;}
 100%{bottom:40px;left:45px;}
+}
+
+.step2 .bouncyHand{
+  -webkit-animation: firsttimebounce2 1s ease-in-out infinite;
+  animation: firsttimebounce2 1s ease-in-out infinite;
+  -moz-animation: firsttimebounce2 1s ease-in-out infinite
+}
+
+@-webkit-keyframes firsttimebounce2 {
+  0% {bottom:40px;left:38%;}
+  50% {bottom:60px;left:42%;}
+  100%{bottom:40px;left:38%;}
+}
+@-moz-keyframes firsttimebounce2 {
+  0% {bottom:40px;left:38%;}
+  50% {bottom:60px;left:42%;}
+  100%{bottom:40px;left:38%;}
+}
+
+@keyframes firsttimebounce2 {
+  0% {bottom:40px;left:38%;}
+  50% {bottom:60px;left:42%;}
+  100%{bottom:40px;left:38%;}
+}
+
+.step3 .bouncyHand{
+  -webkit-animation: firsttimebounce3 1s ease-in-out infinite;
+  animation: firsttimebounce3 1s ease-in-out infinite;
+  -moz-animation: firsttimebounce3 1s ease-in-out infinite
+}
+
+@-webkit-keyframes firsttimebounce3 {
+  0% {bottom:40px;left:63%;}
+  50% {bottom:60px;left:66%;}
+  100%{bottom:40px;left:63%;}
+}
+@-moz-keyframes firsttimebounce3 {
+  0% {bottom:40px;left:63%;}
+  50% {bottom:60px;left:66%;}
+  100%{bottom:40px;left:63%;}
+}
+
+@keyframes firsttimebounce3 {
+  0% {bottom:40px;left:63%;}
+  50% {bottom:60px;left:66%;}
+  100%{bottom:40px;left:63%;}
+}
+.step4 .bouncyHand{
+  -webkit-animation: firsttimebounce4 1s ease-in-out infinite;
+  animation: firsttimebounce4 1s ease-in-out infinite;
+  -moz-animation: firsttimebounce4 1s ease-in-out infinite
+}
+
+@-webkit-keyframes firsttimebounce4 {
+  0% {right:90px;}
+  50% {right:120px;}
+  100%{right:90px;}
+}
+@-moz-keyframes firsttimebounce4 {
+  0% {right:90px;}
+  50% {right:120px;}
+  100%{right:90px;}
+}
+
+@keyframes firsttimebounce4 {
+  0% {right:90px;}
+  50% {right:120px;}
+  100%{right:90px;}
+}
+.step5 .bouncyHand{
+  -webkit-animation: firsttimebounce5 1s ease-in-out infinite;
+  animation: firsttimebounce5 1s ease-in-out infinite;
+  -moz-animation: firsttimebounce5 1s ease-in-out infinite
+}
+
+@-webkit-keyframes firsttimebounce5 {
+  0% {right:20px;}
+  50% {right:40px;}
+  100%{right:20px;}
+}
+@-moz-keyframes firsttimebounce5 {
+  0% {right:20px;}
+  50% {right:40px;}
+  100%{right:20px;}
+}
+
+@keyframes firsttimebounce5 {
+  0% {right:20px;}
+  50% {right:40px;}
+  100%{right:20px;}
+}
+.step6 .bouncyHand{
+  -webkit-animation: firsttimebounce6 1s ease-in-out infinite;
+  animation: firsttimebounce6 1s ease-in-out infinite;
+  -moz-animation: firsttimebounce6 1s ease-in-out infinite
+}
+
+@-webkit-keyframes firsttimebounce6 {
+  0% {top:50px;left:45px;}
+  50% {top:70px;left:55px;}
+  100%{top:50px;left:45px;}
+}
+@-moz-keyframes firsttimebounce6 {
+  0% {top:50px;left:45px;}
+  50% {top:70px;left:55px;}
+  100%{top:50px;left:45px;}
+}
+
+@keyframes firsttimebounce6 {
+  0% {top:50px;left:45px;}
+  50% {top:70px;left:55px;}
+  100%{top:50px;left:45px;}
 }
 
 .firsttimelevel{
