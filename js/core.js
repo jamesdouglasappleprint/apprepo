@@ -1372,6 +1372,15 @@ Core.prototype.speechBubble = function(message,action){
   $('.closeSpeechBubble').show()
   $('.speechBubbleText').addClass('showSpeechText').html(message)
 
+  setTimeout(function(){
+    $('.speechBubble').addClass('shrinkBubble')
+    setTimeout(function(){
+      $('.speechBubble').hide()
+      $('.closeSpeechBubble').hide()
+      $('.speechBubble').removeClass('shrinkBubble')
+    },1000)
+  },10000)
+
 
   $(document).on("click",".speechBubbleContainer",function(e){
 
