@@ -23,15 +23,22 @@ function Core(){
   core.petNamedType = ""; //current pet type as a name
   core.petLevel = 1; //current pet type as a name
   core.userID = 0; //Pet Name
+  core.debug = 1;
+
+  $('.menuMusic').get(0).play()
 
   core.loadPanelContent();//Load panels with content
   core.loginOrRegister(); //Load form options
   core.init();//Initial load checks
   core.logOut()
 
-  $('.menuMusic').get(0).play()
-  core.initPushwoosh()
-  window.plugin.notification.badge.clear(); //clear badge notifications
+
+
+  if (core.debug == 0){
+    core.initPushwoosh()
+    window.plugin.notification.badge.clear(); //clear badge notifications
+  }
+
 }
 
 //Initialiser
@@ -105,11 +112,10 @@ Core.prototype.loadLeaderboard = function(){
 Core.prototype.loadPanelContent = function(){
   var core = this
   console.log('Loading Panel Content')
-
+  $('.menuPanel').load("menu.html")
   $('.registerLoginPanel').load("registerlogin.html")
   $('.storyboardPanel').load("storyboard.html")
   $('.mainPanel').load("main.html")
-  $('.menuPanel').load("menu.html")
   $('.levelupPanel').load("levelup.html")
   $('.contactDetailsPanel').load("contactdetails.html")
   $('.leaderboardPanel').load("leaderboard.html")
@@ -319,38 +325,35 @@ Core.prototype.loadPanelContent = function(){
     $('.levelupPanel').hide()
   })
 
+
   //Click to close contact details menu
   $(document).on("click",".toggleMusic",function(e){
     e.preventDefault()
     console.log('toggling')
-    $('.toggleMusic').toggleClass('disabledAudio')
-
 
     if (localStorage.getItem('music') == '1'){
-      $('.menuMusic').get(0).pause()
-      $('.gameMusic').get(0).pause()
-       window.localStorage.setItem('music', '0')
-    }else if (localStorage.getItem('music') == '0'){
-       window.localStorage.setItem('music', '1')
-      $('.menuMusic').get(0).pause()
       $('.gameMusic').get(0).play()
-    }else{
-      $('.menuMusic').get(0).pause()
+      localStorage.removeItem('music')
+      $('.toggleMusic').removeclass('disabledAudio')
+    }else if (localStorage.getItem('music') == null){
+      localStorage.setItem('music', '1')
       $('.gameMusic').get(0).pause()
+      $('.toggleMusic').addClass('disabledAudio')
+    }else{
     }
 
   })
-
   //Click to close contact details menu
   $(document).on("click",".toggleSound",function(e){
     e.preventDefault()
     console.log('toggling')
-    $('.toggleSound').toggleClass('disabledAudio')
 
     if (localStorage.getItem('sound') == '1'){
-       window.localStorage.setItem('sound', '0')
-    }else if (localStorage.getItem('sound') == '0'){
-       window.localStorage.setItem('sound', '1')
+       localStorage.removeItem('sound')
+       $('.toggleSound').removeClass('disabledAudio')
+    }else if (localStorage.getItem('sound') == null){
+       localStorage.setItem('sound', '1')
+       $('.toggleSound').addClass('disabledAudio')
     }else{
 
     }
@@ -404,25 +407,6 @@ Core.prototype.logOut = function(){
     $('.petStage6ArmRight_ringo').hide()
 
       localStorage.removeItem('isLoggedIn')
-    //1 == play
-    //0  == stop
-    //if music is set to on, play
-    if (save == '1'){
-      $('.menuMusic').get(0).play()
-      $('.gameMusic').get(0).pause()
-      localStorage.setItem('music', "1")
-
-    //else if music is set to off, pause both
-    }else if (save == '0'){
-      $('.menuMusic').get(0).pause()
-      $('.gameMusic').get(0).pause()
-      $('.toggleMusic').addClass('disabledAudio')
-      localStorage.setItem('music', "0")
-    }else{
-      $('.menuMusic').get(0).pause()
-      $('.gameMusic').get(0).pause()
-    }
-
 
     //Call unregister
     core.initPushwoosh(null, null, false, true)
@@ -981,6 +965,38 @@ Core.prototype.zombiefy = function(){
 Core.prototype.loadPet = function(uid){
   var core = this
 
+  $('.menuMusic').get(0).pause()
+
+  if (localStorage.getItem('music') == '1'){
+    console.warn('Stopping Music')
+    $('.gameMusic').get(0).pause()
+    setTimeout(function(){
+      $('.toggleMusic').addClass('disabledAudio')
+    },2000)
+
+  }else if (localStorage.getItem('music') == null){
+    console.warn('Playing Music')
+    $('.gameMusic').get(0).play()
+    setTimeout(function(){
+      $('.toggleMusic').removeClass('disabledAudio')
+    },2000)
+  }else{
+
+  }
+
+  if (localStorage.getItem('sound') == '1'){
+    setTimeout(function(){
+      $('.toggleSound').addClass('disabledAudio')
+    },2000)
+
+  }else if (localStorage.getItem('sound') == null){
+    setTimeout(function(){
+      $('.toggleSound').removeClass('disabledAudio')
+    },2000)
+  }else{
+
+  }
+
   console.log('Loading Pet'+uid)
   core.updateActionLevels(uid,'firstload')
 
@@ -989,48 +1005,74 @@ Core.prototype.loadPet = function(uid){
 Core.prototype.firstLoad = function(){
   var core = this
 
-  $('.gumphPanel').show()
-  //Step 1
-  $('.buttonContainer').addClass('bringToFront')
-  $('.buttonEntertain').addClass('dropFocus')
-  $('.buttonClean').addClass('dropFocus')
-  $('.buttonPhoto').addClass('dropFocus')
-  $('.step1 .bouncyHand').show()
+  if (localStorage.getItem('petPoints') > 100){
+    //If user already has some pet points, assume they won't want to see the firstLoad crap
+    //because they're not a new user - maybe they had signed out? Who knows.
+  }else{
+    $('.gumphPanel').show()
+    //Step 1
+    $('.buttonContainer').addClass('bringToFront')
+    $('.buttonEntertain').addClass('dropFocus')
+    $('.buttonClean').addClass('dropFocus')
+    $('.buttonPhoto').addClass('dropFocus')
+    $('.step1 .bouncyHand').show()
 
-  $('.advanceStep').click(function(){
-    var step = $(this).attr('data-step')
-    $('.dropFocus').removeClass('dropFocus')
-    $('.bringToFront').removeClass('bringToFront')
-    $('.gumphStep').hide()
-    $('.'+step).show()
+    $('.advanceStep').click(function(){
+      var step = $(this).attr('data-step')
+      $('.dropFocus').removeClass('dropFocus')
+      $('.bringToFront').removeClass('bringToFront')
+      $('.gumphStep').hide()
+      $('.'+step).show()
 
-    if (step == 'step2'){
-      $('.buttonContainer').addClass('bringToFront')
-      $('.buttonFeed').addClass('dropFocus')
-      $('.buttonEntertain').addClass('bringToFront')
-      $('.buttonClean').addClass('dropFocus')
-      $('.buttonPhoto').addClass('dropFocus')
-      $('.step2 .bouncyHand').show()
-    }else if (step == 'step3'){
-      $('.buttonContainer').addClass('bringToFront')
-      $('.buttonFeed').addClass('dropFocus')
-      $('.buttonEntertain').addClass('dropFocus')
-      $('.buttonClean').addClass('bringToFront')
-      $('.buttonPhoto').addClass('dropFocus')
-      $('.step3 .bouncyHand').show()
-    }else if (step == 'step4'){
-      $('.statusContainer').addClass('bringToFront')
-      $('.step4 .bouncyHand').show()
-    }else if (step == 'step5'){
-      $('.levelUpBar').addClass('bringToFront')
-      $('.step5 .bouncyHand').show()
-    }else if (step == 'step6'){
-      $('.menuButtonContainer').addClass('bringToFront')
-      $('.step6 .bouncyHand').show()
-    }else if (step == 'step7'){
-      $('.gumphPanel').remove()
-    }
-  })
+      if (step == 'step2'){
+        $('.buttonContainer').addClass('bringToFront')
+        $('.buttonFeed').addClass('dropFocus')
+        $('.buttonEntertain').addClass('bringToFront')
+        $('.buttonClean').addClass('dropFocus')
+        $('.buttonPhoto').addClass('dropFocus')
+        $('.step2 .bouncyHand').show()
+      }else if (step == 'step3'){
+        $('.buttonContainer').addClass('bringToFront')
+        $('.buttonFeed').addClass('dropFocus')
+        $('.buttonEntertain').addClass('dropFocus')
+        $('.buttonClean').addClass('bringToFront')
+        $('.buttonPhoto').addClass('dropFocus')
+        $('.step3 .bouncyHand').show()
+      }else if (step == 'step4'){
+        $('.statusContainer').addClass('bringToFront')
+        $('.step4 .bouncyHand').show()
+      }else if (step == 'step5'){
+        $('.levelUpBar').addClass('bringToFront')
+        $('.step5 .bouncyHand').show()
+      }else if (step == 'step6'){
+        $('.menuButtonContainer').addClass('bringToFront')
+        $('.step6 .bouncyHand').show()
+      }else if (step == 'step7'){
+        $('.gumphPanel').remove()
+      }
+    })
+  }
+
+}
+
+//
+Core.prototype.popupMessage = function(type){
+  var core = this
+  var randomiser = Math.floor(Math.random() * 5) + 1
+
+  if (type == 'food'){
+    var foodArr = ['I\'m stuffed!','Thanks for the food!','That was tasty!','SO. MUCH. FOOD.','OMG stuffed!','FOOD!!!']
+    core.speechBubble(foodArr[randomiser])
+  }else if(type == 'fun'){
+    var funArr = ['Yay!!','BEST. PARTY. EVER.','That was fun!','You throw the best parties!','I need a rest now!','Boogie!']
+    core.speechBubble(funArr[randomiser])
+  }else if(type == 'clean'){
+    var cleanArr = ['Squeeky Clean!','Bubbles!','I\'m like a fish now!','SO. CLEAN.','Ahoy!','Blub blub blub!']
+    core.speechBubble(cleanArr[randomiser])
+  }else{
+    console.log('core.popupMessage type not set or an error has occured.')
+  }
+
 
 }
 
@@ -1040,14 +1082,6 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
   console.log('update action levels firing')
 
   var prevPetLevel = localStorage.getItem("petLevel")
-
-  //TODO: ONLY LET THIS EVENT HAPPEN IF YOU'RE LOGGED IN
-  if (localStorage.getItem('firstTime') == null && localStorage.getItem('isLoggedIn') == 1){
-    localStorage.setItem('firstTime', true)
-    core.firstLoad()
-  }else{
-    //$('.gumphPanel').remove()
-  }
 
   $.ajax({
     type: 'POST',
@@ -1071,9 +1105,16 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("userID", data[0].uid)
         localStorage.setItem("hasPet", true);
 
-        //TODO: RENABLE
-        //core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
-        //console.log(firstLoad)
+        if (localStorage.getItem('firstTime') == null && localStorage.getItem('isLoggedIn') == 1 && data[0].pp < 100){
+          localStorage.setItem('firstTime', true)
+          core.firstLoad()
+        }else{
+          //$('.gumphPanel').remove()
+        }
+
+        if (core.debug == 0){
+          core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        }
 
         if (data[0].pt == 2){
           //Ringo
@@ -1108,6 +1149,30 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
 
           }
         }
+
+        //Display message at 100%, unless one has already been shown at 100%
+        //If that's the case, don't let it show again until it's dropped below 100%
+        if (data[0].fs == 100 && localStorage.getItem('food100') != 1){
+          core.popupMessage('food')
+          localStorage.setItem('food100',1)
+        }else if (data[0].fs < 100){
+          localStorage.removeItem('food100')
+        }
+
+        if (data[0].ps == 100 && localStorage.getItem('fun100') != 1){
+          core.popupMessage('fun')
+          localStorage.setItem('fun100',1)
+        }else if(data[0].ps < 100){
+          localStorage.removeItem('fun100')
+        }
+
+        if (data[0].cs == 100 && localStorage.getItem('clean100') != 1){
+          core.popupMessage('clean')
+          localStorage.setItem('clean100',1)
+        }else if (data[0].cs < 100){
+          localStorage.removeItem('clean100')
+        }
+
 
         if(data[0].pa == 0){
           core.deadPet()
@@ -1157,15 +1222,13 @@ Core.prototype.actionFeed = function(stage){
   $('.petFood').show()
   $('.petFood').addClass('stage'+petStage+'_foodDrop')
 
-  //1 == play
-  //0  == stop
   if (localStorage.getItem('sound') == '1'){
+
+  }else if (localStorage.getItem('sound') == null){
     var audio = new Audio('audio/eat.mp3');
     audio.play();
-  }else if (localStorage.getItem('sound') == '0'){
-
   }else{
-    localStorage.setItem('sound', "1")
+
   }
 
   setTimeout(function(){
@@ -1203,12 +1266,12 @@ Core.prototype.actionClean = function(stage){
   //1 == play
   //0 == stop
   if (localStorage.getItem('sound') == '1'){
+
+  }else if (localStorage.getItem('sound') == null){
     var audio = new Audio('audio/bubbles.mp3');
     audio.play();
-  }else if (localStorage.getItem('sound') == '0'){
-
   }else{
-    localStorage.setItem('sound', "1")
+
   }
 
   $('.buttonContainer a').addClass('killLink')
@@ -1267,16 +1330,16 @@ Core.prototype.actionEntertain = function(stage){
 
   //1 == play
   //0  == stop
-  if (localStorage.getItem('sound') == '1' && core.currentMood == 'happy' || localStorage.getItem('sound') == '1' && core.currentMood == 'meh'){
+  if (localStorage.getItem('sound') == null && core.currentMood == 'happy' || localStorage.getItem('sound') == null && core.currentMood == 'meh'){
     var audio = new Audio('audio/happy.mp3');
     audio.play();
-  }else if (localStorage.getItem('sound') == '1' && core.currentMood == 'sad'){
+  }else if (localStorage.getItem('sound') == null && core.currentMood == 'sad'){
     var audio = new Audio('audio/sad.mp3');
     audio.play();
-  }else if (localStorage.getItem('sound') == '0'){
+  }else if (localStorage.getItem('sound') == '1'){
 
   }else{
-    localStorage.setItem('sound', "1")
+
   }
 
   setTimeout(function(){
@@ -1372,6 +1435,14 @@ Core.prototype.petMurder = function(){
 }
 
 Core.prototype.speechBubble = function(message,action){
+
+  //Remove all speechbubble shiz in there's already one on screen.
+  $('.speechBubble').addClass('shrinkBubble')
+  $('.speechBubbleText').removeClass('showSpeechText')
+  $('.closeSpeechBubble').hide()
+  $('.speechBubble').hide()
+  $('.speechBubble').removeClass('shrinkBubble')
+
   var core = this
   $('.speechBubble').show()
   $('.closeSpeechBubble').show()
@@ -1379,24 +1450,25 @@ Core.prototype.speechBubble = function(message,action){
 
   setTimeout(function(){
     $('.speechBubble').addClass('shrinkBubble')
+    $('.speechBubbleText').removeClass('showSpeechText')
+    $('.closeSpeechBubble').hide()
     setTimeout(function(){
       $('.speechBubble').hide()
-      $('.closeSpeechBubble').hide()
       $('.speechBubble').removeClass('shrinkBubble')
     },1000)
-    $('.speechBubbleText').removeClass('showSpeechText')
   },5000)
 
 
   $(document).on("click",".speechBubbleContainer",function(e){
 
     $('.speechBubble').addClass('shrinkBubble')
+    $('.speechBubbleText').removeClass('showSpeechText')
+    $('.closeSpeechBubble').hide()
     setTimeout(function(){
       $('.speechBubble').hide()
-      $('.closeSpeechBubble').hide()
       $('.speechBubble').removeClass('shrinkBubble')
     },1000)
-    $('.speechBubbleText').removeClass('showSpeechText')
+
   })
 
 

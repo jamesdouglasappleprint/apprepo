@@ -493,8 +493,18 @@ margin-right: auto;}
     background: -webkit-linear-gradient(top, #701551 0%,#451451 100%);
     background: linear-gradient(to bottom, #701551 0%,#451451 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#701551', endColorstr='#451451',GradientType=0 );
+    overflow-y: scroll;
 }
-
+.aboutPanel p {
+    margin-bottom: 10px;
+}
+.aboutPanel ul {
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.aboutPanel a {
+    color: #fff;
+}
 .closeleaderboard, .closeCredits,.closeAbout {
     top: auto;
     bottom: 20px;
@@ -509,7 +519,12 @@ margin-right: auto;}
     text-decoration: none;
     font-family: ralewaythin;
 }
-
+.closeAbout {
+    padding-top: 20px;
+    position: relative;
+    bottom: 0;
+    padding-bottom: 20px;
+}
 .deadCover {
     position: absolute;
     top: 0;
