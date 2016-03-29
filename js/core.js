@@ -47,7 +47,7 @@ Core.prototype.init = function (x) {
 
   $('.deadCover').hide()
 
-  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
+  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") != null){
     console.log('remain logged in is true')
     //get up to date pet data
     core.loadPet(localStorage.getItem("userID"))
