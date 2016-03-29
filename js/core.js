@@ -23,7 +23,7 @@ function Core(){
   core.petNamedType = ""; //current pet type as a name
   core.petLevel = 1; //current pet type as a name
   core.userID = 0; //Pet Name
-  core.debug = 0;
+  core.debug = 1;
 
   $('.menuMusic').get(0).play()
 
@@ -31,6 +31,14 @@ function Core(){
   core.loginOrRegister(); //Load form options
   core.init();//Initial load checks
   core.logOut()
+
+  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") != null){
+    console.log('remain logged in is true')
+    //get up to date pet data
+    core.loadPet(localStorage.getItem("userID"))
+  }else{
+
+  }
 
 
 
@@ -46,15 +54,6 @@ Core.prototype.init = function (x) {
   var core = this
 
   $('.deadCover').hide()
-
-  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") != null){
-    console.log('remain logged in is true')
-    //get up to date pet data
-    core.loadPet(localStorage.getItem("userID"))
-  }else{
-
-  }
-
 
   document.addEventListener("resume", onResume, false);
   function onResume() {
@@ -1489,6 +1488,8 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
   //Cancel first load highlighting if the user closed the app during the tutorial and signed out
   $('.dropFocus').removeClass('dropFocus')
   $('.bringToFront').removeClass('bringToFront')
+
+  pushNotification.setApplicationIconBadgeNumber(0)
 
   var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
