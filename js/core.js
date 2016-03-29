@@ -448,9 +448,6 @@ Core.prototype.fireLoginScript = function(deets){
       function firstRun(){
         console.log('running...')
         $('.firstTimeFeed').show()
-
-        core.speechBubble('I\'m hungry')
-
       }
 
       if(localStorage.getItem("firstTimeFeed") == 'true'){
@@ -945,6 +942,10 @@ Core.prototype.deadPet = function(){
 
   core.speechBubble('...eughghg')
 
+  setTimeout(function(){
+    $('.ressPanel').show()
+  },4000)
+
 
 }
 
@@ -1071,7 +1072,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         localStorage.setItem("hasPet", true);
 
         //TODO: RENABLE
-        core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+        //core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         //console.log(firstLoad)
 
         if (data[0].pt == 2){
@@ -1388,12 +1389,6 @@ Core.prototype.speechBubble = function(message,action){
 
 
   $(document).on("click",".speechBubbleContainer",function(e){
-
-    if (localStorage.getItem('hasded') == "isdied"){
-      $('.ressPanel').show()
-    }else{
-
-    }
 
     $('.speechBubble').addClass('shrinkBubble')
     setTimeout(function(){
