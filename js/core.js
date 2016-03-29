@@ -23,7 +23,7 @@ function Core(){
   core.petNamedType = ""; //current pet type as a name
   core.petLevel = 1; //current pet type as a name
   core.userID = 0; //Pet Name
-  core.debug = 1;
+  core.debug = 0;
 
   $('.menuMusic').get(0).play()
 

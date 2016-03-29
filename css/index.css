@@ -1054,3 +1054,9 @@ button.submitUpdate {
 /* PANELS ----------------------------------- */
 /* ------------------------------------------ */
 .fullHeightPanel {display: block;height: 100%;width: 100%;background: #fff;position: absolute;overflow:hidden;}
+
+
+@media only screen and (min-width : 600px){
+  .ringoBackground > .landContainer {bottom:0;height: 350px;}
+  .insatsuBackground > .landContainer {bottom:0;height: 350px;}
+}
