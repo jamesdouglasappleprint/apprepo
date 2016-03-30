@@ -1489,8 +1489,6 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
   $('.dropFocus').removeClass('dropFocus')
   $('.bringToFront').removeClass('bringToFront')
 
-  pushNotification.setApplicationIconBadgeNumber(0)
-
   var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
   //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
