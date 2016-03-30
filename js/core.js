@@ -32,16 +32,6 @@ function Core(){
   core.init();//Initial load checks
   core.logOut()
 
-  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") != null){
-    console.log('remain logged in is true')
-    //get up to date pet data
-    core.loadPet(localStorage.getItem("userID"))
-  }else{
-
-  }
-
-
-
   if (core.debug == 0){
     core.initPushwoosh()
     window.plugin.notification.badge.clear(); //clear badge notifications
@@ -521,6 +511,14 @@ Core.prototype.fireLoginScript = function(deets){
 Core.prototype.loginOrRegister = function(){
   var core = this
   console.log('Loading Panel Content')
+
+  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
+    console.log('remain logged in is true')
+    //get up to date pet data
+    core.loadPet(localStorage.getItem("userID"))
+  }else{
+
+  }
 
   //If remmber me button clicked
   $(document).on("click",".rememberMeButton",function(e){
