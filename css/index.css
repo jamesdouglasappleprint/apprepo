@@ -600,12 +600,14 @@ form#updateContactDetailsForm {
     display: none;
 }
 .closeGumph {
-    right: 30px;
-    left: auto;
-    margin-left: 0;
+    left: 50%;
     font-size: 25px;
-    bottom: 10px;
-      z-index: 40;
+    top: 10px;
+    z-index: 10000;
+    background: #E3097E;
+    border-radius: 4px;
+    width: 80px;
+    margin-left: -40px;
 }
 .step2 .bouncyHand  {
     left: 144px;
