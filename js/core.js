@@ -32,6 +32,8 @@ function Core(){
   core.init();//Initial load checks
   core.logOut()
 
+
+
   if (core.debug == 0){
     core.initPushwoosh()
     window.plugin.notification.badge.clear(); //clear badge notifications
@@ -113,6 +115,14 @@ Core.prototype.loadPanelContent = function(){
   $('.aboutPanel').load("about.html")
   $('.ressPanel').load("isded.html")
   $('.gumphPanel').load("gumph.html")
+
+  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
+    console.log('remain logged in is true')
+    //get up to date pet data
+    core.loadPet(localStorage.getItem("userID"))
+  }else{
+
+  }
 
   $(document).on('click',".buttonPhoto", function(e){
     e.preventDefault()
@@ -511,14 +521,6 @@ Core.prototype.fireLoginScript = function(deets){
 Core.prototype.loginOrRegister = function(){
   var core = this
   console.log('Loading Panel Content')
-
-  if (localStorage.getItem("remainLoggedIn") == 'true' && localStorage.getItem("userID") !== null){
-    console.log('remain logged in is true')
-    //get up to date pet data
-    core.loadPet(localStorage.getItem("userID"))
-  }else{
-
-  }
 
   //If remmber me button clicked
   $(document).on("click",".rememberMeButton",function(e){
