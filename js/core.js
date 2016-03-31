@@ -1481,15 +1481,6 @@ Core.prototype.speechBubble = function(message,action){
 Core.prototype.initPushwoosh = function(email,petLevel,setTags,state){
   var core = this
 
-  //FYI ///////////////////////////////////////////////////////////////
-  //Email = users email, petLevel = pets level and setTags = true/false
-  //If setTags == true, it will set the tags
-  //If setTags == false, register device will fire && tags will be set.
-  //If unRegister == true, un-register the user
-
-  //navigator.notification.alert('Success!', null, 'Pushwoosh CORE Initialised', 'ok')
-  console.log('line711: '+email+'_'+petLevel+'_'+setTags+'_'+unRegister)
-
   //Cancel first load highlighting if the user closed the app during the tutorial and signed out
   $('.dropFocus').removeClass('dropFocus')
   $('.bringToFront').removeClass('bringToFront')
