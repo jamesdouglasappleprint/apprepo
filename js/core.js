@@ -27,9 +27,9 @@ function Core(){
 
   $('.menuMusic').get(0).play()
 
-  // setInterval(function(){
-  //   core.speechBubble('THIS IS A TEST MESSAGE')
-  // },10000)
+  setInterval(function(){
+    core.speechBubble('THIS IS A TEST MESSAGE')
+  },10000)
 
 
   core.loadPanelContent();//Load panels with content
@@ -415,7 +415,7 @@ Core.prototype.logOut = function(){
       localStorage.removeItem('isLoggedIn')
 
     //Call unregister
-    core.initPushwoosh(null, null, false, true)
+    core.initPushwoosh(null, null, false, 'unregister')
   })
 }
 
@@ -1119,7 +1119,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
         }
 
         if (core.debug == 0 && localStorage.getItem("notifications") == null){
-          core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
+          core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true,'register')
         }
 
         if (data[0].pt == 2){
@@ -1478,7 +1478,7 @@ Core.prototype.speechBubble = function(message,action){
 
 }
 
-Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
+Core.prototype.initPushwoosh = function(email,petLevel,setTags,state){
   var core = this
 
   //FYI ///////////////////////////////////////////////////////////////
@@ -1496,11 +1496,6 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
 
   var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
-  pushNotification.onDeviceReady({
-    projectid: "364045976404", // GOOGLE_PROJECT_ID
-    pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
-  });
-
   //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
   document.addEventListener('push-notification', function(event) {
     var notification = event.notification;
@@ -1509,6 +1504,31 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     core.speechBubble(notification.aps.alert)
     //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
   });
+
+  pushNotification.onDeviceReady({
+    projectid: "364045976404", // GOOGLE_PROJECT_ID
+    pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
+  });
+
+  console.log('register device?')
+  if (state == 'register'){
+    //register for pushes
+    pushNotification.registerDevice(
+      function(status) {
+        var deviceToken = status['deviceToken'];
+        console.log('registerDevice: ' + deviceToken);
+        localStorage.setItem("notifications",true)
+        setTagsFunc(email)
+      },
+      function(status) {
+        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
+
+        console.log('failed to register : ' + JSON.stringify(status));
+        alert(JSON.stringify(['failed to register ', status]));
+      }
+    );
+
+  }
 
   function setTagsFunc(email,petLevel){
     console.log(email+' : '+petLevel)
@@ -1534,13 +1554,12 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     );
   }//end func
 
-  console.log('register device?')
   //If we're calling set tags only set tags, don't call register etc
   if (setTags === true){
     setTagsFunc(email,petLevel)
+  }
 
-  //else assume we're registering
-  }else if(unRegister === true){
+  if(state == 'unregister'){
     console.log('Attempting unregister...')
     pushNotification.unregisterDevice (
       function(token){
@@ -1550,24 +1569,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
       function(status){
           console.log("unregistered failed!" + status);
       })
-  }else{
-    //register for pushes
-    pushNotification.registerDevice(
-      function(status) {
-        var deviceToken = status['deviceToken'];
-        console.log('registerDevice: ' + deviceToken);
-        localStorage.setItem("notifications",true)
-        setTagsFunc(email)
-      },
-      function(status) {
-        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
-
-        console.log('failed to register : ' + JSON.stringify(status));
-        alert(JSON.stringify(['failed to register ', status]));
-      }
-    );
   }
-
 
 }
 
