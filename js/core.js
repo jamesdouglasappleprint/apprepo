@@ -1447,11 +1447,14 @@ Core.prototype.speechBubble = function(message,action){
   $('.speechBubble').hide()
   $('.speechBubble').removeClass('shrinkBubble')
 
+  //Remove existing timeouts
+  clearTimeout(killBubble);
+
   $('.speechBubble').show()
   $('.closeSpeechBubble').show()
   $('.speechBubbleText').addClass('showSpeechText').html(message)
 
-  setTimeout(function(){
+  killBubble = setTimeout(function(){
     $('.speechBubble').addClass('shrinkBubble')
     $('.speechBubbleText').removeClass('showSpeechText')
     $('.closeSpeechBubble').hide()
