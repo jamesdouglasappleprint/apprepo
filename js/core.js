@@ -23,7 +23,7 @@ function Core(){
   core.petNamedType = ""; //current pet type as a name
   core.petLevel = 1; //current pet type as a name
   core.userID = 0; //Pet Name
-  core.debug = 1; //1 enabled, 0 disabled
+  core.debug = 0; //1 enabled, 0 disabled
 
   $('.menuMusic').get(0).play()
 
@@ -35,7 +35,7 @@ function Core(){
 
 
   if (core.debug == 0){
-    core.initPushwoosh()
+    //core.initPushwoosh()
     window.plugin.notification.badge.clear(); //clear badge notifications
   }
 
@@ -1113,7 +1113,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
           //$('.gumphPanel').remove()
         }
 
-        if (core.debug == 0){
+        if (core.debug == 0 && localStorage.getItem("notifications") == true){
           core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         }
 
@@ -1513,6 +1513,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     function(status) {
       var deviceToken = status['deviceToken'];
       console.log('registerDevice: ' + deviceToken);
+      localStorage.setItem("notifications",true)
       setTagsFunc(email)
     },
     function(status) {
