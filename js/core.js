@@ -27,11 +27,6 @@ function Core(){
 
   $('.menuMusic').get(0).play()
 
-  setInterval(function(){
-    core.speechBubble('THIS IS A TEST MESSAGE')
-  },10000)
-
-
   core.loadPanelContent();//Load panels with content
   core.loginOrRegister(); //Load form options
   core.init();//Initial load checks
@@ -1087,6 +1082,8 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
   var core = this
   console.log('update action levels firing')
 
+  //core.speechBubble('THIS IS A TEST MESSAGE')
+
   var prevPetLevel = localStorage.getItem("petLevel")
 
   $.ajax({
@@ -1444,8 +1441,8 @@ Core.prototype.speechBubble = function(message,action){
   var core = this
 
   //Remove all speechbubble shiz in there's already one on screen.
-  $('.speechBubble').addClass('shrinkBubble')
   $('.speechBubbleText').removeClass('showSpeechText')
+  $('.speechBubbleText').empty()
   $('.closeSpeechBubble').hide()
   $('.speechBubble').hide()
   $('.speechBubble').removeClass('shrinkBubble')
