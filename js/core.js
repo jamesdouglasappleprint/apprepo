@@ -1501,23 +1501,6 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
   });
 
-  console.log('register device?')
-  //register for pushes
-  pushNotification.registerDevice(
-    function(status) {
-      var deviceToken = status['deviceToken'];
-      console.log('registerDevice: ' + deviceToken);
-      localStorage.setItem("notifications",true)
-      setTagsFunc(email)
-    },
-    function(status) {
-      navigator.notification.alert('Connection error', null, 'Error', 'Continue')
-
-      console.log('failed to register : ' + JSON.stringify(status));
-      alert(JSON.stringify(['failed to register ', status]));
-    }
-  );
-
   //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
   document.addEventListener('push-notification', function(event) {
     var notification = event.notification;
@@ -1551,6 +1534,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     );
   }//end func
 
+  console.log('register device?')
   //If we're calling set tags only set tags, don't call register etc
   if (setTags === true){
     setTagsFunc(email,petLevel)
@@ -1567,8 +1551,23 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
           console.log("unregistered failed!" + status);
       })
   }else{
+    //register for pushes
+    pushNotification.registerDevice(
+      function(status) {
+        var deviceToken = status['deviceToken'];
+        console.log('registerDevice: ' + deviceToken);
+        localStorage.setItem("notifications",true)
+        setTagsFunc(email)
+      },
+      function(status) {
+        navigator.notification.alert('Connection error', null, 'Error', 'Continue')
 
+        console.log('failed to register : ' + JSON.stringify(status));
+        alert(JSON.stringify(['failed to register ', status]));
+      }
+    );
   }
+
 
 }
 
