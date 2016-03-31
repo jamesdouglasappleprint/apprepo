@@ -1113,7 +1113,7 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
           //$('.gumphPanel').remove()
         }
 
-        if (core.debug == 0 && localStorage.getItem("notifications") == true){
+        if (core.debug == 0 && localStorage.getItem("notifications") == null){
           core.initPushwoosh(localStorage.getItem("emailaddress"),data[0].pl,true)
         }
 
