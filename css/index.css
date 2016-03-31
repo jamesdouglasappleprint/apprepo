@@ -852,6 +852,7 @@ form#scoreboostIncrement {
     height: 50%;
     position: absolute;
     top: 50px;
+    color: #E3097E;
 }
 
 .speechBubble {

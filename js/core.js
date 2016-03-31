@@ -27,6 +27,11 @@ function Core(){
 
   $('.menuMusic').get(0).play()
 
+  // setInterval(function(){
+  //   core.speechBubble('THIS IS A TEST MESSAGE')
+  // },10000)
+
+
   core.loadPanelContent();//Load panels with content
   core.loginOrRegister(); //Load form options
   core.init();//Initial load checks
@@ -1065,10 +1070,10 @@ Core.prototype.popupMessage = function(type){
     var foodArr = ['I\'m stuffed!','Thanks for the food!','That was tasty!','SO. MUCH. FOOD.','OMG stuffed!','FOOD!!!']
     core.speechBubble(foodArr[randomiser])
   }else if(type == 'fun'){
-    var funArr = ['Yay!!','BEST. PARTY. EVER.','That was fun!','You throw the best parties!','I need a rest now!','Boogie!']
+    var funArr = ['Yay!!','BEST. PARTY. EVER.','That was fun!','You throw the best parties!','Time for sleep, zzzzz','Danced out & sleepy now!']
     core.speechBubble(funArr[randomiser])
   }else if(type == 'clean'){
-    var cleanArr = ['Squeeky Clean!','Bubbles!','I\'m like a fish now!','SO. CLEAN.','Ahoy!','Blub blub blub!']
+    var cleanArr = ['Squeeky Clean!','Thanks for the bubbles!','Thanks, I\'m clean!','I\'m not smelly now!','Lovely bath thank you!','I love bubbles!']
     core.speechBubble(cleanArr[randomiser])
   }else{
     console.log('core.popupMessage type not set or an error has occured.')
@@ -1436,6 +1441,7 @@ Core.prototype.petMurder = function(){
 }
 
 Core.prototype.speechBubble = function(message,action){
+  var core = this
 
   //Remove all speechbubble shiz in there's already one on screen.
   $('.speechBubble').addClass('shrinkBubble')
@@ -1444,7 +1450,6 @@ Core.prototype.speechBubble = function(message,action){
   $('.speechBubble').hide()
   $('.speechBubble').removeClass('shrinkBubble')
 
-  var core = this
   $('.speechBubble').show()
   $('.closeSpeechBubble').show()
   $('.speechBubbleText').addClass('showSpeechText').html(message)
@@ -1461,7 +1466,6 @@ Core.prototype.speechBubble = function(message,action){
 
 
   $(document).on("click",".speechBubbleContainer",function(e){
-
     $('.speechBubble').addClass('shrinkBubble')
     $('.speechBubbleText').removeClass('showSpeechText')
     $('.closeSpeechBubble').hide()
@@ -1469,7 +1473,6 @@ Core.prototype.speechBubble = function(message,action){
       $('.speechBubble').hide()
       $('.speechBubble').removeClass('shrinkBubble')
     },1000)
-
   })
 
 
@@ -1493,15 +1496,6 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
 
   var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
-  //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
-  document.addEventListener('push-notification', function(event) {
-    var notification = event.notification;
-    console.log('push message recieved');
-    //pushNotification.setApplicationIconBadgeNumber(0);
-    core.speechBubble(notification.aps.alert)
-    //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
-  });
-
   pushNotification.onDeviceReady({
     projectid: "364045976404", // GOOGLE_PROJECT_ID
     pw_appid : "4FF24-5ACEC" // PUSHWOOSH_APP_ID
@@ -1523,6 +1517,15 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
       alert(JSON.stringify(['failed to register ', status]));
     }
   );
+
+  //TRIGGERED WHEN NOTIFICATIONS RECIEVED IN APP
+  document.addEventListener('push-notification', function(event) {
+    var notification = event.notification;
+    console.log('push message recieved');
+    //pushNotification.setApplicationIconBadgeNumber(0);
+    core.speechBubble(notification.aps.alert)
+    //navigator.notification.alert(notification.aps.alert, null, 'Your pet says...', 'OK')
+  });
 
   function setTagsFunc(email,petLevel){
     console.log(email+' : '+petLevel)
