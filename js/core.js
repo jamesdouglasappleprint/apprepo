@@ -1561,6 +1561,7 @@ Core.prototype.initPushwoosh = function(email,petLevel,setTags,unRegister){
     pushNotification.unregisterDevice (
       function(token){
           console.log("unregistered success!" + token);
+          localStorage.removeItem("notifications")
       },
       function(status){
           console.log("unregistered failed!" + status);
