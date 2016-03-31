@@ -635,7 +635,7 @@ Core.prototype.loginOrRegister = function(){
     		},
     		error: function(){
           console.log('Error registering user.')
-          navigator.notification.alert('Oops! It looks like something went wrong...', null, 'Registration Failure :(', 'ok')
+          navigator.notification.alert('Please check you have filled out all fields correctly!', null, 'Registration Failure', 'ok')
     		}
       });
     }else{
