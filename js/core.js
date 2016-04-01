@@ -32,8 +32,6 @@ function Core(){
   core.init();//Initial load checks
   core.logOut()
 
-
-
   if (core.debug == 0){
     //core.initPushwoosh()
     window.plugin.notification.badge.clear(); //clear badge notifications
@@ -1447,9 +1445,6 @@ Core.prototype.speechBubble = function(message,action){
   $('.speechBubble').hide()
   $('.speechBubble').removeClass('shrinkBubble')
 
-  //Remove existing timeouts
-  clearTimeout(killBubble);
-
   $('.speechBubble').show()
   $('.closeSpeechBubble').show()
   $('.speechBubbleText').addClass('showSpeechText').html(message)
@@ -1462,7 +1457,11 @@ Core.prototype.speechBubble = function(message,action){
       $('.speechBubble').hide()
       $('.speechBubble').removeClass('shrinkBubble')
     },1000)
+    //Remove existing timeouts
+    clearTimeout(killBubble);
   },5000)
+
+
 
 
   $(document).on("click",".speechBubbleContainer",function(e){
