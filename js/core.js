@@ -23,7 +23,7 @@ function Core(){
   core.petNamedType = ""; //current pet type as a name
   core.petLevel = 1; //current pet type as a name
   core.userID = 0; //Pet Name
-  core.debug = 0; //1 enabled, 0 disabled
+  core.debug = 1; //1 enabled, 0 disabled
 
   $('.menuMusic').get(0).play()
 
@@ -1185,17 +1185,13 @@ Core.prototype.updateActionLevels = function(uid,firstLoad){
           core.currentMood = 'sad';
         }
 
+        $('.petMain').removeClass().addClass('petMain')
+
         if(data[0].pa == 0){
           $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+core.currentMood+'-stage'+data[0].pl+'.png')
         }else{
           $('.petMain').attr('src', 'img/'+localStorage.getItem("petNamedType")+'/'+localStorage.getItem("petNamedType")+'-'+core.currentMood+'-stage'+data[0].pl+'.png').addClass('stage'+data[0].pl)
         }
-
-        $('.petMain').removeClass('stage'+(data[0].pl-1))
-        $('.petMain').removeClass('stage'+(data[0].pl-2))
-        $('.petMain').removeClass('stage'+(data[0].pl-3))
-        $('.petMain').removeClass('stage'+(data[0].pl-4))
-        $('.petMain').removeClass('stage'+(data[0].pl-5))
 
         $('.statusFood>.statusLevel').css({height:data[0].fs+'%'})
         $('.statusEntertain>.statusLevel').css({height:data[0].ps+'%'})
@@ -1221,7 +1217,8 @@ Core.prototype.actionFeed = function(stage){
   var petStage = stage
   $('.buttonContainer a').addClass('killLink')
   $('.petFood').show()
-  $('.petFood').addClass('stage'+petStage+'_foodDrop')
+  $('.petFood').removeClass()
+  $('.petFood').addClass('petFood stage'+petStage+'_foodDrop')
 
   if (localStorage.getItem('sound') == '1'){
 
