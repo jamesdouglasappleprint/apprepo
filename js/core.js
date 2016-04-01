@@ -1217,8 +1217,8 @@ Core.prototype.actionFeed = function(stage){
   var petStage = stage
   $('.buttonContainer a').addClass('killLink')
   $('.petFood').show()
-  $('.petFood').removeClass()
-  $('.petFood').addClass('petFood stage'+petStage+'_foodDrop')
+  $('.petFood').removeClass().addClass('petFood')
+  $('.petFood').addClass('stage'+petStage+'_foodDrop')
 
   if (localStorage.getItem('sound') == '1'){
 
