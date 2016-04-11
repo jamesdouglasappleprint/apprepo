@@ -552,7 +552,7 @@ Core.prototype.loginOrRegister = function(){
 
   //Login Opened
   $(document).on("click",".registerButton",function(e){
-    $('.registerLoginContainer').addClass('registerLoginReduceMax')
+    $('.registerLoginContainer').addClass('registerLoginReduce')
     $('.slideRegister').show()
     $('.slideLogin').hide()
     $('.registerLoginPanel').addClass('displaceBackgroundRegister')
@@ -560,7 +560,7 @@ Core.prototype.loginOrRegister = function(){
 
   //Login closed
   $(document).on("click",".hideSlideRegister",function(e){
-    $('.registerLoginContainer').removeClass('registerLoginReduceMax')
+    $('.registerLoginContainer').removeClass('registerLoginReduce')
     $('.slideRegister').hide()
     $('.registerLoginPanel').removeClass('displaceBackgroundRegister')
   })

@@ -4,7 +4,7 @@
        xmlns:gap   = "http://phonegap.com/ns/1.0"
        xmlns:android ="http://schemas.android.com/apk/res/android"
        id          = "com.applegotchi"
-       version     = "1.1.198">
+       version     = "1.1.199">
 
   <name>AppleGotchi</name>
 
@@ -21,7 +21,6 @@
 
   <platform name="ios" >
     <preference name="orientation" value="portrait" /><!--force portrait orientation-->
-    <preference name="target-device" value="handset" />
   </platform>
 
   <platform name="android" >
